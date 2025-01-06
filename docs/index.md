@@ -3,8 +3,8 @@
 
 ## Histórico de Revisão
 
-| Data | Versão | Descrição | Autor |
-| 25/11/2024 | 1.1 | Declaração de Problema, Posição do Produto e Objetivos do Produto |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+|   Data   |   Versão   |   Descrição   |   Autor   |
+|   25/11/2024   |   1.1   |   Declaração de Problema, Posição do Produto e Objetivos do Produto   |    Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos   |
 
 ## Visão Geral do Produto
 ### Problema
