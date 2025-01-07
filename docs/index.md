@@ -3,8 +3,10 @@
 
 ## Histórico de Revisão
 
-|   Data   |   Versão   |   Descrição   |   Autor   |
-|   25/11/2024   |   1.1   |   Declaração de Problema, Posição do Produto e Objetivos do Produto   |    Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos   |
+
+| **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
+|----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| 25/11/2024     | 1.1        | Declaração de Problema, Posição do Produto e Objetivos do Produto | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 
 ## Visão Geral do Produto
 ### Problema
@@ -17,3 +19,21 @@ Ineficiência Logística: Dificuldade para distribuir medicamentos de maneira ef
 
 [docs/espinhadepeixe.png](https://github.com/FGA-REQ/2024.2-Requisitores/blob/30615acf22087d611a3d190d597deecb8cc8fa75/docs/espinhadepeixe.png)
 
+### Declaração de Posição do Produto
+
+O produto a ser desenvolvido é uma ferramenta que gerencia o estoque de remédios da farmácia.  
+Esse produto se diferencia ao atender as especificidades exigidas pela FAB.  
+A ferramenta se destina a profissionais que atuam na farmácia da FAB.  
+Os profissionais poderão não só otimizar o trabalho organizando o estoque, como também estarão evitando o desperdício de remédios.
+
+
+| **Para** | Hospital de Força de Aérea de Brasília |
+| **Quem** | Grupo Requisitores                    |
+| **O (nome do produto)** | GestFarma                           |
+| **Que**  | Auxílio na gestão de fármacos do Hospital de Força Aérea de Brasília |
+| **Ao contrário** | MGITECH                             |
+| **Nosso produto** | Software feito sob medida para as necessidades do HFAB, proporcionando usabilidade aprimorada e facilitada, sendo utilizado via internet, não necessitando de hardwares específicos. |
+
+## Objetivo do Produto
+
+O produto é projetado para atender à demanda por um sistema eficiente e confiável de gestão de estoque voltado especificamente para produtos farmacêuticos. Ele busca otimizar o controle de entrada e saída de itens, minimizar desperdícios, garantir a rastreabilidade de lotes e a validade dos medicamentos, além de oferecer funcionalidades que auxiliem no planejamento e na tomada de decisões estratégicas para o setor.
