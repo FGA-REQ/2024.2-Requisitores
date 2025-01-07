@@ -28,6 +28,7 @@ Os profissionais poderão não só otimizar o trabalho organizando o estoque, co
 
 
 | **Para** | Hospital de Força de Aérea de Brasília |
+|----------|----------------------------------------|
 | **Quem** | Grupo Requisitores                    |
 | **O (nome do produto)** | GestFarma                           |
 | **Que**  | Auxílio na gestão de fármacos do Hospital de Força Aérea de Brasília |
