@@ -15,5 +15,5 @@ O controle e gestão de medicamentos é um dos principais desafios na área farm
 - **Erro Humano:** Dependência de processos manuais que podem levar a erros de registro, perda de dados ou má interpretação das informações.
 Ineficiência Logística: Dificuldade para distribuir medicamentos de maneira eficiente entre unidades, causando desperdício em algumas localidades enquanto outras sofrem com a falta de suprimentos.
 
-![DiagramaIshikawa]([docs/espinhadepeixe.png](https://github.com/FGA-REQ/2024.2-Requisitores/blob/30615acf22087d611a3d190d597deecb8cc8fa75/docs/espinhadepeixe.png))
+![Diagrama de Ishikawa do Produto GestFarma.]([docs/espinhadepeixe.png](https://github.com/FGA-REQ/2024.2-Requisitores/blob/30615acf22087d611a3d190d597deecb8cc8fa75/docs/espinhadepeixe.png))
 
