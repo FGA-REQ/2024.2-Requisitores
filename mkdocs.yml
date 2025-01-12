@@ -1,7 +1,7 @@
 site_name: Documentação
 
 nav:
-  - Instruções mkdocs: "index.md"
+  - Visão do Produto e Projeto : "visao-projeto-produto/visaoprojetoproduto.md"
   - Atas de Reunião:
     - Ata 1: "atas-reuniao/ata-reuniao-1.md"
 
