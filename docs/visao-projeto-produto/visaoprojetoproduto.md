@@ -64,7 +64,21 @@ A equipe responsável pelo desenvolvimento do projeto foi estruturada com base e
 | **Product Owner**   | Responsável pela priorização do backlog, definição de requisitos e alinhamento com as expectativas do cliente. | Davi Casseb                              | Davi Casseb                                                                                                           |  
 | **Cliente**         | Farmacêutica responsável por validar o produto final, garantindo que atenda às necessidades definidas. | Ana Cristina                             | Ana Cristina                                                                                                          |  
 
-### 2.2. Planejamento das Fases e/ou 
+### 2.2. Planejamento das Fases e/ou Iterações do Projeto
+O planejamento do projeto foi dividido em sprints, com entregas específicas para cada etapa, garantindo uma abordagem iterativa e incremental. Cada sprint possui objetivos claros e prazos definidos, permitindo a gestão eficaz das atividades e o acompanhamento do progresso. A tabela a seguir detalha as entregas, datas de início e fim de cada sprint:
+| **Sprint**          | **Produto (Entrega)**                                                                                   | **Data Início**                         | **Data Fim**                                                                                                      |  
+|---------------------|--------------------------------------------------------------------------------------------------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------|  
+| **Sprint 1** | Proposta do Projeto | 18/11/2024                              | 24/11/2024                           |  
+| **Sprint 2** | Definição do Problema, Visão do Produto e Projeto | 25/11/2024                              | 01/12/2024                           |  
+| **Sprint 3**   | Planejamento do Projeto | 02/12/2024                              | 08/12/2024                                                                                                          |  
+| **Sprint 4**         | Definições das Regras de Negócio |            09/12/2024                  |15/12/2024                                                                                                          |
+| **Sprint 5**         | Definições dos Requisitos Funcionais e Não Funcionais |            16/12/2024                  | 22/12/2024                                                                                                          |
+| **Sprint 6**         | Construção do GitPages, Iniciar MVP, Visão do Produto e Projeto. |            06/01/2024                  |12/01/20242024                                                                                                          |
+| **Sprint 7**         | Backlog do Produto, MVP e os processos de desenvolvimento de software. |            13/01/2025                  |19/01/2025                                                                                                          |
+| **Sprint 8**         | MVP, DoR, DoD |            20/01/2025                  |26/01/2025                                                                                                          |
+| **Sprint 9**         | MVP, Vídeo de validação cliente, vídeo de apresentação resultados |            27/01/2025                  |02/01/2025                                                                                                          |
+| **Sprint 10**         | Ajustes finais, entrega do MVP |            03/02/2025                  |09/02/2025                                                                                                          |
+| **Sprint 11**         | Preparar e realizar apresentação |            10/02/2025                  |12/02/2025                                                                                                          |
 
 ### 2.3. Matriz de Comunicação
 
@@ -72,3 +86,6 @@ A equipe responsável pelo desenvolvimento do projeto foi estruturada com base e
 
 ### 2.5. Critérios de Replanejamento
 
+## 3. Processo de Desenvolvimento de Software
+
+## 4. Lições Aprendidas
