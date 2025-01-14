@@ -167,6 +167,9 @@ Para enfrentar esses desafios, foram adotadas ações corretivas, como a criaç�
 ## 5. Referências
 
 AGILE ALLIANCE. Agile Alliance – Advocating for Agile Development. Disponível em: https://www.agilealliance.org/. Acesso em: 13 jan. 2025.
+
 AGILE MANIFESTO. Manifesto Ágil. 2001. Disponível em: http://www.manifestoagil.com.br/. Acesso em: 13 jan. 2025.
+
 PROJECT MANAGEMENT INSTITUTE. PMBOK® Guide: Project Management Body of Knowledge. Disponível em: https://www.pmi.org/pmbok-guide-standards. Acesso em: 13 jan. 2025.
+
 SCRUM.org. Home – Scrum.org. Disponível em: https://www.scrum.org/. Acesso em: 13 jan. 2025.
