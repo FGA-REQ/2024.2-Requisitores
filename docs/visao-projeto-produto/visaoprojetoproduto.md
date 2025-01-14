@@ -65,6 +65,8 @@ A equipe responsável pelo desenvolvimento do projeto foi estruturada com base e
 
 ### 2.2. Planejamento das Fases e/ou Iterações do Projeto
 O planejamento do projeto foi dividido em sprints, com entregas específicas para cada etapa, garantindo uma abordagem iterativa e incremental. Cada sprint possui objetivos claros e prazos definidos, permitindo a gestão eficaz das atividades e o acompanhamento do progresso. A tabela a seguir detalha as entregas, datas de início e fim de cada sprint:
+
+
 | **Sprint**          | **Produto (Entrega)**                                                                                     | **Data de Início**                     | **Data de Término**                                                                                              |  
 |---------------------|----------------------------------------------------------------------------------------------------|-----------------------------------------|------------------------------------------------------------------------------------------------------------------|  
 | **Sprint 1**        | Proposta do Projeto                                                                                | 18/11/2024                              | 24/11/2024                                                                                                      |  
