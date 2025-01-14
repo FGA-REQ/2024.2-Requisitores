@@ -1,9 +1,9 @@
 site_name: GestFarma
 
 nav:
-  - Visão do Produto e Projeto : "visao-projeto-produto/visaoprojetoproduto.md"
-  - Apêndice: 
-      Regras de Negócio: "visao-projeto-produto/regrasdenegocio.md"
+  - Visão do Produto e Projeto: "visao-projeto-produto/visaoprojetoproduto.md"
+  - Apêndice:
+      - Regras de Negócio: "visao-projeto-produto/regrasdenegocio.md"
 
 theme:
   name: material
