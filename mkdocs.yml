@@ -2,6 +2,8 @@ site_name: GestFarma
 
 nav:
   - Visão do Produto e Projeto: "visao-projeto-produto/visaoprojetoproduto.md"
+  - Backlog: "visao-projeto-produto/backlog.md"
+  - MVP: "visao-projeto-produto/mvp.md"
   - Apêndice:
       - Regras de Negócio: "visao-projeto-produto/regrasdenegocio.md"
 
