@@ -143,6 +143,22 @@ Mudanças em legislações ou regulamentações também desempenham um papel imp
 O acompanhamento dos critérios de replanejamento ocorre de forma contínua, sendo reavaliado a cada ciclo de desenvolvimento. Todas as alterações realizadas são devidamente registradas no Plano do Projeto e comunicadas às partes interessadas, assegurando transparência e alinhamento entre todos os envolvidos.  
 
 ## 3. Processo de Desenvolvimento de Software
+O desenvolvimento de sistemas eficazes e de alta qualidade exige a adoção de um fluxo de trabalho estruturado que aborde cada etapa do processo de forma metódica e eficiente.
+A metodologia utilizada baseia-se em abordagens ágeis, como o Scrum, combinadas com técnicas consolidadas de engenharia de software, incluindo levantamento e análise de requisitos, modelagem de processos, desenvolvimento incremental e testes rigorosos. Essas práticas foram selecionadas para maximizar a aderência do sistema às necessidades dos usuários, garantir a comunicação entre os stakeholders e assegurar a entrega de um produto funcional e bem documentado.
+
+A Tabela abaixo resume as etapas do fluxo de trabalho, detalhando o escopo de cada atividade, as tecnologias empregadas e os resultados esperados ao longo do projeto.
+
+## Diagrama de Fluxo de Trabalho
+
+| **Nome da Atividade**        | **Método**               | **Ferramentas**            | **Entrega**                                   |
+|------------------------------|--------------------------|----------------------------|----------------------------------------------|
+| Levantamento de Requisitos   | Entrevistas, Brainstorm | Google Forms                | Lista de requisitos levantados              |
+| Análise de Requisitos        | Prototipação, Wireframes| Figma, Lucidchart          | Diagramas de casos de uso e protótipos      |
+| Modelagem do Processo        | BPMN                    | Lucidhart,Figma              | Diagrama BPMN do fluxo do sistema           |
+| Planejamento do Desenvolvimento | Scrum, Sprint Planning | Jira, Discord              | Cronograma de desenvolvimento               |
+| Desenvolvimento do Sistema   | Programação ágil        | Visual Studio Code, GitHub | Código-fonte implementado                  |
+| Testes                       | Teste de Caixa Preta    | Selenium, Postman          | Relatório de testes e bugs encontrados      |
+| Entrega Final                | Deploy, Manual de Usuário | AWS, GitLab        | Sistema implantado e documentado           |
 
 ## 4. Lições Aprendidas  
 
