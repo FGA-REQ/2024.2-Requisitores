@@ -101,3 +101,9 @@ Para o desenvolvimento do referido produto, será implementada uma solução web
 2. **Geração Automática de Pedidos**  
    - *Como gestor de compras*, quero que o sistema envie automaticamente uma solicitação ao fornecedor quando o nível mínimo for atingido.  
    - Critérios de Aceitação: Gerar pedido com itens, quantidades e fornecedor correspondente.
+
+## Histórico de versão
+
+| Versão | Data       | Descrição                             | Autor(es)                                       | Revisor(es)             |
+| ------ | ---------- | ------------------------------------- | ----------------------------------------------- | ----------------------- |
+| `1.0`  | 14/01/2025 | Criação do documento                  | [Davi Casseb](https://github.com/dcasseb) | Joyce Dionizio, Fernanda Noronha |
