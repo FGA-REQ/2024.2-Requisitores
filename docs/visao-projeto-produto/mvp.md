@@ -46,3 +46,11 @@ Esta seção lista as limitações atuais do MVP, destacando funcionalidades que
 O MVP do **GestFarma** é um passo inicial para resolver os desafios da gestão farmacêutica no HFAB. Ele oferece funcionalidades centrais que podem ser incrementadas com base no feedback e nas demandas futuras. A abordagem incremental garantirá que o sistema seja eficiente, fácil de usar e atenda às necessidades do hospital.
 
 ---
+
+
+## Histórico de Revisão
+
+| **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
+|----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| 14/01/2025     | 1.0        | Documentação do MVP | Joyce Dionizio |
+
