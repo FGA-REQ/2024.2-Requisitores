@@ -8,6 +8,7 @@ nav:
   
   - Apêndice:
       - Regras de Negócio: "visao-projeto-produto/regrasdenegocio.md"
+      - MER/DER e Dicionário de dados: "visao-projeto-produto/der.md"
 
 theme:
   name: material
