@@ -1,12 +1,5 @@
 # MER/DER/Dicionário de dados
 
-## Histórico de Revisão
-
-| **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
-|----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| 25/01/2025     | 1.1        | Inclusão do MER, DER e do dicionário de dados | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
-
-
 ## Introdução 
 
 O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento representa uma visão da estrutura do banco de dados do sistema, assim com encontra-se as definições no dicionário de dados. O modelo foi elaborado com base nas regras de negócio identificadas e detalha as entidades, atributos e relacionamentos que compõem o sistema.
@@ -14,47 +7,47 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 ## Modelo de Entidade e Relacionamento
 
 **Entidades:**
-* Usuário
-* Medicamento
-* Lote
-* Estoque
-* Paciente
-* Dispensação
-* Recebimento
-* Item_Recebido
-* Ajuste_Estoque
-* Solicitacao_Compra
-* Item_Solicitado
+- Usuário
+- Medicamento
+- Lote
+- Estoque
+- Paciente
+- Dispensação
+- Recebimento
+- Item_Recebido
+- Ajuste_Estoque
+- Solicitacao_Compra
+- Item_Solicitado
 
 **Atributos:**
-* Usuário: ID_Usuario, Nome, Login, Senha, Perfil, TentativasFalhasLogin
-* Medicamento: ID_Medicamento, Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima
-* Lote: ID_Lote, ID_Medicamento, CodigoLote, Validade, QuantidadeDisponivel, Status
-* Estoque: ID_Estoque, ID_Lote, QuantidadeAtual, Local
-* Paciente: ID_Paciente, Nome, Prontuario
-* Dispensação: ID_Dispensacao, ID_Lote, ID_Paciente, ID_Usuario, DataHora, Quantidade
-* Recebimento: ID_Recebimento, ID_Usuario, DataHoraRecebimento, Validacao
-* Item_Recebido: ID_Item_Recebido, ID_Recebimento, ID_Lote, QuantidadeRecebida
-* Ajuste_Estoque: ID_Ajuste, ID_Usuario, ID_Lote, TipoAjuste, Quantidade, Local, Justificativa, DataHora
-* Solicitacao_Compra: ID_Solicitacao, DataSolicitacao, ID_Usuario, Status
-* Item_Solicitado: ID_Item_Solicitado, ID_Solicitacao, ID_Medicamento, QuantidadeSolicitada
+- Usuário: ID_Usuario, Nome, Login, Senha, Perfil, TentativasFalhasLogin
+- Medicamento: ID_Medicamento, Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima
+- Lote: ID_Lote, ID_Medicamento, CodigoLote, Validade, QuantidadeDisponivel, Status
+- Estoque: ID_Estoque, ID_Lote, QuantidadeAtual, Local
+- Paciente: ID_Paciente, Nome, Prontuario
+- Dispensação: ID_Dispensacao, ID_Lote, ID_Paciente, ID_Usuario, DataHora, Quantidade
+- Recebimento: ID_Recebimento, ID_Usuario, DataHoraRecebimento, Validacao
+- Item_Recebido: ID_Item_Recebido, ID_Recebimento, ID_Lote, QuantidadeRecebida
+- Ajuste_Estoque: ID_Ajuste, ID_Usuario, ID_Lote, TipoAjuste, Quantidade, Local, Justificativa, DataHora
+- Solicitacao_Compra: ID_Solicitacao, DataSolicitacao, ID_Usuario, Status
+- Item_Solicitado: ID_Item_Solicitado, ID_Solicitacao, ID_Medicamento, QuantidadeSolicitada
 
 
 **Relacionamentos:**
-* Usuário - Ajuste_Estoque: Um Usuário pode realizar vários Ajustes de Estoque (1:N)
-* Usuário - Solicitacao_Compra: Um Usuário pode realizar várias Solicitações de Compra (1:N)
-* Usuário - Dispensação: Um Usuário pode realizar várias Dispensações (1:N)
-* Usuário - Recebimento: Um Usuário pode realizar vários Recebimentos (1:N)
-* Medicamento - Lote: Um Medicamento pode ter vários Lotes (1:N)
-* Medicamento - Item_Solicitado: Um Medicamento pode ser solicitado em vários Itens Solicitados (1:N)
-* Lote - Medicamento: Um Lote pertence a um único Medicamento (1:1)
-* Lote - Dispensação: Um Lote pode estar associado a várias Dispensações (1:N)
-* Lote - Item_Recebido: Um Lote pode estar associado a vários Itens Recebidos (1:N)
-* Lote - Ajuste_Estoque: Um Lote pode estar associado a vários Ajustes de Estoque (1:N)
-* Lote - Estoque: Um Lote pode ter um registro de Estoque (1:1)
-* Paciente - Dispensação: Um Paciente pode ter várias Dispensações (1:N)
-* Recebimento - Item_Recebido: Um Recebimento pode ter vários Itens Recebidos (1:N)
-* Solicitacao_Compra - Item_Solicitado: Uma Solicitação de Compra pode ter vários Itens Solicitados (1:N)
+- Usuário - Ajuste_Estoque: Um Usuário pode realizar vários Ajustes de Estoque (1:N)
+- Usuário - Solicitacao_Compra: Um Usuário pode realizar várias Solicitações de Compra (1:N)
+- Usuário - Dispensação: Um Usuário pode realizar várias Dispensações (1:N)
+- Usuário - Recebimento: Um Usuário pode realizar vários Recebimentos (1:N)
+- Medicamento - Lote: Um Medicamento pode ter vários Lotes (1:N)
+- Medicamento - Item_Solicitado: Um Medicamento pode ser solicitado em vários Itens Solicitados (1:N)
+- Lote - Medicamento: Um Lote pertence a um único Medicamento (1:1)
+- Lote - Dispensação: Um Lote pode estar associado a várias Dispensações (1:N)
+- Lote - Item_Recebido: Um Lote pode estar associado a vários Itens Recebidos (1:N)
+- Lote - Ajuste_Estoque: Um Lote pode estar associado a vários Ajustes de Estoque (1:N)
+- Lote - Estoque: Um Lote pode ter um registro de Estoque (1:1)
+- Paciente - Dispensação: Um Paciente pode ter várias Dispensações (1:N)
+- Recebimento - Item_Recebido: Um Recebimento pode ter vários Itens Recebidos (1:N)
+- Solicitacao_Compra - Item_Solicitado: Uma Solicitação de Compra pode ter vários Itens Solicitados (1:N)
 
 ## Diagrama de Entidade e Relacionamento
 
@@ -206,3 +199,9 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 | ID_Solicitacao         | INT    | NÃO  | Referência à solicitação de compra associada. |
 | ID_Medicamento         | INT    | NÃO  | Referência ao medicamento solicitado.   |
 | QuantidadeSolicitada   | INT    | NÃO  | Quantidade solicitada do item.          |
+
+## Histórico de Revisão
+
+| **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
+|----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| 25/01/2025     | 1.1        | Inclusão do MER, DER e do dicionário de dados | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
