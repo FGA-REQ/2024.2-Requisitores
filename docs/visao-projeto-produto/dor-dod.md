@@ -40,3 +40,8 @@ A entrega será considerada concluída quando:
 9. Não há bugs críticos ou impedimentos relacionados à funcionalidade entregue.  
 
 ---
+## Histórico de Revisão
+
+| **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
+|----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| 26/01/2025     | 1.0        | Definição do DOR e DOD | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
