@@ -51,7 +51,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 
 ## Diagrama de Entidade e Relacionamento
 
-[Imagem do DER](docs/img/DER.png)
+[Imagem do DER](2024.2-Requisitores/docs/img/DER.png)
 
 ## Dicionário de dados
 
