@@ -22,7 +22,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 **Atributos:**
 - Usuário: ID_Usuario, Nome, Login, Senha, Perfil, TentativasFalhasLogin
 - Medicamento: ID_Medicamento, Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima
-- Lote: ID_Lote, ID_Medicamento, CodigoLote, Validade, QuantidadeDisponivel, Status
+- Lote: ID_Lote, ID_Medicamento, CodigoLote, Validade, Status
 - Estoque: ID_Estoque, ID_Lote, QuantidadeAtual, Local
 - Paciente: ID_Paciente, Nome, Prontuario
 - Dispensação: ID_Dispensacao, ID_Lote, ID_Paciente, ID_Usuario, DataHora, Quantidade
@@ -51,7 +51,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 
 ## Diagrama de Entidade e Relacionamento
 
-[docs/DER.png](/workspaces/2024.2-Requisitores/docs/img/DER.png)
+[Imagem do DER](docs/img/DER.png)
 
 ## Dicionário de dados
 
@@ -94,7 +94,6 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 | ID_Medicamento         | INT    | NÃO  | Referência ao medicamento associado.    |
 | CodigoLote             | TEXT   | NÃO  | Código único do lote.                   |
 | Validade               | DATE   | NÃO  | Data de validade do lote.               |
-| QuantidadeDisponivel   | INT    | NÃO  | Quantidade disponível no lote.          |
 | Status                 | TEXT   | NÃO  | Status do lote (ex.: ativo, expirado).  |
 
 ---
@@ -204,4 +203,5 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 
 | **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| 25/01/2025     | 1.1        | Inclusão do MER, DER e do dicionário de dados | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+| 25/01/2025     | 1.0        | Inclusão do MER, DER e do dicionário de dados | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+| 26/01/2025     | 1.1        | Ajustes do MER, DER e do dicionário de dados | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
