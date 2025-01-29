@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS Item_Solicitado (
 ---- Popula as tabelas do bd ----
 
 -- Tabela Usuáriov
-INSERT INTO Usuario (Nome, Login, Senha, Perfil) VALUES
+INSERT OR IGNORE INTO Usuario (Nome, Login, Senha, Perfil) VALUES
 ('João Silva', 'joaosilva', 'senha123@', 'Farmacêutico'),
 ('Maria Oliveira', 'mariaoliveira', 'senha456@', 'Técnico de Farmácia'),
 ('Lucas Mendes', 'lucasmendes', 'senha789@', 'Auditor'),
