@@ -1,0 +1,6 @@
+/* Estilos específicos do Dashboard */
+.dashboard-container {
+    background-color: white;
+    display: flex;
+    height: 100vh;
+}
