@@ -45,10 +45,10 @@ app.get('/api/dadosMedicamentos', (req, res) => {
 });
 
 // Servindo o frontend do React
-app.use(express.static(path.join(__dirname, "../client/src")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/src", "index.html"));
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get('/login', (req, res) => {
