@@ -16,7 +16,7 @@ const Login = () => {
       {/* Cabeçalho */}
       <div className="login-header">
         <div>
-        <img src="/hfab.jpg" alt="HMAB" className="hmab-logo"/>
+        <img src="/hfab.png" alt="HMAB" className="hmab-logo"/>
         </div>
         <div>
           <h1>Hospital da Força Aérea de Brasília</h1>
