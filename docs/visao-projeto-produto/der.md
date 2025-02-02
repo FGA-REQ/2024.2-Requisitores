@@ -2,7 +2,7 @@
 
 ## Introdução 
 
-O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento representa uma visão da estrutura do banco de dados do sistema, assim com encontra-se as definições no dicionário de dados. O modelo foi elaborado com base nas regras de negócio identificadas e detalha as entidades, atributos e relacionamentos que compõem o sistema.
+O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento representa uma visão da estrutura do banco de dados do sistema, assim com encontram-se as definições no dicionário de dados. O modelo foi elaborado com base nas regras de negócio identificadas e detalha as entidades, atributos e relacionamentos que compõem o sistema.
 
 ## Modelo de Entidade e Relacionamento
 
@@ -51,7 +51,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 
 ## Diagrama de Entidade e Relacionamento
 
-[Imagem do DER](2024.2-Requisitores/docs/img/DER.png)
+[Imagem do DER](/2024.2-Requisitores/docs/img/DER.png)
 
 ## Dicionário de dados
 

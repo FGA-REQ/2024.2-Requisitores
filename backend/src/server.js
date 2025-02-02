@@ -28,33 +28,39 @@ module.exports = (app) => {
     const scriptsPath = path.join(__dirname, 'scripts');
     executeSQLFromFile(path.join(scriptsPath, 'init.sql'));
 
-    // Rotas
-    app.get('/', (req, res) => {
-        res.send('Servidor funcionando!');
-    });
-
-    app.get('/dadosMedicamentos', (req, res) => {
-        db.all('SELECT * FROM Medicamento', [], (err, rows) => {
-            if (err) {
-                res.status(500).json({ error: err.message });
-                return;
-            }
-            res.json(rows);
-        });
-    });
-
     // Retorne o banco de dados para caso precise ser usado no futuro
     return db;
 };
 
 const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const app = express();
-const medicamentosRoutes = require('./routes/medicamentos');
 
-app.use(express.json()); // Para lidar com JSON no corpo das requisições
-app.use('/api', medicamentosRoutes); // Prefixa as rotas com "/api"
+// Middleware
+app.use(cors());
+app.use(bodyParser.json());
 
-app.listen(5000, () => {
-    console.log('Servidor rodando na porta 5000');
+// Rotas do backend
+app.get('/api/dadosMedicamentos', (req, res) => {
+    res.json({ mensagem: 'API funcionando!' });
 });
 
+// Servindo o frontend do React
+app.use(express.static(path.join(__dirname, "../../client/build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+});
+
+app.get('/login', (req, res) => {
+    res.redirect('/login');
+});
+
+// Inicia o servidor
+const PORT = process.env.PORT || 5001;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
