@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const path = require('path');
-require('dotenv').config();
 
 // Inicializa o app
 const app = express();
