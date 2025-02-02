@@ -1,0 +1,166 @@
+/* Layout Base - Sidebar e Navbar */
+
+.layout-container {
+    background-color: white;
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: #2B3F54;
+    color: white;
+    padding: 20px;
+    transition: width 0.3s ease; /* Adiciona transição suave */
+}
+
+.sidebar.open {
+    width: 150px; /* Largura quando aberto */
+}
+
+.sidebar.closed {
+    width: 40px; /* Largura quando fechado */
+}
+
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle:hover {
+    background-color: #1E2D3D; /* Efeito de hover igual aos outros itens */
+}
+
+.sidebar-toggle svg {
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: -20px;
+}
+
+.sidebar-header span {
+    font-size: 1.25rem;
+    margin-left: 10px;
+    font-weight: bold;
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+.sidebar.closed .sidebar-header span {
+    display: none; /* Esconde o texto quando fechado */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar-nav li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-nav li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+}
+  
+.sidebar-nav li.active {
+    background-color: #1E2D3D; /* Destaca item ativo */
+    font-weight: bold; /* Destacar o texto */
+}
+  
+.sidebar-nav li:hover {
+    background-color: #1E2D3D;
+}
+
+.sidebar-nav li span {
+    margin-left: 10px;
+    white-space: nowrap; /* Evita quebra de linha */
+}
+
+.sidebar.closed .sidebar-nav li span {
+    display: none; /* Esconde o texto quando fechado */
+}
+
+.sidebar-nav li svg,
+.sidebar-nav li img {
+    width: 20px;
+    height: 20px;
+}
+
+.top-navbar {
+    height: 60px;
+    background-color: #0F2230;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-navbar img {
+    width: 50px;
+    height: 50px;
+    margin-top: 5px;
+    margin-left: -10px;
+}
+
+.top-navbar span {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.top-navbar-actions {
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar-actions button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 20px;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+}
+
+.top-navbar-actions button:hover {
+    opacity: 0.8;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #F7F7F7;
+}
+
+.main-content-area {
+    flex: 1;
+    padding: 20px;
+    overflow: auto;
+}
+
+.page-content {
+    flex: 1;
+    padding: 20px;
+}
