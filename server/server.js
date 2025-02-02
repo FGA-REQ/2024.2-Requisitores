@@ -1,6 +1,5 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const sqlite3 = require('sqlite3').verbose();
 const fs = require('fs');
 const path = require('path');
@@ -10,7 +9,10 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors());
+if (process.env.NODE_ENV !== 'production') {
+    const cors = require('cors');
+    app.use(cors());
+  }
 app.use(bodyParser.json());
 
 // Conexão com o banco de dados
@@ -35,7 +37,7 @@ const executeSQLFromFile = (filePath) => {
 };
 
 // Executa os scripts na inicialização
-const scriptsPath = path.join(__dirname, 'scripts');
+const scriptsPath = path.join(__dirname, 'src/scripts');
 executeSQLFromFile(path.join(scriptsPath, 'init.sql'));
 
 // Rotas do backend
@@ -44,10 +46,10 @@ app.get('/api/dadosMedicamentos', (req, res) => {
 });
 
 // Servindo o frontend do React
-app.use(express.static(path.join(__dirname, "../../client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../../client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get('/login', (req, res) => {
