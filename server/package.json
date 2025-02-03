@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build && npm install bcrypt"
+    "build": "cd client && npm run build && npm install bcrypt",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
