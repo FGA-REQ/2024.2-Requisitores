@@ -3,15 +3,8 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js"
-  },
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "sqlite3": "^5.1.7"
+    "start": "node server/server.js",
+    "install": "cd client && npm install && cd .. && cd server && npm install",
+    "build": "cd client && npm run build"
   }
 }
