@@ -117,13 +117,13 @@ CREATE TABLE IF NOT EXISTS Item_Solicitado (
 
 -- Tabela Usuáriov
 INSERT OR IGNORE INTO Usuario (Nome, Login, Senha, Perfil) VALUES
-('João Silva', 'joaosilva', 'senha123@', 'Farmacêutico'),
-('Maria Oliveira', 'mariaoliveira', 'senha456@', 'Técnico de Farmácia'),
-('Lucas Mendes', 'lucasmendes', 'senha789@', 'Auditor'),
-('Admin Admin', 'admin', 'senhaADMIN@', 'Administrador');   
+('João Silva', 'joaosilva@gmail.com', 'senha123@', 'Farmacêutico'),
+('Maria Oliveira', 'mariaoliveira@gmail.com', 'senha456@', 'Técnico de Farmácia'),
+('Lucas Mendes', 'lucasmendes@gmail.com', 'senha789@', 'Auditor'),
+('Admin Admin', 'admin@gmail.com', 'senhaADMIN@', 'Administrador');   
 
 -- Tabela Medicamento
-INSERT INTO Medicamento (Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima) VALUES
+INSERT OR IGNORE INTO Medicamento (Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima) VALUES
 ('Paracetamol 500mg', 'MED001', 'Analgésico e antitérmico', 'FarmaCorp', 0, 50, 500),
 ('Ibuprofeno 200mg', 'MED002', 'Anti-inflamatório', 'MedPharma', 0, 30, 400),
 ('Clonazepam 2mg', 'MED003', 'Ansiolítico', 'HealthCare', 1, 10, 200),
@@ -147,7 +147,7 @@ INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local) VALUES
 (5, 180, 'Prateleira E');
 
 -- Tabela Paciente
-INSERT INTO Paciente (Nome, Prontuario) VALUES
+INSERT OR IGNORE INTO Paciente (Nome, Prontuario) VALUES
 ('Carlos Souza', 'PRONT001'),
 ('Fernanda Lima', 'PRONT002'),
 ('Ricardo Santos', 'PRONT003'),
