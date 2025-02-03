@@ -2,16 +2,15 @@
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
+  "engines": {
+    "node": "20.11.1"
+  },
   "scripts": {
     "start": "node server.js || exit 0",
     "dev": "nodemon server.js --signal SIGINT",
     "build": "cd ../client && npm run build",
     "heroku-postbuild": "cd ../client && npm install && npm run build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.3",
@@ -19,9 +18,7 @@
     "dotenv": "^16.4.7",  
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
-    "sqlite3": "^5.1.7"
-  },
-  "devDependencies": {
+    "sqlite3": "^5.1.7",
     "nodemon": "^3.1.9"
   }
 }

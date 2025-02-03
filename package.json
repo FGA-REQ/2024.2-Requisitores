@@ -2,6 +2,9 @@
   "name": "gestfarma",
   "version": "1.0.0",
   "main": "server/server.js",
+  "engines": {
+    "node": "20.11.1"
+  },
   "scripts": {
     "start": "node server/server.js",
     "install": "cd client && npm install && cd .. && cd server && npm install",
