@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import Sidebar from '../components/sidebar';
 import TopNavbar from '../components/topNavbar';
 import { pageTitles, getStoredSidebarState, toggleSidebarState } from '../utils/pageUtils';
@@ -7,6 +8,7 @@ import './usuarios.css';
 
 const Usuarios = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
 
   // Efeito para buscar o estado salvo no localStorage ao carregar a página
   useEffect(() => {
