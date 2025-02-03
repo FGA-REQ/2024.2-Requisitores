@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { db } = require('../utils/dbUtils');
 const SECRET_KEY = "seu_segredo_super_secreto";
