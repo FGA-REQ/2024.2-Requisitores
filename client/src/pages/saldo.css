@@ -1,0 +1,60 @@
+/* Estilo para o dropdown de seleção de produtos */
+.select-item {
+    flex: 1; /* Ajusta o tamanho para preencher o espaço disponível */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+.select-item:focus {
+    border-color: #4A90E2;
+    background-color: #ffffff;
+}
+
+/* Botão "FILTRAR" */
+.btn-filtrar {
+    background-color: white;
+    border: 1px solid #4A90E2;
+    color: #4A90E2;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-filtrar:hover {
+    background-color: #4A90E2;
+    color: white;
+}
+
+/* Estilização da tabela */
+.tabela-saldo {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-saldo th {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    padding: 10px;
+    text-align: left;
+    background-color: #f8f8f8;
+    border-bottom: 2px solid #ddd;
+}
+
+.tabela-saldo td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+.tabela-saldo tr:hover {
+    background-color: #f1f1f1;
+}

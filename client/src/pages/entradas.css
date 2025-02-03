@@ -1,0 +1,91 @@
+/* Container principal do saldo */
+.saldo-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 100; /* Aumenta a largura máxima para ocupar quase toda a tela */
+    min-height: 550px; /* Garante altura mínima para preencher melhor a tela */
+    display: flex;
+    flex-direction: column;
+    width: 900px /* Mantém alinhamento dos elementos internos */
+}
+
+/* Linha de inputs */
+.saldo-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilização do select */
+.select-produto {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Input de quantidade */
+.input-quantidade {
+    width: 120px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    outline: none;
+    text-align: center;
+}
+
+/* Botão de salvar */
+.btn-salvar {
+    background-color: #E5ECF6;
+    border: 1px solid #4A90E2;
+    color: #4A90E2;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-salvar:hover {
+    background-color: #4A90E2;
+    color: white;
+}
+
+/* Estilização da tabela */
+.tabela-saldo {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Cabeçalho da tabela */
+.tabela-saldo th {
+    font-size: 14px;
+    color: #333;
+    font-weight: bold;
+    padding: 12px;
+    text-align: left;
+    background-color: #f8f8f8;
+}
+
+/* Linhas da tabela */
+.tabela-saldo td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    background-color: white;
+}
+
+/* Efeito ao passar o mouse */
+.tabela-saldo tr:hover {
+    background-color: #f1f1f1;
+}
