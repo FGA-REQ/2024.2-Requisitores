@@ -11,6 +11,7 @@
     color: white;
     padding: 20px;
     transition: width 0.3s ease; /* Adiciona transição suave */
+    overflow-y: hidden;
 }
 
 .sidebar.open {
@@ -114,6 +115,9 @@
     justify-content: space-between;
     padding: 0 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .top-navbar img {
@@ -160,7 +164,12 @@
     overflow: auto;
 }
 
+.scrollable-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
 .page-content {
     flex: 1;
-    padding: 20px;
 }
