@@ -4,6 +4,7 @@ const path = require('path');
 const { dbStart } = require('./src/utils/dbUtils');
 const { login, registrar } = require('./src/controllers/authController');
 const { getDashboardData } = require('./src/controllers/dashboardController');
+const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
 
 // Inicializa o app
 const app = express();
@@ -13,6 +14,7 @@ if (process.env.NODE_ENV !== 'production') {
     const cors = require('cors');
     app.use(cors());
 }
+
 app.use(bodyParser.json());
 
 // Inicializa o banco de dados
@@ -26,6 +28,8 @@ dbStart().then((db) => {
     app.post('/api/login', login);
     app.post('/api/registrar', registrar);
     app.get('/api/dashboard', getDashboardData);
+    app.get('/api/dispensacao', getDispensacaoData);
+    
 
     // Servir arquivos do React
     app.use(express.static(path.join(__dirname, "../client/build")));

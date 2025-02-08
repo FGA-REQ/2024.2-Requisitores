@@ -44,16 +44,17 @@
     color: #333;
     font-weight: bold;
     padding: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #f8f8f8;
     border-bottom: 2px solid #ddd;
   }
-  
+
   /* Linhas da tabela */
   .tabela-dispensacao td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     background-color: white;
+    text-align: center;
   }
   
   /* Botões de ação na tabela */
@@ -114,6 +115,6 @@
     .tabela-dispensacao th,
     .tabela-dispensacao td {
       font-size: 12px;
+
     }
   }
-  
