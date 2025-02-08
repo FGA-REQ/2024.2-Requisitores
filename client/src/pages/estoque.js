@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'; // Importando useLocation
-import { FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox } from "react-icons/fa";
+import { FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox, FaUserCircle, FaSignOutAlt} from "react-icons/fa";
 import './layoutBase.css'; // Importando o layout base
 import './estoque.css'; // Importando o CSS do estoque
 
@@ -86,15 +86,23 @@ const Estoque = ({ children }) => {
       </aside>
 
       {/* Main Content */}
-      <div className="main-content">
-        {/* Top Navbar */}
-        <header className="top-navbar">
-          <div>
-            <img src="/hfab.png" alt="Logo" />
-          </div>
-          <span>GestFarma - {pageTitles[location.pathname] || "Página"}</span>
-        </header>
-
+           <div className="main-content">
+             {/* Top Navbar */}
+             <header className="top-navbar">
+               <div>
+                 <img src="/hfab.png" alt="Logo" />
+               </div>
+               <span>GestFarma - {pageTitles[location.pathname] || "Página"}</span>
+               <div className="top-navbar-actions">
+                 <button>
+                   <FaUserCircle /> Perfil
+                 </button>
+                 <button>
+                   <FaSignOutAlt /> Sair
+                 </button>
+               </div>
+             </header>
+     
         <main className="page-content">
           {children}
 
