@@ -5,6 +5,9 @@ import Dispensacao from "./pages/dispensacao";
 import Estoque from "./pages/estoque";
 import Relatorios from "./pages/relatorios";
 import Usuarios from "./pages/usuarios";
+import Saldo from "./pages/saldo";
+import Entradas from "./pages/entradas";
+import Saidas from "./pages/saidas";
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/relatorios" element={<Relatorios />} />
         <Route path="/usuarios" element={<Usuarios />} />
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/saldo" element={<Saldo />} />
+        <Route path="/entradas" element={<Entradas />} />
+        <Route path="/saidas" element={<Saidas />} />
       </Routes>
     </Router>
   );
