@@ -6,9 +6,12 @@
     "node": "20.11.1"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "cd server && node server.js",
     "install": "cd client && npm install && cd .. && cd server && npm install",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build && cd .. && cd server && npm start",
     "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "dependencies": {
+    "install": "^0.13.0"
   }
 }

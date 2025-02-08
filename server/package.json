@@ -7,6 +7,7 @@
   },
   "scripts": {
     "start": "node server.js || exit 0",
+    "deploy": "cd .. && cd client && npm run build && cd .. && cd server && npm start",
     "dev": "nodemon server.js --signal SIGINT"
   },
   "dependencies": {
