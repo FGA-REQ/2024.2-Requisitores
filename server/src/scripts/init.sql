@@ -136,6 +136,7 @@ INSERT OR IGNORE INTO Medicamento (Nome, Codigo, Descricao, Fabricante, Controle
 ('Ranitidina 150mg', 'MED010', 'Antiácido', 'PharmaLife', 0, 120, 1200),
 ('Losartana 50mg', 'MED011', 'Anti-hipertensivo', 'MedPharma', 0, 70, 700),
 ('Sinvastatina 20mg', 'MED012', 'Redutor de colesterol', 'FarmaCorp', 0, 90, 900);
+
 -- Tabela Lote
 INSERT INTO Lote (ID_Medicamento, CodigoLote, Validade, Status) VALUES
 (1, 'L202301', '2025-06-01', 'Ativo'),

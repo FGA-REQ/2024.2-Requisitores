@@ -4,6 +4,9 @@ const path = require('path');
 const dbPath = path.join(__dirname, '../data/GestFarma.db');
 const { atualizarSenhasComHash } = require('./passwordUtils');
 
+// Verifica se o banco já existe antes de criar a conexão
+const dbExists = fs.existsSync(dbPath);
+
 // Conexão com o banco de dados
 const connectDB = () => {
     return new Promise((resolve, reject) => {
@@ -38,7 +41,6 @@ const executeSQLFromFile = (db, filePath) => {
 // Verifica se o banco já existe
 const dbStart = async () => {
     try {
-        const dbExists = fs.existsSync(dbPath);
         const database = await connectDB();
 
         if (!dbExists) {
