@@ -7,6 +7,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 ## Modelo de Entidade e Relacionamento
 
 **Entidades:**
+
 - Usuário
 - Medicamento
 - Lote
