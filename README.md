@@ -1,6 +1,8 @@
-# template-repository
+# Grupo Requisitores
 
-Template de Repositório para a matéria de Requisitos de Software coordenado pela Professora Cristiane Ramos.
+## Grupo da matéria de Requisitos de Software - UnB 2024.2
+
+Template de Repositório coordenado pela Professora Cristiane Ramos.
 
 ## Especificações Técnicas do Repositório
 
