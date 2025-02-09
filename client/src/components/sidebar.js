@@ -33,12 +33,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
     const farmaceuticoItems = [
       ...commonItems,
       { path: '/estoque', label: 'Estoque', icon: <FaBox /> },
-      { path: '/relatorios', label: 'Relatórios', icon: <FaClipboardList /> },
     ];
 
     const tecnicoItems = [
       ...commonItems,
-      { path: '/relatorios', label: 'Relatórios', icon: <FaClipboardList /> },
     ];
 
     const auditorItems = [
