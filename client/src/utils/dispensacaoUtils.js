@@ -53,7 +53,7 @@ export const fetchMedicamentos = async (setMedicamentos) => {
             return;
         }
         const data = await response.json();
-        const medicamentosOrdenados = ordenarMedicamentosPorValidade(data.medicamentos || []);
+        const medicamentosOrdenados = (data.medicamentos || []).sort((a, b) => a.Nome.localeCompare(b.Nome));
         setMedicamentos(medicamentosOrdenados);
     } catch (error) {
         console.error("Erro ao buscar medicamentos:", error);
@@ -170,4 +170,110 @@ export const handleDispensarConfirm = async (modalData, usuarioLogado, setDispen
     } catch (error) {
         console.error("Erro ao dispensar medicamento:", error);
     }
+};
+
+export const handleNewDispensacaoConfirmUtil = async (modalData2, setDispensacao, dadosDispensacao, setShowModal2) => {
+    if (!modalData2) return;
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/dispensacoes', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify(modalData2),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setDispensacao([...dadosDispensacao, data]);
+            setShowModal2(false);
+        } else {
+            console.error("Erro ao adicionar dispensação:", response.status);
+        }
+    } catch (error) {
+        console.error("Erro ao adicionar dispensação:", error);
+    }
+};
+
+export const handleDispensarClick = (disp, setModalData, setShowModal) => {
+    setModalData(disp);
+    setShowModal(true);
+};
+
+export const handleNewDispensacaoClick = (usuarioLogado, setModalData2, setShowModal2) => {
+    setModalData2({ ID_Usuario: usuarioLogado?.ID_Usuario });
+    setShowModal2(true);
+};
+
+export const handleDispensarCancel = (setShowModal, setModalData) => {
+    setShowModal(false);
+    setModalData(null);
+};
+
+export const handleDispensarCancel2 = (setShowModal2, setModalData2) => {
+    setShowModal2(false);
+    setModalData2(null);
+};
+
+export const fetchLotesByMedicamento = async (medicamentoId) => {
+    try {
+        const token = localStorage.getItem('token');
+        const response = await fetch(`/api/lotes?medicamentoId=${medicamentoId}`, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (response.status === 401) {
+            window.location.href = "/login";
+            return;
+        }
+        const data = await response.json();
+        return data.lotes || [];
+    } catch (error) {
+        console.error("Erro ao buscar lotes do medicamento:", error);
+        window.location.href = "/login";
+    }
+};
+
+export const handleMedicamentoChange = async (e, setModalData2, medicamentos) => {
+    const medicamentoId = e.target.value;
+    const medicamentoSelecionado = medicamentos.find(m => m.ID_Medicamento === parseInt(medicamentoId));
+
+    if (medicamentoSelecionado) {
+        try {
+
+            const token = localStorage.getItem('token');
+            const response = await fetch(`/api/lotes?medicamentoId=${medicamentoId}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            const data = await response.json();
+            const lotesFiltrados = data.lotes.filter(lote => lote.ID_Medicamento === parseInt(medicamentoId));
+            
+            // console.log(lotesFiltrados);
+            
+            setModalData2(prevState => ({
+                ...prevState,
+                ID_Medicamento: medicamentoId,
+                lotes: lotesFiltrados,
+                ID_Lote: lotesFiltrados.length > 0 ? lotesFiltrados[0].ID_Lote : ''
+            }));
+        } catch (error) {
+            console.error("Erro ao buscar lotes do medicamento:", error);
+        }
+    }
+};
+
+
+export const handleNewDispensacaoConfirm = async (modalData2, setDispensacao, dadosDispensacao, setShowModal2, setLoading) => {
+    if (!modalData2.ID_Paciente || !modalData2.ID_Medicamento || !modalData2.Quantidade || modalData2.Quantidade <= 0) {
+        alert("Por favor, preencha todos os campos corretamente.");
+        return;
+    }
+    await handleNewDispensacaoConfirmUtil(modalData2, setDispensacao, dadosDispensacao, setShowModal2);
+    fetchDadosDispensacao(setDispensacao, setLoading);
 };

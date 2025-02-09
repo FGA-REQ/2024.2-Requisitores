@@ -6,11 +6,12 @@ exports.getDispensacaoData = async (req, res) => {
             SELECT 
                 p.Nome AS "Paciente",
                 m.Nome AS "Medicamento",
-                its.QuantidadeSolicitada AS "Prescrito",
+                d.quantidade AS "Prescrito",
                 COALESCE(SUM(CASE WHEN l.Status = 'Ativo' THEN e.QuantidadeAtual ELSE 0 END), 0) AS "Estoque",
                 m.ID_Medicamento AS "idMedicamento",
                 e.Local AS "Local",
                 p.Prontuario AS "Prontuario",
+                strftime('%d/%m/%Y %H:%M', d.DataHora) AS "DataHora",
                 strftime('%d/%m/%Y', l.Validade) AS "Validade"
             FROM Dispensacao d
             LEFT JOIN Lote l ON d.ID_Lote = l.ID_Lote
@@ -18,9 +19,8 @@ exports.getDispensacaoData = async (req, res) => {
             LEFT JOIN Estoque e ON l.ID_Lote = e.ID_Lote
             LEFT JOIN Paciente p ON d.ID_Paciente = p.ID_Paciente
             LEFT JOIN Item_Solicitado its ON m.ID_Medicamento = its.ID_Medicamento
-            -- WHERE Validade >= DATE('now')
             GROUP BY Paciente, Medicamento, ID_Dispensacao
-            ORDER BY Validade desc;
+            ORDER BY d.DataHora ASC;
         `;
 
         const dispensacao = await new Promise((resolve, reject) => {
@@ -157,18 +157,22 @@ exports.deleteDispensacao = async (req, res) => {
 
 exports.createDispensacao = async (req, res) => {
     const { ID_Lote, ID_Paciente, ID_Usuario, Quantidade } = req.body;
+
+    console.log("Dados recebidos para inserção:", req.body);
+
     try {
         await db.run('BEGIN TRANSACTION');
 
         // Atualiza a quantidade no estoque
         const updateEstoque = await new Promise((resolve, reject) => {
-            db.run('UPDATE Estoque SET QuantidadeAtual = QuantidadeAtual - ? WHERE ID_Lote = ?', [Quantidade, ID_Lote], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ changes: this.changes });
-                }
-            });
+            db.run('UPDATE Estoque SET QuantidadeAtual = QuantidadeAtual - ? WHERE ID_Lote = ?',
+                [Quantidade, ID_Lote], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ changes: this.changes });
+                    }
+                });
         });
 
         if (updateEstoque.changes === 0) {
@@ -177,13 +181,14 @@ exports.createDispensacao = async (req, res) => {
 
         // Insere a nova dispensação
         const result = await new Promise((resolve, reject) => {
-            db.run('INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade) VALUES (?, ?, ?, ?)', [ID_Lote, ID_Paciente, ID_Usuario, Quantidade], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ id: this.lastID });
-                }
-            });
+            db.run('INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade) VALUES (?, ?, ?, ?)',
+                [ID_Lote, ID_Paciente, ID_Usuario, Quantidade], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ id: this.lastID });
+                    }
+                });
         });
 
         await db.run('COMMIT');
@@ -193,5 +198,30 @@ exports.createDispensacao = async (req, res) => {
         await db.run('ROLLBACK');
         console.error("Erro ao criar dispensação:", error);
         res.status(500).json({ error: "Erro ao criar dispensação" });
+    }
+};
+
+
+exports.getLotesByMedicamento = async (req, res) => {
+    const { medicamentoId } = req.query;
+    try {
+        const lotes = await new Promise((resolve, reject) => {
+            db.all(`
+                SELECT * FROM Lote 
+                WHERE ID_Medicamento = ? AND Status = 'Ativo' AND Validade >= DATE('now')
+                ORDER BY Validade ASC
+            `, [medicamentoId], (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+
+        res.json({ lotes });
+    } catch (error) {
+        console.error("Erro ao buscar lotes do medicamento:", error);
+        res.status(500).json({ error: "Erro ao buscar lotes do medicamento" });
     }
 };

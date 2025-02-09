@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import TopNavbar from "../components/topNavbar";
-import { pageTitles, getStoredSidebarState, toggleSidebarState } from "../utils/pageUtils";
-import { fetchDadosDispensacao, fetchPacientes, fetchMedicamentos, filterDispensacao, handleDispensarConfirm } from "../utils/dispensacaoUtils";
+import { pageTitles, getStoredSidebarState } from "../utils/pageUtils";
+import * as dispensacaoUtils from "../utils/dispensacaoUtils";
 import { fetchUsuarioLogado } from '../utils/loginUtils';
 import "./layoutBase.css";
 import "./dispensacao.css";
@@ -23,67 +23,26 @@ const Dispensacao = () => {
   const [medicamentos, setMedicamentos] = useState([]);
   const [usuarioLogado, setUsuarioLogado] = useState(null);
 
-  const handleDispensarClick = (disp) => {
-    setModalData(disp);
-    setShowModal(true);
-  };
-
-  const handleNewDispensacaoClick = () => {
-    setModalData2({ ID_Usuario: usuarioLogado?.ID_Usuario });
-    setShowModal2(true);
-  };
-
   useEffect(() => {
     setIsSidebarOpen(getStoredSidebarState());
-    fetchDadosDispensacao(setDispensacao, setLoading);
-    fetchPacientes(setPacientes);
-    fetchMedicamentos(setMedicamentos);
+    dispensacaoUtils.fetchDadosDispensacao(setDispensacao, setLoading);
+    dispensacaoUtils.fetchPacientes(setPacientes);
+    dispensacaoUtils.fetchMedicamentos(setMedicamentos);
     fetchUsuarioLogado(setUsuarioLogado);
   }, []);
 
   useEffect(() => {
-    filterDispensacao(search, dadosDispensacao, setFilteredDispensacao, loading);
+    dispensacaoUtils.filterDispensacao(search, dadosDispensacao, setFilteredDispensacao, loading);
   }, [search, dadosDispensacao]);
 
-  const handleDispensarCancel = () => {
-    setShowModal(false);
-    setModalData(null);
-  };
-
-  const handleDispensarCancel2 = () => {
-    setShowModal2(false);
-    setModalData2(null);
-  };
-
-  const handleNewDispensacaoConfirm = async () => {
-    if (!modalData2) return;
-
-    try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/dispensacoes', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify(modalData2),
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setDispensacao([...dadosDispensacao, data]);
-        setShowModal2(false);
-      } else {
-        console.error("Erro ao adicionar dispensação:", response.status);
-      }
-    } catch (error) {
-      console.error("Erro ao adicionar dispensação:", error);
-    }
-  };
-
   const toggleSidebar = () => {
-    const newState = toggleSidebarState(isSidebarOpen);
+    const newState = toggleSidebar(isSidebarOpen);
     setIsSidebarOpen(newState);
+  };
+
+  const handleNewDispensacaoConfirm = async (modalData2) => {
+    console.log("Dados enviados para criação de dispensação:", modalData2);
+    await dispensacaoUtils.handleNewDispensacaoConfirm(modalData2, setDispensacao, dadosDispensacao, setShowModal2, setLoading);
   };
 
   return (
@@ -102,7 +61,7 @@ const Dispensacao = () => {
             />
             <button
               className="action-button action-nova-dispensacao"
-              onClick={handleNewDispensacaoClick}
+              onClick={() => dispensacaoUtils.handleNewDispensacaoClick(usuarioLogado, setModalData2, setShowModal2)}
             >
               Nova Dispensação
             </button>
@@ -116,6 +75,7 @@ const Dispensacao = () => {
                   <th>Medicamento</th>
                   <th>Qtd. Prescrita</th>
                   <th>Estoque</th>
+                  <th>Data/Hora</th>
                   <th>Ação</th>
                 </tr>
               </thead>
@@ -125,9 +85,9 @@ const Dispensacao = () => {
             <table className="tabela-dispensacao">
               <tbody className="scrollable-content">
                 {loading ? (
-                  <tr><td colSpan="6">Carregando dados...</td></tr>
+                  <tr><td colSpan="7">Carregando dados...</td></tr>
                 ) : filteredDispensacao.length === 0 ? (
-                  <tr><td colSpan="6">Nenhum resultado encontrado.</td></tr>
+                  <tr><td colSpan="7">Nenhum resultado encontrado.</td></tr>
                 ) : (
                   filteredDispensacao.map((disp) => {
                     const isAvailable = disp.Estoque >= disp.Prescrito;
@@ -138,11 +98,12 @@ const Dispensacao = () => {
                         <td>{disp.Medicamento}</td>
                         <td>{disp.Prescrito}</td>
                         <td>{disp.Estoque} {disp.Estoque < disp.Prescrito && <span className="icon-warning">⚠️</span>}</td>
+                        <td>{disp.DataHora}</td>
                         <td>
                           {isAvailable ? (
                             <button
                               className="action-button action-dispensar"
-                              onClick={() => handleDispensarClick(disp)}
+                              onClick={() => dispensacaoUtils.handleDispensarClick(disp, setModalData, setShowModal)}
                             >
                               ✔️ Dispensar
                             </button>
@@ -172,8 +133,8 @@ const Dispensacao = () => {
                 <p><strong>Local:</strong> {modalData.Local}</p>
                 <p><strong>Validade:</strong> {modalData.Validade}</p>
                 <div className="modal-buttons">
-                  <button className="modal-button confirm-button" onClick={() => handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal)}>Confirmar</button>
-                  <button className="modal-button cancel-button" onClick={handleDispensarCancel}>Cancelar</button>
+                  <button className="modal-button confirm-button" onClick={() => dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal)}>Confirmar</button>
+                  <button className="modal-button cancel-button" onClick={() => dispensacaoUtils.handleDispensarCancel(setShowModal, setModalData)}>Cancelar</button>
                 </div>
               </div>
             </div>
@@ -200,13 +161,13 @@ const Dispensacao = () => {
                 <div className="form-group">
                   <label>Medicamento:</label>
                   <select
-                    value={modalData2.ID_Lote || ''}
-                    onChange={(e) => setModalData2({ ...modalData2, ID_Lote: e.target.value })}
+                    value={modalData2.ID_Medicamento || ''}
+                    onChange={(e) => dispensacaoUtils.handleMedicamentoChange(e, setModalData2, medicamentos)}
                   >
                     <option value="">Selecione o medicamento</option>
                     {medicamentos.map((medicamento) => (
-                      <option key={medicamento.ID_Lote} value={medicamento.ID_Lote}>
-                        {medicamento.Nome} - {medicamento.Validade}
+                      <option key={medicamento.ID_Medicamento} value={medicamento.ID_Medicamento}>
+                        {medicamento.Nome}
                       </option>
                     ))}
                   </select>
@@ -221,8 +182,8 @@ const Dispensacao = () => {
                   />
                 </div>
                 <div className="modal-buttons">
-                  <button className="modal-button confirm-button" onClick={handleNewDispensacaoConfirm}>Confirmar</button>
-                  <button className="modal-button cancel-button" onClick={handleDispensarCancel2}>Cancelar</button>
+                  <button className="modal-button confirm-button" onClick={() => handleNewDispensacaoConfirm(modalData2)}>Confirmar</button>
+                  <button className="modal-button cancel-button" onClick={() => dispensacaoUtils.handleDispensarCancel2(setShowModal2, setModalData2)}>Cancelar</button>
                 </div>
               </div>
             </div>
