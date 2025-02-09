@@ -56,6 +56,37 @@ const Dispensacao = () => {
     }
   };
 
+  const fetchPacientes = async () => {
+    try {
+      const response = await fetch('/api/pacientes');
+      const data = await response.json();
+      setPacientes(data.pacientes || []);
+    } catch (error) {
+      console.error("Erro ao buscar dados dos Pacientes:", error);
+    }
+  };
+
+  const fetchMedicamentos = async () => {
+    try {
+      const response = await fetch('/api/medicamentos');
+      const data = await response.json();
+      const medicamentosOrdenados = ordenarMedicamentosPorValidade(data.medicamentos || []);
+      setMedicamentos(medicamentosOrdenados);
+    } catch (error) {
+      console.error("Erro ao buscar medicamentos:", error);
+    }
+  };
+
+  const fetchUsuarioLogado = async () => {
+    try {
+      const response = await fetch('/api/usuarioLogado');
+      const data = await response.json();
+      setUsuarioLogado(data.usuario);
+    } catch (error) {
+      console.error("Erro ao buscar usuário logado:", error);
+    }
+  };
+
   const filterDispensacao = () => {
     if (loading) return;
 
@@ -68,9 +99,10 @@ const Dispensacao = () => {
 
     const filtered = dadosDispensacao.filter((disp) => {
       const paciente = disp.Paciente ? disp.Paciente.toLowerCase() : "";
+      const prontuario = disp.Prontuario ? disp.Prontuario.toLowerCase() : "";
       const medicamento = disp.Medicamento ? disp.Medicamento.toLowerCase() : "";
 
-      return paciente.includes(searchTerm) || medicamento.includes(searchTerm);
+      return paciente.includes(searchTerm) || prontuario.includes(searchTerm) || medicamento.includes(searchTerm);
     });
 
     setFilteredDispensacao(filtered);
@@ -103,37 +135,6 @@ const Dispensacao = () => {
   const handleDispensarCancel = () => {
     setShowModal(false);
     setModalData(null);
-  };
-
-  const fetchPacientes = async () => {
-    try {
-      const response = await fetch('/api/pacientes');
-      const data = await response.json();
-      setPacientes(data.pacientes || []);
-    } catch (error) {
-      console.error("Erro ao buscar pacientes:", error);
-    }
-  };
-
-  const fetchMedicamentos = async () => {
-    try {
-      const response = await fetch('/api/medicamentos');
-      const data = await response.json();
-      const medicamentosOrdenados = ordenarMedicamentosPorValidade(data.medicamentos || []);
-      setMedicamentos(medicamentosOrdenados);
-    } catch (error) {
-      console.error("Erro ao buscar medicamentos:", error);
-    }
-  };
-
-  const fetchUsuarioLogado = async () => {
-    try {
-      const response = await fetch('/api/usuarioLogado');
-      const data = await response.json();
-      setUsuarioLogado(data.usuario);
-    } catch (error) {
-      console.error("Erro ao buscar usuário logado:", error);
-    }
   };
 
   const handleDispensarCancel2 = () => {
@@ -187,7 +188,7 @@ const Dispensacao = () => {
           <div className="dispensa-inputs">
             <input
               type="text"
-              placeholder="Buscar paciente ou medicamento"
+              placeholder="Buscar paciente, prontuário ou medicamento"
               className="search-input"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -276,7 +277,7 @@ const Dispensacao = () => {
               <div className="modal-content2">
                 <h2>Adicionar nova Dispensação</h2>
                 <div className="form-group">
-                  <label>Prontuário: </label>
+                  <label>Prontuário:</label>
                   <select
                     value={modalData2.ID_Paciente || ''}
                     onChange={(e) => setModalData2({ ...modalData2, ID_Paciente: e.target.value })}
@@ -290,7 +291,7 @@ const Dispensacao = () => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Medicamento: </label>
+                  <label>Medicamento:</label>
                   <select
                     value={modalData2.ID_Lote || ''}
                     onChange={(e) => setModalData2({ ...modalData2, ID_Lote: e.target.value })}
@@ -304,7 +305,7 @@ const Dispensacao = () => {
                   </select>
                 </div>
                 <div className="form-group">
-                  <label>Quantidade prescrita: </label>
+                  <label>Quantidade prescrita:</label>
                   <input
                     type="number"
                     placeholder="Informe a quantidade"
