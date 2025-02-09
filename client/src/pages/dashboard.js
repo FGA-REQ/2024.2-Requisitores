@@ -41,23 +41,23 @@ const Dashboard = ({ children }) => {
 
     const exportarCSV = () => {
         let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "Tipo,Nome,Valor\n";
+        csvContent += "Nome,Quantidade\n";
         
         if (medicamentosFabricante) {
             medicamentosFabricante.labels.forEach((label, index) => {
-                csvContent += `Barra,${label},${medicamentosFabricante.datasets[0].data[index]}\n`;
+                csvContent += `${label},${medicamentosFabricante.datasets[0].data[index]}\n`;
             });
         }
         
         if (medicamentosControle) {
             medicamentosControle.labels.forEach((label, index) => {
-                csvContent += `Pizza,${label},${medicamentosControle.datasets[0].data[index]}\n`;
+                csvContent += `${label},${medicamentosControle.datasets[0].data[index]}\n`;
             });
         }
         
         if (dispensacaoDia) {
             dispensacaoDia.labels.forEach((label, index) => {
-                csvContent += `Linha,${label},${dispensacaoDia.datasets[0].data[index]}\n`;
+                csvContent += `${label},${dispensacaoDia.datasets[0].data[index]}\n`;
             });
         }
         
@@ -83,10 +83,22 @@ const Dashboard = ({ children }) => {
                                 <h2>Bem-vindo, {usuarioLogado?.Nome}</h2>
                                 <button onClick={exportarCSV} className="export-button">Gerar relatório</button>
                                 <div className="dashboard-cards">
-                                    <div className="dashboard-card"><h3>Total de Medicamentos</h3><p>{dadosMedicamentos?.geral?.totalMedicamentos}</p></div>
-                                    <div className="dashboard-card"><h3>Quantidade Dispensada</h3><p>{dadosMedicamentos?.geral?.totalSaidas}</p></div>
-                                    <div className="dashboard-card"><h3>Estoque Baixo</h3><p>{dadosMedicamentos?.geral?.acabando}</p></div>
-                                    <div className="dashboard-card"><h3>Medicamentos Perto do Vencimento</h3><p>{dadosMedicamentos?.geral?.vencendo}</p></div>
+                                    <div className="dashboard-card">
+                                        <h3>Total de Medicamentos</h3>
+                                        <p>{dadosMedicamentos?.geral?.totalMedicamentos}</p>
+                                    </div>
+                                    <div className="dashboard-card">
+                                        <h3>Quantidade Dispensada</h3>
+                                        <p>{dadosMedicamentos?.geral?.totalSaidas}</p>
+                                    </div>
+                                    <div className="dashboard-card">
+                                        <h3>Estoque Baixo</h3>
+                                        <p>{dadosMedicamentos?.geral?.acabando}</p>
+                                    </div>
+                                    <div className="dashboard-card">
+                                        <h3>Medicamentos Perto do Vencimento</h3>
+                                        <p>{dadosMedicamentos?.geral?.vencendo}</p>
+                                    </div>
                                 </div>
                                 <div className="dashboard-charts">
                                     {medicamentosFabricante?.datasets?.length > 0 && (<Bar data={medicamentosFabricante} />)}
