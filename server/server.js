@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const { dbStart } = require('./src/utils/dbUtils');
-const { login, registrar } = require('./src/controllers/authController');
+const { login, registrar, getUsuarioLogado } = require('./src/controllers/authController');
 const { getDashboardData } = require('./src/controllers/dashboardController');
 const pacientesRoutes = require('./src/routes/pacientes');
 const medicamentosRoutes = require('./src/routes/medicamentos');
@@ -12,6 +12,7 @@ const usuariosRoutes = require('./src/routes/usuarios');
 const estoqueRoutes = require('./src/routes/estoque');
 const ajusteEstoqueRoutes = require('./src/routes/ajusteEstoque');
 const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
+const authMiddleware = require('./src/middleware/authMiddleware');
 
 // Inicializa o app
 const app = express();
@@ -34,15 +35,16 @@ dbStart().then((db) => {
     // Rotas
     app.post('/api/login', login);
     app.post('/api/registrar', registrar);
-    app.get('/api/dashboard', getDashboardData);
-    app.use('/api/pacientes', pacientesRoutes);
-    app.use('/api/medicamentos', medicamentosRoutes);
-    app.use('/api/lotes', lotesRoutes);
-    app.use('/api/dispensacoes', dispensacaoRoutes);
-    app.use('/api/usuarios', usuariosRoutes);
-    app.use('/api/estoque', estoqueRoutes);
-    app.use('/api/ajuste_estoque', ajusteEstoqueRoutes);
-    app.get('/api/dispensacoesTabela', getDispensacaoData);
+    app.get('/api/usuarioLogado', authMiddleware, getUsuarioLogado);
+    app.get('/api/dashboard', authMiddleware, getDashboardData);
+    app.use('/api/pacientes', authMiddleware, pacientesRoutes);
+    app.use('/api/medicamentos', authMiddleware, medicamentosRoutes);
+    app.use('/api/lotes', authMiddleware, lotesRoutes);
+    app.use('/api/dispensacoes', authMiddleware, dispensacaoRoutes);
+    app.use('/api/usuarios', authMiddleware, usuariosRoutes);
+    app.use('/api/estoque', authMiddleware, estoqueRoutes);
+    app.use('/api/ajuste_estoque', authMiddleware, ajusteEstoqueRoutes);
+    app.get('/api/dispensacoesTabela', authMiddleware, getDispensacaoData);
 
     // Servir arquivos do React
     app.use(express.static(path.join(__dirname, "../client/build")));

@@ -50,14 +50,19 @@ const registrar = (req, res) => {
         }
 
         const query = "INSERT INTO Usuario (nome, login, senha) VALUES (?, ?, ?)";
-        
-        db.run(query, [nome, login, hash], function(err) {
+
+        db.run(query, [nome, login, hash], function (err) {
             if (err) {
                 return res.status(500).json({ mensagem: "Erro ao registrar usuário." });
             }
             res.status(201).json({ mensagem: "Usuário registrado com sucesso!" });
-        }); 
+        });
     });
 };
 
-module.exports = { login, registrar };
+// Função para obter o usuário logado
+const getUsuarioLogado = (req, res) => {
+    res.json({ usuario: req.user });
+};
+
+module.exports = { login, registrar, getUsuarioLogado };
