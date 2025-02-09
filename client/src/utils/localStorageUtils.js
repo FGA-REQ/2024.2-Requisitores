@@ -9,3 +9,34 @@ export const getFromLocalStorage = (key) => {
 export const removeFromLocalStorage = (key) => {
   localStorage.removeItem(key);
 };
+
+export const getAuthToken = () => {
+  return localStorage.getItem("token"); 
+};
+
+export const setAuthToken = (token) => {
+  if (token) {
+      localStorage.setItem("token", token);
+  } else {
+      localStorage.removeItem("token");
+  }
+};
+
+export const getUsuarioLogado = () => {
+  return getFromLocalStorage("usuario");
+};
+
+export const setUsuarioLogado = (user) => {
+  if (user) {
+      saveToLocalStorage("usuario", user);
+  } else {
+      removeFromLocalStorage("usuario");
+  }
+};
+
+// ✅ Função para Logout
+export const logout = () => {
+  removeFromLocalStorage("token");
+  removeFromLocalStorage("usuario");
+  window.location.href = "/login";
+};
