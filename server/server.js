@@ -4,6 +4,10 @@ const path = require('path');
 const { dbStart } = require('./src/utils/dbUtils');
 const { login, registrar } = require('./src/controllers/authController');
 const { getDashboardData } = require('./src/controllers/dashboardController');
+const pacientesRoutes = require('./src/routes/pacientes');
+const medicamentosRoutes = require('./src/routes/medicamentos');
+const lotesRoutes = require('./src/routes/lote');
+const dispensacaoRoutes = require('./src/routes/dispensacao');
 const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
 
 // Inicializa o app
@@ -28,8 +32,11 @@ dbStart().then((db) => {
     app.post('/api/login', login);
     app.post('/api/registrar', registrar);
     app.get('/api/dashboard', getDashboardData);
-    app.get('/api/dispensacao', getDispensacaoData);
-    
+    app.use('/api/pacientes', pacientesRoutes);
+    app.use('/api/medicamentos', medicamentosRoutes);
+    app.use('/api/lotes', lotesRoutes);
+    app.use('/api/dispensacoes', dispensacaoRoutes);
+    app.use('/api/dispensacoesTabela', getDispensacaoData);
 
     // Servir arquivos do React
     app.use(express.static(path.join(__dirname, "../client/build")));

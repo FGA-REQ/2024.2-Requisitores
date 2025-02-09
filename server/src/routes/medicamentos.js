@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
-
-// Conexão com o banco de dados
-const db = new sqlite3.Database(path.resolve(__dirname, '../GestFarma.db'));
+const medicamentosController = require('../controllers/medicamentosController');
 
 // Rota para listar todos os medicamentos
 router.get('/medicamentos', (req, res) => {

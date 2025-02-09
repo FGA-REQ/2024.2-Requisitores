@@ -115,12 +115,15 @@ CREATE TABLE IF NOT EXISTS Item_Solicitado (
 
 ---- Popula as tabelas do bd ----
 
--- Tabela Usuáriov
+-- Tabela Usuário
 INSERT OR IGNORE INTO Usuario (Nome, Login, Senha, Perfil) VALUES
 ('João Silva', 'joaosilva@gmail.com', 'senha123@', 'Farmacêutico'),
 ('Maria Oliveira', 'mariaoliveira@gmail.com', 'senha456@', 'Técnico de Farmácia'),
 ('Lucas Mendes', 'lucasmendes@gmail.com', 'senha789@', 'Auditor'),
-('Admin Admin', 'admin@gmail.com', 'senhaADMIN@', 'Administrador');   
+('Admin Admin', 'admin@gmail.com', 'senhaADMIN@', 'Administrador'),
+('Paulo Souza', 'paulosouza@gmail.com', 'senha321@', 'Farmacêutico'),
+('Ana Clara', 'anaclara@gmail.com', 'senha654@', 'Técnico de Farmácia'),
+('Carlos Lima', 'carloslima@gmail.com', 'senha987@', 'Auditor');
 
 -- Tabela Medicamento
 INSERT OR IGNORE INTO Medicamento (Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima) VALUES
@@ -135,7 +138,24 @@ INSERT OR IGNORE INTO Medicamento (Nome, Codigo, Descricao, Fabricante, Controle
 ('Cefalexina 500mg', 'MED009', 'Antibiótico', 'FarmaCorp', 1, 80, 800),
 ('Ranitidina 150mg', 'MED010', 'Antiácido', 'PharmaLife', 0, 120, 1200),
 ('Losartana 50mg', 'MED011', 'Anti-hipertensivo', 'MedPharma', 0, 70, 700),
-('Sinvastatina 20mg', 'MED012', 'Redutor de colesterol', 'FarmaCorp', 0, 90, 900);
+('Sinvastatina 20mg', 'MED012', 'Redutor de colesterol', 'FarmaCorp', 0, 90, 900),
+('Aspirina 100mg', 'MED014', 'Analgésico', 'Bayer', 0, 60, 600),
+('Metformina 850mg', 'MED015', 'Antidiabético', 'PharmaLife', 0, 80, 800),
+('Simeticona 125mg', 'MED016', 'Antiflatulento', 'MedPharma', 0, 40, 400),
+('Loratadina 10mg', 'MED017', 'Antialérgico', 'AllerPharma', 0, 50, 500),
+('Prednisona 20mg', 'MED018', 'Corticosteroide', 'SteroidPharma', 0, 30, 300),
+('Azitromicina 500mg', 'MED019', 'Antibiótico', 'AntibioticCorp', 1, 40, 400),
+('Fluoxetina 20mg', 'MED020', 'Antidepressivo', 'MentalHealth', 1, 20, 200),
+('Cetirizina 10mg', 'MED021', 'Antialérgico', 'AllerPharma', 0, 60, 600),
+('Diclofenaco 50mg', 'MED022', 'Anti-inflamatório', 'PainRelief', 0, 70, 700),
+('Levotiroxina 100mcg', 'MED023', 'Hormônio tireoidiano', 'EndocrinePharma', 0, 80, 800),
+('Atenolol 50mg', 'MED024', 'Beta-bloqueador', 'CardioPharma', 0, 90, 900),
+('Clindamicina 300mg', 'MED025', 'Antibiótico', 'AntibioticCorp', 1, 50, 500),
+('Furosemida 40mg', 'MED026', 'Diurético', 'DiureticPharma', 0, 100, 1000),
+('Hidroclorotiazida 25mg', 'MED027', 'Diurético', 'DiureticPharma', 0, 110, 1100),
+('Enalapril 10mg', 'MED028', 'Anti-hipertensivo', 'CardioPharma', 0, 120, 1200),
+('Amlodipina 5mg', 'MED029', 'Anti-hipertensivo', 'CardioPharma', 0, 130, 1300),
+('Simvastatina 40mg', 'MED030', 'Redutor de colesterol', 'FarmaCorp', 0, 140, 1400);
 
 -- Tabela Lote
 INSERT INTO Lote (ID_Medicamento, CodigoLote, Validade, Status) VALUES
@@ -150,7 +170,10 @@ INSERT INTO Lote (ID_Medicamento, CodigoLote, Validade, Status) VALUES
 (9, 'L202309', '2026-03-10', 'Ativo'),
 (10, 'L202310', '2025-07-25', 'Ativo'),
 (11, 'L202311', '2024-12-18', 'Expirado'),
-(12, 'L202312', '2026-05-02', 'Ativo');
+(12, 'L202312', '2026-05-02', 'Ativo'),
+(13, 'L202313', '2025-08-15', 'Ativo'),
+(14, 'L202314', '2025-09-10', 'Ativo'),
+(15, 'L202315', '2026-02-20', 'Ativo');
 
 -- Tabela Estoque
 INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local) VALUES
@@ -165,7 +188,10 @@ INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local) VALUES
 (9, 600, 'Prateleira D'),
 (10, 400, 'Prateleira E'),
 (11, 200, 'Prateleira F'),
-(12, 800, 'Prateleira G');
+(12, 800, 'Prateleira G'),
+(13, 250, 'Prateleira H'),
+(14, 350, 'Prateleira I'),
+(15, 450, 'Prateleira J');
 
 -- Tabela Paciente
 INSERT OR IGNORE INTO Paciente (Nome, Prontuario) VALUES
@@ -177,7 +203,13 @@ INSERT OR IGNORE INTO Paciente (Nome, Prontuario) VALUES
 ('Pedro Oliveira', 'PRONT006'),
 ('Ana Souza', 'PRONT007'),
 ('Lucas Lima', 'PRONT008'),
-('Fernanda Santos', 'PRONT009');
+('Fernanda Santos', 'PRONT009'),
+('João Almeida', 'PRONT010'),
+('Mariana Costa', 'PRONT011'),
+('Rafael Mendes', 'PRONT012'),
+('Beatriz Rocha', 'PRONT013'),
+('Gabriel Martins', 'PRONT014'),
+('Larissa Fernandes', 'PRONT015');
 
 -- Tabela Dispensação
 INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade) VALUES
@@ -191,7 +223,10 @@ INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade) VALUES
 (9, 2, 1, 80),
 (10, 1, 4, 40),
 (11, 5, 2, 10),
-(12, 4, 3, 60);
+(12, 4, 3, 60),
+(13, 6, 1, 25),
+(14, 7, 2, 35),
+(15, 8, 3, 45);
 
 -- Tabela Recebimento
 INSERT INTO Recebimento (ID_Usuario, Validacao) VALUES
@@ -202,6 +237,10 @@ INSERT INTO Recebimento (ID_Usuario, Validacao) VALUES
 (3, 'Aprovado'),
 (4, 'Pendente'),
 (1, 'Aprovado'),
+(2, 'Aprovado'),
+(3, 'Pendente'),
+(4, 'Aprovado'),
+(1, 'Pendente'),
 (2, 'Aprovado'),
 (3, 'Pendente');
 
@@ -217,7 +256,10 @@ INSERT INTO Item_Recebido (ID_Recebimento, ID_Lote, QuantidadeRecebida) VALUES
 (4, 9, 500),
 (5, 10, 300),
 (5, 11, 150),
-(5, 12, 700);
+(5, 12, 700),
+(6, 13, 250),
+(7, 14, 350),
+(8, 15, 450);
 
 -- Tabela Ajuste Estoque
 INSERT INTO Ajuste_Estoque (ID_Usuario, ID_Lote, TipoAjuste, Quantidade, Local, Justificativa) VALUES
@@ -226,7 +268,10 @@ INSERT INTO Ajuste_Estoque (ID_Usuario, ID_Lote, TipoAjuste, Quantidade, Local, 
 (1, 6, 'Saída', 20, 'Prateleira A', 'Ajuste de quantidade'),
 (2, 8, 'Entrada', 30, 'Prateleira C', 'Ajuste de quantidade'),
 (3, 10, 'Saída', 10, 'Prateleira E', 'Ajuste de quantidade'),
-(4, 12, 'Entrada', 50, 'Prateleira G', 'Ajuste de quantidade');
+(4, 12, 'Entrada', 50, 'Prateleira G', 'Ajuste de quantidade'),
+(1, 13, 'Entrada', 25, 'Prateleira H', 'Ajuste de quantidade'),
+(2, 14, 'Saída', 35, 'Prateleira I', 'Ajuste de quantidade'),
+(3, 15, 'Entrada', 45, 'Prateleira J', 'Ajuste de quantidade');
 
 -- Tabela Solicitação de Compra
 INSERT INTO Solicitacao_Compra (ID_Usuario, Status) VALUES
@@ -236,7 +281,9 @@ INSERT INTO Solicitacao_Compra (ID_Usuario, Status) VALUES
 (2, 'Pendente'),
 (3, 'Em análise'),
 (4, 'Aprovada'),
-(1, 'Pendente');
+(1, 'Pendente'),
+(2, 'Aprovada'),
+(3, 'Em análise');
 
 -- Tabela Item Solicitado
 INSERT INTO Item_Solicitado (ID_Solicitacao, ID_Medicamento, QuantidadeSolicitada) VALUES
@@ -250,4 +297,7 @@ INSERT INTO Item_Solicitado (ID_Solicitacao, ID_Medicamento, QuantidadeSolicitad
 (4, 9, 300),
 (5, 10, 150),
 (5, 11, 80),
-(5, 12, 400);
+(5, 12, 400),
+(6, 13, 250),
+(7, 14, 350),
+(8, 15, 450);
