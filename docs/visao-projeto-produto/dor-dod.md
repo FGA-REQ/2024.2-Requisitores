@@ -16,10 +16,12 @@ Segue a proposta de **Definição de Pronto (DoD)** e **Definição de Pronto pa
 
 ### **Definição de Pronto para Refinamento (DoR)**  
 A história de usuário está pronta para ser refinada quando:  
-1. Possui uma descrição clara seguindo o formato:  
+1. Possui uma descrição clara seguindo o formato:
+   
    - **Como** [tipo de usuário]  
    - **Eu quero** [funcionalidade/ação desejada]  
-   - **Para que** [benefício/resultado esperado].  
+   - **Para que** [benefício/resultado esperado].
+     
 2. Os critérios de aceitação estão definidos de forma objetiva e verificável.  
 3. O valor de negócio ou impacto da entrega está especificado.  
 4. Os stakeholders necessários foram consultados e concordam com os objetivos da história.  
@@ -33,8 +35,10 @@ A entrega será considerada concluída quando:
 2. Os testes manuais foram realizados, com 100% de aprovação.  
 3. O código foi revisado por pelo menos um membro do time (Code Review).  
 4. A funcionalidade foi validada por stakeholders.  
-6. Documentações relevantes foram atualizadas:  
+6. Documentações relevantes foram atualizadas:
+   
    - Registros de requisitos e mudanças no backlog.  
+  
 7. A funcionalidade foi aprovada em uma demonstração/review com stakeholders.  
 8. O deploy no ambiente produtivo foi realizado com sucesso (se for o caso).  
 9. Não há bugs críticos ou impedimentos relacionados à funcionalidade entregue.  
