@@ -41,8 +41,12 @@ const Dispensacao = () => {
   };
 
   const handleNewDispensacaoConfirm = async (modalData2) => {
-    console.log("Dados enviados para criação de dispensação:", modalData2);
     await dispensacaoUtils.handleNewDispensacaoConfirm(modalData2, setDispensacao, dadosDispensacao, setShowModal2, setLoading);
+  };
+
+  const handleDispensarConfirm = async (modalData) => {
+    await dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal);
+    dispensacaoUtils.fetchDadosDispensacao(setDispensacao, setLoading); // Atualizar a tabela após a dispensação
   };
 
   return (
@@ -133,7 +137,7 @@ const Dispensacao = () => {
                 <p><strong>Local:</strong> {modalData.Local}</p>
                 <p><strong>Validade:</strong> {modalData.Validade}</p>
                 <div className="modal-buttons">
-                  <button className="modal-button confirm-button" onClick={() => dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal)}>Confirmar</button>
+                  <button className="modal-button confirm-button" onClick={() => handleDispensarConfirm(modalData)}>Confirmar</button>
                   <button className="modal-button cancel-button" onClick={() => dispensacaoUtils.handleDispensarCancel(setShowModal, setModalData)}>Cancelar</button>
                 </div>
               </div>

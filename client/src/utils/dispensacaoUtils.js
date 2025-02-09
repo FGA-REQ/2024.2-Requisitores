@@ -111,64 +111,36 @@ export const filterDispensacao = (search, dadosDispensacao, setFilteredDispensac
 };
 
 export const handleDispensarConfirm = async (modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal) => {
-    if (!modalData) return;
+    if (!modalData || !modalData.idLote) {
+        console.error("Dados do lote não encontrados.");
+        return;
+    }
 
     try {
         const token = localStorage.getItem('token');
-        // Atualiza a quantidade no estoque
-        const responseEstoque = await fetch(`/api/estoque/${modalData.ID_Lote}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                'Authorization': `Bearer ${token}`
-            },
-            body: JSON.stringify({ ID_Lote: modalData.ID_Lote, QuantidadeAtual: modalData.Estoque - modalData.Prescrito, Local: modalData.Local }),
-        });
-
-        if (!responseEstoque.ok) {
-            console.error("Erro ao atualizar estoque:", responseEstoque.status);
-            return;
-        }
-
-        // Adiciona o ajuste no estoque
-        const responseAjuste = await fetch('/api/ajuste_estoque', {
+        const response = await fetch('/api/dispensacoes/confirmar', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
-                ID_Usuario: usuarioLogado.ID_Usuario,
-                ID_Lote: modalData.ID_Lote,
-                TipoAjuste: 'Saída',
+                ID_Dispensacao: modalData.ID_Dispensacao,
+                ID_Lote: modalData.idLote,
                 Quantidade: modalData.Prescrito,
-                Local: modalData.Local,
-                Justificativa: 'Dispensação de medicamento'
+                ID_Usuario: usuarioLogado.ID_Usuario
             }),
         });
 
-        if (!responseAjuste.ok) {
-            console.error("Erro ao adicionar ajuste de estoque:", responseAjuste.status);
-            return;
-        }
-
-        // Remove a dispensação realizada
-        const responseDispensacao = await fetch(`/api/dispensacoes/${modalData.idMedicamento}`, {
-            method: "DELETE",
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        if (responseDispensacao.ok) {
-            const data = await responseDispensacao.json();
-            setDispensacao(dadosDispensacao.filter(d => d.idMedicamento !== modalData.idMedicamento));
+        if (response.ok) {
+            const data = await response.json();
+            setDispensacao(dadosDispensacao.filter(d => d.ID_Dispensacao !== modalData.ID_Dispensacao));
             setShowModal(false);
         } else {
-            console.error("Erro ao remover dispensação:", responseDispensacao.status);
+            console.error("Erro ao concluir dispensação:", response.status);
         }
     } catch (error) {
-        console.error("Erro ao dispensar medicamento:", error);
+        console.error("Erro ao concluir dispensação:", error);
     }
 };
 
@@ -253,9 +225,7 @@ export const handleMedicamentoChange = async (e, setModalData2, medicamentos) =>
             });
             const data = await response.json();
             const lotesFiltrados = data.lotes.filter(lote => lote.ID_Medicamento === parseInt(medicamentoId));
-            
-            // console.log(lotesFiltrados);
-            
+
             setModalData2(prevState => ({
                 ...prevState,
                 ID_Medicamento: medicamentoId,

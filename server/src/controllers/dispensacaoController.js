@@ -9,6 +9,9 @@ exports.getDispensacaoData = async (req, res) => {
                 d.quantidade AS "Prescrito",
                 COALESCE(SUM(CASE WHEN l.Status = 'Ativo' THEN e.QuantidadeAtual ELSE 0 END), 0) AS "Estoque",
                 m.ID_Medicamento AS "idMedicamento",
+                d.id_lote AS "idLote",
+                d.ID_Dispensacao AS "ID_Dispensacao",
+                p.id_paciente AS "idPaciente",
                 e.Local AS "Local",
                 p.Prontuario AS "Prontuario",
                 strftime('%d/%m/%Y %H:%M', d.DataHora) AS "DataHora",
@@ -19,6 +22,7 @@ exports.getDispensacaoData = async (req, res) => {
             LEFT JOIN Estoque e ON l.ID_Lote = e.ID_Lote
             LEFT JOIN Paciente p ON d.ID_Paciente = p.ID_Paciente
             LEFT JOIN Item_Solicitado its ON m.ID_Medicamento = its.ID_Medicamento
+            WHERE d.Status = 'Pendente'
             GROUP BY Paciente, Medicamento, ID_Dispensacao
             ORDER BY d.DataHora ASC;
         `;
@@ -90,7 +94,7 @@ exports.addDispensacao = async (req, res) => {
     const { ID_Lote, ID_Paciente, ID_Usuario, Quantidade } = req.body;
     try {
         const result = await new Promise((resolve, reject) => {
-            db.run('INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade) VALUES (?, ?, ?, ?)', [ID_Lote, ID_Paciente, ID_Usuario, Quantidade], function (err) {
+            db.run('INSERT INTO Dispensacao (ID_Lote, ID_Paciente, ID_Usuario, Quantidade, Status) VALUES (?, ?, ?, ?, ?)', [ID_Lote, ID_Paciente, ID_Usuario, Quantidade, 'Pendente'], function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -158,8 +162,6 @@ exports.deleteDispensacao = async (req, res) => {
 exports.createDispensacao = async (req, res) => {
     const { ID_Lote, ID_Paciente, ID_Usuario, Quantidade } = req.body;
 
-    console.log("Dados recebidos para inserção:", req.body);
-
     try {
         await db.run('BEGIN TRANSACTION');
 
@@ -223,5 +225,65 @@ exports.getLotesByMedicamento = async (req, res) => {
     } catch (error) {
         console.error("Erro ao buscar lotes do medicamento:", error);
         res.status(500).json({ error: "Erro ao buscar lotes do medicamento" });
+    }
+};
+
+exports.handleDispensarConfirm = async (req, res) => {
+    const { ID_Dispensacao, ID_Lote, Quantidade, ID_Usuario } = req.body;
+
+    try {
+        await db.run('BEGIN TRANSACTION');
+
+        // Atualiza a quantidade no estoque
+        const updateEstoque = await new Promise((resolve, reject) => {
+            db.run('UPDATE Estoque SET QuantidadeAtual = QuantidadeAtual - ? WHERE ID_Lote = ?',
+                [Quantidade / 3, ID_Lote], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ changes: this.changes });
+                    }
+                });
+        });
+
+        if (updateEstoque.changes === 0) {
+            throw new Error('Lote não encontrado ou quantidade insuficiente no estoque');
+        }
+
+        // Atualiza o status da dispensação para 'Concluído'
+        const updateDispensacao = await new Promise((resolve, reject) => {
+            db.run('UPDATE Dispensacao SET Status = ? WHERE ID_Dispensacao = ?',
+                ['Concluído', ID_Dispensacao], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ changes: this.changes });
+                    }
+                });
+        });
+
+        if (updateDispensacao.changes === 0) {
+            throw new Error('Dispensação não encontrada');
+        }
+
+        // Cria um registro na tabela Ajuste_Estoque
+        const createAjusteEstoque = await new Promise((resolve, reject) => {
+            db.run('INSERT INTO Ajuste_Estoque (ID_Usuario, ID_Lote, TipoAjuste, Quantidade, Local, Justificativa) VALUES (?, ?, ?, ?, ?, ?)',
+                [ID_Usuario, ID_Lote, 'Saída', Quantidade, 'Farmácia', 'Dispensação de medicamento'], function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ id: this.lastID });
+                    }
+                });
+        });
+
+        await db.run('COMMIT');
+
+        res.status(200).json({ message: "Dispensação concluída com sucesso" });
+    } catch (error) {
+        await db.run('ROLLBACK');
+        console.error("Erro ao concluir dispensação:", error);
+        res.status(500).json({ error: "Erro ao concluir dispensação" });
     }
 };
