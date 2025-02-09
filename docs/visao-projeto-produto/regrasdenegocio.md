@@ -76,8 +76,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 
 **Critérios de Aceite:**
 
-- Deve ser possível cadastrar um item com as informações: código único, descrição, lote, validade e fabricante.
-- O sistema deve validar a unicidade do código no momento do cadastro.
+- Deve ser possível cadastrar um item com as informações: código único, descrição e validade.
 - Exibir mensagem de erro clara caso algum campo obrigatório não seja preenchido ou o código já exista.
 
 ---
@@ -114,7 +113,6 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **Critérios de Aceite:**
 
 - O sistema deve organizar automaticamente os itens disponíveis com base na validade.
-- Deve exibir uma mensagem informativa caso o operador tente dispensar um item fora da ordem.
 - A regra FIFO deve ser aplicada a todos os processos de dispensação.
 
 ---
@@ -128,7 +126,6 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 
 - O sistema deve permitir criar perfis de acesso (administrador, farmacêutico, técnico e auditor).
 - Usuários com permissão limitada devem ter acesso apenas às funcionalidades pertinentes ao seu perfil.
-- O sistema deve registrar logs de todas as ações realizadas pelos usuários, armazenando por pelo menos 5 anos.
 
 ---
 
