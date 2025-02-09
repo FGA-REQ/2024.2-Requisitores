@@ -3,9 +3,12 @@ import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import Sidebar from '../components/sidebar';
 import TopNavbar from '../components/topNavbar';
+import { getAuthToken } from '../utils/localStorageUtils';
 import { pageTitles, getStoredSidebarState, toggleSidebarState } from '../utils/pageUtils';
 import './layoutBase.css';
 import './usuarios.css';
+
+const apiUrl = process.env.REACT_APP_API_URL || "http://localhost:5001";
 
 const Usuarios = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -29,31 +32,38 @@ const Usuarios = () => {
 
   const carregarUsuarios = async () => {
     try {
-      const response = await axios.get('http://localhost:5001/api/usuarios');
+      const token = getAuthToken();
+      const response = await axios.get(`${apiUrl}/api/usuarios`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setUsuarios(response.data.usuarios);
     } catch (error) {
-      console.error("Erro ao carregar usuários:", error);
+      console.error("❌ Erro ao carregar usuários:", error.response?.data || error);
+      alert("Erro ao carregar usuários. Verifique sua conexão ou permissões.");
     }
   };
 
   const salvarUsuario = async (e) => {
     e.preventDefault();
     try {
+      const token = getAuthToken();
+      if (!token) {
+        alert("Você não está autenticado. Faça login novamente.");
+        return;
+      }
+
+      const usuario = { Nome: nome, Login: login, Senha: senha, Perfil: perfil };
+      
       if (editando) {
-        await axios.put(`http://localhost:5001/api/usuarios/${editando}`, {
-          Nome: nome,
-          Login: login,
-          Senha: senha,
-          Perfil: perfil
+        await axios.put(`${apiUrl}/api/usuarios/${editando}`, usuario, {
+          headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5001/api/usuarios', {
-          Nome: nome,
-          Login: login,
-          Senha: senha,
-          Perfil: perfil
+        await axios.post(`${apiUrl}/api/usuarios`, usuario, {
+          headers: { Authorization: `Bearer ${token}` }
         });
       }
+
       setNome('');
       setLogin('');
       setSenha('');
@@ -61,16 +71,21 @@ const Usuarios = () => {
       setEditando(null);
       carregarUsuarios();
     } catch (error) {
-      console.error("Erro ao salvar usuário:", error);
+      console.error("❌ Erro ao salvar usuário:", error.response?.data || error);
+      alert("Erro ao salvar usuário. Verifique se você tem permissão.");
     }
   };
 
   const excluirUsuario = async (id) => {
     try {
-      await axios.delete(`http://localhost:5001/api/usuarios/${id}`);
+      const token = getAuthToken();
+      await axios.delete(`${apiUrl}/api/usuarios/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       carregarUsuarios();
     } catch (error) {
-      console.error("Erro ao excluir usuário:", error);
+      console.error("❌ Erro ao excluir usuário:", error.response?.data || error);
+      alert("Erro ao excluir usuário. Verifique sua permissão.");
     }
   };
 
@@ -89,8 +104,8 @@ const Usuarios = () => {
               <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
               <select value={perfil} onChange={(e) => setPerfil(e.target.value)} required>
                 <option value="">Selecione o Perfil</option>
-                <option value="admin">Admin</option>
-                <option value="user">Usuário</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Usuário">Usuário</option>
               </select>
               <button type="submit">{editando ? "Atualizar" : "Adicionar"} Usuário</button>
             </form>
