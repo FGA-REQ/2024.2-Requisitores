@@ -103,7 +103,7 @@ const Dashboard = ({ children }) => {
         <div className="layout-container">
             <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <div className="main-content">
-                <TopNavbar pageTitle={pageTitles[location.pathname] || "Página"} />
+                <TopNavbar pageTitle={pageTitles[location.pathname] || "Dashboard"} />
                 <div className="scrollable-content"> {/* Div para scroll */}
                     <main className="page-content">
                         {dadosMedicamentos ? (
