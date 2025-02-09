@@ -10,6 +10,7 @@ exports.getDispensacaoData = async (req, res) => {
                 COALESCE(SUM(CASE WHEN l.Status = 'Ativo' THEN e.QuantidadeAtual ELSE 0 END), 0) AS "Estoque",
                 m.ID_Medicamento AS "idMedicamento",
                 e.Local AS "Local",
+                p.Prontuario AS "Prontuario",
                 strftime('%d/%m/%Y', l.Validade) AS "Validade"
             FROM Dispensacao d
             LEFT JOIN Lote l ON d.ID_Lote = l.ID_Lote

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const dispensacaoController = require('../controllers/dispensacaoController');
 
-router.get('/dispensacoesTabela', dispensacaoController.getDispensacaoData);
-router.get('/dispensacoes', dispensacaoController.getDispensacoes);
-router.get('/dispensacoes/:id', dispensacaoController.getDispensacaoById);
-router.post('/dispensacoes', dispensacaoController.addDispensacao);
-router.put('/dispensacoes/:id', dispensacaoController.updateDispensacao);
-router.delete('/dispensacoes/:id', dispensacaoController.deleteDispensacao);
+router.get('/tabela', dispensacaoController.getDispensacaoData);
+router.get('/', dispensacaoController.getDispensacoes);
+router.get('/:id', dispensacaoController.getDispensacaoById);
+router.post('/', dispensacaoController.addDispensacao);
+router.put('/:id', dispensacaoController.updateDispensacao);
+router.delete('/:id', dispensacaoController.deleteDispensacao);
 
 module.exports = router;
