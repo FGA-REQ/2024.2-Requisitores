@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import TopNavbar from "../components/topNavbar";
 import { pageTitles, getStoredSidebarState, toggleSidebarState } from "../utils/pageUtils";
+import { fetchDadosDispensacao, fetchPacientes, fetchMedicamentos, fetchUsuarioLogado, filterDispensacao, handleDispensarConfirm } from "../utils/dispensacaoUtils";
 import "./layoutBase.css";
 import "./dispensacao.css";
 
@@ -33,136 +34,15 @@ const Dispensacao = () => {
 
   useEffect(() => {
     setIsSidebarOpen(getStoredSidebarState());
-    fetchDadosDispensacao();
-    fetchPacientes();
-    fetchMedicamentos();
-    fetchUsuarioLogado();
+    fetchDadosDispensacao(setDispensacao, setLoading);
+    fetchPacientes(setPacientes);
+    fetchMedicamentos(setMedicamentos);
+    fetchUsuarioLogado(setUsuarioLogado);
   }, []);
 
   useEffect(() => {
-    filterDispensacao();
+    filterDispensacao(search, dadosDispensacao, setFilteredDispensacao, loading);
   }, [search, dadosDispensacao]);
-
-  const fetchDadosDispensacao = async () => {
-    try {
-      const response = await fetch('/api/dispensacoesTabela');
-      const data = await response.json();
-
-      setDispensacao(data.dispensacao || []);
-      setLoading(false);
-    } catch (error) {
-      console.error("Erro ao buscar dados da dispensação:", error);
-      setLoading(false);
-    }
-  };
-
-  const fetchPacientes = async () => {
-    try {
-      const response = await fetch('/api/pacientes');
-      const data = await response.json();
-      setPacientes(data.pacientes || []);
-    } catch (error) {
-      console.error("Erro ao buscar dados dos Pacientes:", error);
-    }
-  };
-
-  const fetchMedicamentos = async () => {
-    try {
-      const response = await fetch('/api/medicamentos');
-      const data = await response.json();
-      const medicamentosOrdenados = ordenarMedicamentosPorValidade(data.medicamentos || []);
-      setMedicamentos(medicamentosOrdenados);
-    } catch (error) {
-      console.error("Erro ao buscar medicamentos:", error);
-    }
-  };
-
-  const fetchUsuarioLogado = async () => {
-    try {
-      const response = await fetch('/api/usuarioLogado');
-      const data = await response.json();
-      setUsuarioLogado(data.usuario);
-    } catch (error) {
-      console.error("Erro ao buscar usuário logado:", error);
-    }
-  };
-
-  const filterDispensacao = () => {
-    if (loading) return;
-
-    if (!search) {
-      setFilteredDispensacao(dadosDispensacao);
-      return;
-    }
-
-    const searchTerm = search.toLowerCase();
-
-    const filtered = dadosDispensacao.filter((disp) => {
-      const paciente = disp.Paciente ? disp.Paciente.toLowerCase() : "";
-      const prontuario = disp.Prontuario ? disp.Prontuario.toLowerCase() : "";
-      const medicamento = disp.Medicamento ? disp.Medicamento.toLowerCase() : "";
-
-      return paciente.includes(searchTerm) || prontuario.includes(searchTerm) || medicamento.includes(searchTerm);
-    });
-
-    setFilteredDispensacao(filtered);
-  };
-
-  const handleDispensarConfirm = async () => {
-    if (!modalData) return;
-
-    try {
-      // Atualiza a quantidade no estoque
-      const responseEstoque = await fetch(`/api/estoque/${modalData.idMedicamento}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ QuantidadeAtual: modalData.Estoque - modalData.Prescrito }),
-      });
-
-      if (!responseEstoque.ok) {
-        console.error("Erro ao atualizar estoque:", responseEstoque.status);
-        return;
-      }
-
-      // Adiciona o ajuste no estoque
-      const responseAjuste = await fetch('/api/ajuste_estoque', {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ID_Usuario: usuarioLogado.ID_Usuario,
-          ID_Lote: modalData.idMedicamento,
-          TipoAjuste: 'Saída',
-          Quantidade: modalData.Prescrito,
-          Local: modalData.Local,
-          Justificativa: 'Dispensação de medicamento'
-        }),
-      });
-
-      if (!responseAjuste.ok) {
-        console.error("Erro ao adicionar ajuste de estoque:", responseAjuste.status);
-        return;
-      }
-
-      // Remove a dispensação realizada
-      const responseDispensacao = await fetch(`/api/dispensacoes/${modalData.idMedicamento}`, {
-        method: "DELETE",
-      });
-
-      if (responseDispensacao.ok) {
-        const data = await responseDispensacao.json();
-        setDispensacao(dadosDispensacao.filter(d => d.idMedicamento !== modalData.idMedicamento));
-        setShowModal(false);
-      } else {
-        console.error("Erro ao remover dispensação:", responseDispensacao.status);
-      }
-    } catch (error) {
-      console.error("Erro ao dispensar medicamento:", error);
-    }
-  };
 
   const handleDispensarCancel = () => {
     setShowModal(false);
@@ -198,14 +78,6 @@ const Dispensacao = () => {
     }
   };
 
-  const ordenarMedicamentosPorValidade = (medicamentos) => {
-    return medicamentos.sort((a, b) => {
-      const dataA = new Date(a.Validade);
-      const dataB = new Date(b.Validade);
-      return dataA - dataB;
-    });
-  };
-
   const toggleSidebar = () => {
     const newState = toggleSidebarState(isSidebarOpen);
     setIsSidebarOpen(newState);
@@ -227,7 +99,7 @@ const Dispensacao = () => {
             />
             <button
               className="action-button action-nova-dispensacao"
-              onClick={() => handleNewDispensacaoClick()}
+              onClick={handleNewDispensacaoClick}
             >
               Nova Dispensação
             </button>
@@ -284,7 +156,7 @@ const Dispensacao = () => {
               </tbody>
             </table>
           </div>
-          {/* Modal dispensar*/}
+          {/* Modal dispensar */}
           {showModal && modalData && (
             <div className="modal">
               <div className="modal-content">
@@ -297,13 +169,13 @@ const Dispensacao = () => {
                 <p><strong>Local:</strong> {modalData.Local}</p>
                 <p><strong>Validade:</strong> {modalData.Validade}</p>
                 <div className="modal-buttons">
-                  <button className="modal-button confirm-button" onClick={handleDispensarConfirm}>Confirmar</button>
+                  <button className="modal-button confirm-button" onClick={() => handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal)}>Confirmar</button>
                   <button className="modal-button cancel-button" onClick={handleDispensarCancel}>Cancelar</button>
                 </div>
               </div>
             </div>
           )}
-          {/* Modal nova dispensação*/}
+          {/* Modal nova dispensação */}
           {showModal2 && (
             <div className="modal2">
               <div className="modal-content2">
