@@ -8,16 +8,21 @@ exports.getDispensacaoData = async (req, res) => {
                 p.Nome AS "Paciente",
                 m.Nome AS "Medicamento",
                 its.QuantidadeSolicitada AS "Prescrito",
-                COALESCE(SUM(e.QuantidadeAtual), 0) AS "Estoque"
+                COALESCE(SUM(CASE WHEN l.Validade >= DATE('now') THEN e.QuantidadeAtual ELSE 0 END), 0) AS "Estoque",
+                m.ID_Medicamento AS "idMedicamento",
+                e.Local AS "Local",
+                strftime('%d/%m/%Y', l.Validade) AS "Validade"
             FROM Dispensacao d
             LEFT JOIN Lote l ON d.ID_Lote = l.ID_Lote
             LEFT JOIN Medicamento m ON l.ID_Medicamento = m.ID_Medicamento
             LEFT JOIN Estoque e ON l.ID_Lote = e.ID_Lote
             LEFT JOIN Paciente p ON d.ID_Paciente = p.ID_Paciente
             LEFT JOIN Item_Solicitado its ON m.ID_Medicamento = its.ID_Medicamento
-            GROUP BY p.Nome, m.Nome, its.QuantidadeSolicitada;
+            -- WHERE Validade >= DATE('now')
+            GROUP BY Paciente, Medicamento, ID_Dispensacao
+            ORDER BY Validade desc;
         `;
-
+        
         const dispensacao = await new Promise((resolve, reject) => {
             db.all(queryDispensacao, (err, row) => {
                 if (err) {

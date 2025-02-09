@@ -13,6 +13,14 @@ const Dispensacao = () => {
   const [filteredDispensacao, setFilteredDispensacao] = useState([]);
   const [loading, setLoading] = useState(true);
   const [dadosDispensacao, setDispensacao] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const [modalData, setModalData] = useState(null);
+
+  const handleDispensarClick = (disp) => {
+        setModalData(disp);
+        setShowModal(true);
+  };
+
 
   useEffect(() => {
     setIsSidebarOpen(getStoredSidebarState());
@@ -21,7 +29,7 @@ const Dispensacao = () => {
 
   useEffect(() => {
     filterDispensacao();
-}, [search, dadosDispensacao]);
+  }, [search, dadosDispensacao]);
 
 
   const fetchDadosDispensacao = async () => {
@@ -35,27 +43,68 @@ const Dispensacao = () => {
       console.error("Erro ao buscar dados da dispensação:", error);
       setLoading(false);
     }
-};
+  };
 
-const filterDispensacao = () => {
-  if (loading) return;
+  const filterDispensacao = () => {
+    if (loading) return;
 
-  if (!search) {
-      setFilteredDispensacao(dadosDispensacao);
-      return;
-  }
+    if (!search) {
+        setFilteredDispensacao(dadosDispensacao);
+        return;
+    }
 
-  const searchTerm = search.toLowerCase();
+    const searchTerm = search.toLowerCase();
 
-  const filtered = dadosDispensacao.filter((disp) => {
-      const paciente = disp.Paciente ? disp.Paciente.toLowerCase() : "";
-      const medicamento = disp.Medicamento ? disp.Medicamento.toLowerCase() : "";
+    const filtered = dadosDispensacao.filter((disp) => {
+        const paciente = disp.Paciente ? disp.Paciente.toLowerCase() : "";
+        const medicamento = disp.Medicamento ? disp.Medicamento.toLowerCase() : "";
 
-      return paciente.includes(searchTerm) || medicamento.includes(searchTerm);
-  });
+        return paciente.includes(searchTerm) || medicamento.includes(searchTerm);
+    });
 
-  setFilteredDispensacao(filtered);
-};
+    setFilteredDispensacao(filtered);
+  };
+
+  const handleDispensarConfirm = async () => {
+    if (!modalData) return;
+
+    try {
+        const response = await fetch(`/api/dispensacao/${modalData.idMedicamento}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ quantidade: modalData.Prescrito }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            setDispensacao(data.dispensacao);
+            setShowModal(false); // Fecha o modal após a confirmação
+        } else {
+            console.error("Erro ao dispensar medicamento:", response.status);
+            // Lidar com o erro, por exemplo, exibindo uma mensagem para o usuário
+        }
+    } catch (error) {
+        console.error("Erro ao dispensar medicamento:", error);
+        // Lidar com o erro
+    }
+  };
+
+  const handleDispensarCancel = () => {
+    setShowModal(false);
+    setModalData(null);
+  };
+
+
+  const ordenarPorVencimento = (dados) => {
+    return [...dados].sort((a, b) => {
+        const dataVencimentoA = new Date(a.dataVencimento);
+        const dataVencimentoB = new Date(b.dataVencimento);
+        return dataVencimentoA - dataVencimentoB;
+    });
+  };
+
 
   const toggleSidebar = () => {
     const newState = toggleSidebarState(isSidebarOpen);
@@ -98,18 +147,43 @@ const filterDispensacao = () => {
                     <td>{disp.Paciente}</td>
                     <td>{disp.Medicamento}</td>
                     <td>{disp.Prescrito}</td>
-                    <td>{disp.Estoque > 0 ? disp.Estoque : <span className="icon-warning">⚠️</span>}</td>
+                    <td>{disp.Estoque} {disp.Estoque < disp.Prescrito && <span className="icon-warning">⚠️</span>}</td>
                     <td>
-                        {disp.disponivel ? (
-                            <button className="action-button action-dispensar">✔️ Dispensar</button>
-                        ) : (
-                            <button className="action-button action-indisponivel">Indisponível</button>
-                        )}
-                    </td>
+                      {disp.Estoque >= disp.Prescrito ? ( 
+                          <button
+                              className="action-button action-dispensar"
+                              onClick={() => handleDispensarClick(disp)}
+                          >
+                              ✔️ Dispensar
+                          </button>
+                      ) : (
+                          <button className="action-button action-indisponivel">
+                              Indisponível
+                          </button>
+                      )}
+                  </td>
                 </tr>
               )))}
             </tbody>
           </table>
+          {/* Modal */}
+          {showModal && modalData && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <h2>Confirmar Dispensação</h2>
+                        <p>Medicamento: {modalData.Medicamento}</p>
+                        <p>Paciente: {modalData.Paciente}</p>
+                        <p>Quantidade Prescrita: {modalData.Prescrito}</p>
+                        <p>Estoque: {modalData.Estoque}</p>
+                        <p>Estoque: {modalData.Local}</p>
+                        <p>Validade: {modalData.Validade}</p>
+                        <div className="modal-buttons">
+                            <button onClick={handleDispensarConfirm}>Confirmar</button>
+                            <button onClick={handleDispensarCancel}>Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </main>
       </div>
     </div>
