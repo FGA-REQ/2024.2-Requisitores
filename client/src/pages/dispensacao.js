@@ -112,20 +112,52 @@ const Dispensacao = () => {
     if (!modalData) return;
 
     try {
-      const response = await fetch(`/api/dispensacoes/${modalData.idMedicamento}`, {
+      // Atualiza a quantidade no estoque
+      const responseEstoque = await fetch(`/api/estoque/${modalData.idMedicamento}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ quantidade: modalData.Prescrito }),
+        body: JSON.stringify({ QuantidadeAtual: modalData.Estoque - modalData.Prescrito }),
       });
 
-      if (response.ok) {
-        const data = await response.json();
-        setDispensacao(data.dispensacao);
+      if (!responseEstoque.ok) {
+        console.error("Erro ao atualizar estoque:", responseEstoque.status);
+        return;
+      }
+
+      // Adiciona o ajuste no estoque
+      const responseAjuste = await fetch('/api/ajuste_estoque', {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ID_Usuario: usuarioLogado.ID_Usuario,
+          ID_Lote: modalData.idMedicamento,
+          TipoAjuste: 'Saída',
+          Quantidade: modalData.Prescrito,
+          Local: modalData.Local,
+          Justificativa: 'Dispensação de medicamento'
+        }),
+      });
+
+      if (!responseAjuste.ok) {
+        console.error("Erro ao adicionar ajuste de estoque:", responseAjuste.status);
+        return;
+      }
+
+      // Remove a dispensação realizada
+      const responseDispensacao = await fetch(`/api/dispensacoes/${modalData.idMedicamento}`, {
+        method: "DELETE",
+      });
+
+      if (responseDispensacao.ok) {
+        const data = await responseDispensacao.json();
+        setDispensacao(dadosDispensacao.filter(d => d.idMedicamento !== modalData.idMedicamento));
         setShowModal(false);
       } else {
-        console.error("Erro ao dispensar medicamento:", response.status);
+        console.error("Erro ao remover dispensação:", responseDispensacao.status);
       }
     } catch (error) {
       console.error("Erro ao dispensar medicamento:", error);
