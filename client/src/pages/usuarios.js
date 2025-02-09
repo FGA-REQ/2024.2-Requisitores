@@ -53,7 +53,7 @@ const Usuarios = () => {
       }
 
       const usuario = { Nome: nome, Login: login, Senha: senha, Perfil: perfil };
-      
+
       if (editando) {
         await axios.put(`${apiUrl}/api/usuarios/${editando}`, usuario, {
           headers: { Authorization: `Bearer ${token}` }
@@ -102,11 +102,8 @@ const Usuarios = () => {
               <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
               <input type="text" placeholder="Login" value={login} onChange={(e) => setLogin(e.target.value)} required />
               <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-              <select value={perfil} onChange={(e) => setPerfil(e.target.value)} required>
-                <option value="">Selecione o Perfil</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Usuário">Usuário</option>
-              </select>
+              <input type="text" placeholder="Perfil" value={perfil} onChange={(e) => setPerfil(e.target.value)} required />
+
               <button type="submit">{editando ? "Atualizar" : "Adicionar"} Usuário</button>
             </form>
 
@@ -126,7 +123,7 @@ const Usuarios = () => {
                     <td>{usuario.Login}</td>
                     <td>{usuario.Perfil}</td>
                     <td>
-                      <button className="edit-btn" onClick={() => { 
+                      <button className="edit-btn" onClick={() => {
                         setNome(usuario.Nome);
                         setLogin(usuario.Login);
                         setPerfil(usuario.Perfil);
