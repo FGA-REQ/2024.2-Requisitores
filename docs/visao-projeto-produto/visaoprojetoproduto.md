@@ -162,7 +162,7 @@ A Tabela abaixo resume as etapas do fluxo de trabalho, detalhando o escopo de ca
 
 A seguir é possível observar o BPMN do projeto aqui apresentado.
 
-[docs/espinhadepeixe.png](/workspaces/2024.2-Requisitores/docs/img/BPMNV2.png)
+[docs/img/BPMNV2.png](/workspaces/2024.2-Requisitores/docs/img/BPMNV2.png)
 
 ## 4. Lições Aprendidas  
 
