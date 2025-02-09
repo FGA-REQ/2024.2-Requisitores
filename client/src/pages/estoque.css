@@ -87,3 +87,22 @@
   background-color: #4A90E2;
   color: white;
 }
+
+/* Botão "Retornar ao Menu" */
+/* Estilização do botão "Voltar para o Menu" para igualar aos itens do menu */
+.sidebar-footer .btn-voltar {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #007bff;  /* mesma cor de fundo dos links do menu */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;  /* espaço superior semelhante aos itens anteriores */
+}
+
+.sidebar-footer .btn-voltar:hover {
+  background-color: #0056b3;
+}
