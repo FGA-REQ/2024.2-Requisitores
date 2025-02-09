@@ -7,6 +7,7 @@
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | 25/11/2024     | 1.1        | Declaração de Problema, Posição do Produto e Objetivos do Produto | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 | 13/01/2025     | 2.0        | Ajustes na Declaração de Problema, Posição do Produto, e Objetivos do Produto; Tecnologias a serem utilizadas; Organização do Projeto; Planejamento das Fazes e/ou Iterações do Projeto; Matriz de comunicação; Gerenciamento de Risco; Critérios de Replanejamento; Lições aprendidas, referências |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+| 06/02/2025     | 2.0        | Lições aprendidas e alguns ajustes conforme a necessidade do cliente |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 
 ## 1. Visão Geral do Produto
 ### 1.1. Problema
@@ -88,7 +89,7 @@ Uma matriz de comunicação é fundamental para assegurar a troca eficiente de i
 | **Descrição**                         | **Área/Envolvidos**                      | **Periodicidade**     | **Produtos Gerados**                     | **Canal de Comunicação**           |  
 |---------------------------------------|------------------------------------------|-----------------------|-----------------------------------------|------------------------------------|  
 | Acompanhamento das atividades         | Equipe de desenvolvimento                | Semanal               | Ata de reunião                         | Horário da aula ou Discord         |  
-| Relatório de progresso do projeto     | Equipe de desenvolvimento, professora    | Semanal               | Relatório de status                    | Horário da aula ou Discord         |  
+| Relatório de progresso do projeto     | Equipe de desenvolvimento, professora    | Semanal               | Report de status                    | Horário da aula ou Discord         |  
 | Alinhamento de expectativas com o cliente | Product Owner                           | Quinzenal             | Product Backlog atualizado             | Discord                            |  
 | Comunicação emergencial               | Toda a equipe                            | Conforme necessidade  | Resolução de questões urgentes         | WhatsApp                           |  
 | Validação de entregas                 | Cliente, Product Owner                   | Mensal                | Feedback sobre MVP ou protótipos       | Discord                            |  
@@ -152,13 +153,12 @@ A Tabela abaixo resume as etapas do fluxo de trabalho, detalhando o escopo de ca
 
 | **Nome da Atividade**        | **Método**               | **Ferramentas**            | **Entrega**                                   |
 |------------------------------|--------------------------|----------------------------|----------------------------------------------|
-| Levantamento de Requisitos   | Entrevistas, Brainstorm | Google Forms                | Lista de requisitos levantados              |
-| Análise de Requisitos        | Prototipação, Wireframes| Figma, Lucidchart          | Diagramas de casos de uso e protótipos      |
+| Levantamento de Requisitos   | Entrevistas, Brainstorm | Teams                | Lista de requisitos levantados              |
+| Análise de Requisitos        | Prototipação, Wireframes| Figma, Lucidchart          | Protótipos      |
 | Modelagem do Processo        | BPMN                    | Lucidhart,Figma              | Diagrama BPMN do fluxo do sistema           |
-| Planejamento do Desenvolvimento | Scrum, Sprint Planning | Jira, Discord              | Cronograma de desenvolvimento               |
+| Planejamento do Desenvolvimento | Scrum, Sprint Planning | Discord              | Cronograma de desenvolvimento               |
 | Desenvolvimento do Sistema   | Programação ágil        | Visual Studio Code, GitHub | Código-fonte implementado                  |
-| Testes                       | Teste de Caixa Preta    | Selenium, Postman          | Relatório de testes e bugs encontrados      |
-| Entrega Final                | Deploy, Manual de Usuário | AWS, GitLab        | Sistema implantado e documentado           |
+| Entrega Final                | Deploy, Manual de Usuário | Github        | Sistema implantado e documentado           |
 
 ## 4. Lições Aprendidas  
 
@@ -181,6 +181,18 @@ O conceito de MVP foi outro aprendizado importante, ajudando a equipe a manter o
 No entanto, a equipe enfrentou dificuldades ao estimar o esforço necessário para as tarefas e ao priorizá-las de maneira objetiva. A falta de critérios bem definidos inicialmente gerou divergências sobre o que seria considerado uma entrega concluída, causando alguns atrasos no cronograma.
 
 Para enfrentar esses desafios, foram adotadas ações corretivas, como a criação de critérios claros e documentados para DoR e DoD, além de reuniões de alinhamento focadas na priorização das tarefas com base em critérios objetivos. Sessões internas de capacitação sobre frameworks ágeis, também foram propostas para aprofundar o entendimento sobre metodologias que possam otimizar o fluxo de trabalho e a colaboração entre os membros da equipe. Além disso, foi perceptível a necessidade de estruturar documentos DOR e DOD em um formato mais adequado que permita o entendimento do que deve ser de fato entregue.
+
+### 4.3. Unidade 3  
+A terceira unidade aprofundou os conceitos fundamentais da Engenharia de Requisitos, trazendo técnicas essenciais para estruturar e validar funcionalidades de maneira eficiente. A introdução dos conceitos de PBB (Product Backlog Building) e BDD (Behavior-Driven Development) proporcionou uma abordagem mais clara e estruturada para definir requisitos com base no comportamento esperado do sistema, alinhando expectativas entre a equipe de desenvolvimento e os stakeholders.
+
+O aprendizado sobre User Story Mapping demonstrou a importância de visualizar a jornada do usuário, permitindo uma organização mais lógica das histórias e facilitando a priorização das entregas. Essa técnica ajudou a equipe a compreender melhor as dependências entre funcionalidades e a definir incrementos mais estratégicos para o desenvolvimento do produto.
+
+Outro ponto relevante foi a abordagem dos aspectos humanos e sociais da Engenharia de Requisitos. Durante as atividades, tornou-se evidente como a comunicação eficaz e a empatia são fundamentais para garantir o entendimento preciso das necessidades dos usuários. A interação com diferentes perfis de stakeholders exigiu uma adaptação na abordagem das entrevistas e workshops, reforçando a importância de uma escuta ativa e da negociação para alinhar expectativas.
+
+
+Entretanto, alguns desafios surgiram ao longo da unidade. A equipe enfrentou dificuldades no entendimento e aplicação das práticas observadas nessa unidade, ficando como conhecimento para futuros projetos a serem desempenhados pelo time.
+
+No geral, a unidade reforçou a importância de técnicas bem estruturadas para o levantamento e especificação de requisitos, destacando que a combinação de diferentes abordagens pode otimizar o fluxo de trabalho e aumentar a qualidade das entregas.
 
 ## 5. Referências
 
