@@ -75,6 +75,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** eu possa gerenciar os itens de forma precisa e evitar duplicidade.  
 
 **Critérios de Aceite:**
+
 - Deve ser possível cadastrar um item com as informações: código único, descrição, lote, validade e fabricante.
 - O sistema deve validar a unicidade do código no momento do cadastro.
 - Exibir mensagem de erro clara caso algum campo obrigatório não seja preenchido ou o código já exista.
@@ -87,6 +88,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** eu possa tomar as devidas ações antes que eles expirem.  
 
 **Critérios de Aceite:**
+
 - O sistema deve gerar alertas automáticos para medicamentos com validade inferior a 30 dias.
 - Os alertas devem ser exibidos em um painel principal.
 
@@ -99,6 +101,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** eu possa evitar rupturas no estoque.  
 
 **Critérios de Aceite:**
+
 - O sistema deve emitir alertas para produtos que atingirem o nível crítico de estoque.
 - Relatórios gerados devem incluir a disponibilização dos medicamentos.
 ---
@@ -109,6 +112,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** eu reduza o risco de perdas por vencimento.  
 
 **Critérios de Aceite:**
+
 - O sistema deve organizar automaticamente os itens disponíveis com base na validade.
 - Deve exibir uma mensagem informativa caso o operador tente dispensar um item fora da ordem.
 - A regra FIFO deve ser aplicada a todos os processos de dispensação.
@@ -121,6 +125,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** cada usuário visualize apenas as informações necessárias para suas atividades.  
 
 **Critérios de Aceite:**
+
 - O sistema deve permitir criar perfis de acesso (administrador, farmacêutico, técnico e auditor).
 - Usuários com permissão limitada devem ter acesso apenas às funcionalidades pertinentes ao seu perfil.
 - O sistema deve registrar logs de todas as ações realizadas pelos usuários, armazenando por pelo menos 5 anos.
@@ -133,6 +138,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 **para que** minhas informações e acessos sejam mantidos seguros.  
 
 **Critérios de Aceite:**
+
 - O sistema deve exigir senhas com no mínimo 8 caracteres, incluindo letras maiúsculas, números e símbolos.
 - Após 5 tentativas de login inválidas, a conta deve ser bloqueada automaticamente.
 - Deve ser possível desbloquear contas somente por administradores.
@@ -140,6 +146,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 ---
 
 ## **5. Requisitos Não Funcionais**
+
 - **Segurança:** O sistema deve garantir criptografia de dados sensíveis, como senhas e informações de usuários.
 - **Desempenho:** O tempo de resposta para qualquer operação não deve ultrapassar 3 segundos.
 - **Escalabilidade:** O sistema deve suportar até 10.000 registros simultâneos de itens sem perda de desempenho.
