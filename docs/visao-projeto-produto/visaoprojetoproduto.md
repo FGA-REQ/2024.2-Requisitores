@@ -22,7 +22,7 @@ O controle e a gestão de medicamentos representam um dos principais desafios na
 - **Erro Humano:** Dependência de processos manuais, suscetíveis a erros de registro, perda de dados ou interpretações equivocadas das informações.
 
 
-[docs/espinhadepeixe.png](/workspaces/2024.2-Requisitores/docs/img/espinhadepeixe.png)
+[/workspaces/2024.2-Requisitores/docs/img/espinhadepeixe.png](https://github.com/FGA-REQ/2024.2-Requisitores/blob/main/docs/img/espinhadepeixe.png)
 
 ### 1.2. Declaração de Posição do Produto
 
