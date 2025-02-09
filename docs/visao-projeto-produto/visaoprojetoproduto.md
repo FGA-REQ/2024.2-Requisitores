@@ -160,6 +160,10 @@ A Tabela abaixo resume as etapas do fluxo de trabalho, detalhando o escopo de ca
 | Desenvolvimento do Sistema   | Programação ágil        | Visual Studio Code, GitHub | Código-fonte implementado                  |
 | Entrega Final                | Deploy, Manual de Usuário | Github        | Sistema implantado e documentado           |
 
+A seguir é possível observar o BPMN do projeto aqui apresentado.
+
+[docs/espinhadepeixe.png](/workspaces/2024.2-Requisitores/docs/img/BPMNV2.png)
+
 ## 4. Lições Aprendidas  
 
 ### 4.1. Unidade 1  
