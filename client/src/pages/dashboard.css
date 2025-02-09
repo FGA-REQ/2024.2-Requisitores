@@ -66,3 +66,11 @@
     background-color: #2b3f54;
     color: #FFFF;
 }
+
+.pie-chart-container {
+    width: 600px; /* Largura fixa */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente (se necessário) */
+    margin: 20px auto; /* Espaçamento acima e abaixo, e centraliza horizontalmente */
+}
