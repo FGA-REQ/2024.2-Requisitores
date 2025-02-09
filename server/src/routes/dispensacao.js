@@ -9,4 +9,6 @@ router.post('/', dispensacaoController.addDispensacao);
 router.put('/:id', dispensacaoController.updateDispensacao);
 router.delete('/:id', dispensacaoController.deleteDispensacao);
 
+router.get('/lotes', dispensacaoController.getLotesByMedicamento);
+
 module.exports = router;
