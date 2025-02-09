@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaSignOutAlt, FaUserCircle, FaBars, FaChartLine, FaBox, FaArrowDown,FaArrowUp } from "react-icons/fa";
+import { FaSignOutAlt, FaUserCircle, FaBars, FaChartLine, FaBox, FaArrowDown,FaArrowUp, FaArrowLeft} from "react-icons/fa";
 import './layoutBase.css';
 import './saldo.css';
 
@@ -66,7 +66,15 @@ const Saldo = ({ children }) => {
             </li>
           </ul>
         </nav>
-      </aside>
+
+        {/* Botão "Voltar para o Menu" */}
+                        <div className="sidebar-footer">
+                          <Link to="/dashboard" className="btn-voltar">
+                            <FaArrowLeft /> <span>Voltar para o Menu</span>
+                          </Link>
+                        </div>
+                      </aside>
+   
 
       <div className="main-content">
         <header className="top-navbar">

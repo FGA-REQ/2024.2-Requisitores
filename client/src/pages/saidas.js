@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaSignOutAlt, FaUserCircle, FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox } from "react-icons/fa";
+import { FaSignOutAlt, FaUserCircle, FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox, FaArrowLeft } from "react-icons/fa";
 import './layoutBase.css'; // Layout base
 import './saidas.css'; // Estilos do estoque
 
@@ -73,7 +73,15 @@ const Estoque = ({ children }) => {
             </li>
           </ul>
         </nav>
-      </aside>
+
+        {/* Botão "Voltar para o Menu" */}
+                <div className="sidebar-footer">
+                  <Link to="/dashboard" className="btn-voltar">
+                    <FaArrowLeft /> <span>Voltar para o Menu</span>
+                  </Link>
+                </div>
+              </aside>
+      
 
       {/* Main Content */}
       <div className="main-content">
