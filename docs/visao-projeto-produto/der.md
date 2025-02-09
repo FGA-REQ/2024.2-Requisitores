@@ -20,6 +20,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 - Item_Solicitado
 
 **Atributos:**
+
 - Usuário: ID_Usuario, Nome, Login, Senha, Perfil, TentativasFalhasLogin
 - Medicamento: ID_Medicamento, Nome, Codigo, Descricao, Fabricante, ControleEspecial, QuantidadeMinima, QuantidadeMaxima
 - Lote: ID_Lote, ID_Medicamento, CodigoLote, Validade, Status
@@ -34,6 +35,7 @@ O Modelo e o Diagrama de Entidade e Relacionamento apresentados neste documento 
 
 
 **Relacionamentos:**
+
 - Usuário - Ajuste_Estoque: Um Usuário pode realizar vários Ajustes de Estoque (1:N)
 - Usuário - Solicitacao_Compra: Um Usuário pode realizar várias Solicitações de Compra (1:N)
 - Usuário - Dispensação: Um Usuário pode realizar várias Dispensações (1:N)
