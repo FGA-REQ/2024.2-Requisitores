@@ -1,53 +1,43 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom'; // Importando useLocation
-import { FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox, FaUserCircle, FaSignOutAlt} from "react-icons/fa";
-import './layoutBase.css'; // Importando o layout base
-import './estoque.css'; // Importando o CSS do estoque
+import { Link, useLocation } from 'react-router-dom';
+import { FaBars, FaArrowDown, FaChartLine, FaArrowUp, FaBox, FaUserCircle, FaSignOutAlt, FaArrowLeft } from "react-icons/fa";
+import './layoutBase.css';
+import './estoque.css';
 
 const Estoque = ({ children }) => {
-  const location = useLocation(); // Obtém a URL atual
+  const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [produto, setProduto] = useState(""); // Estado para armazenar o nome do produto digitado
-  const [produtos, setProdutos] = useState([]); // Lista de produtos cadastrados
+  const [produto, setProduto] = useState("");
+  const [produtos, setProdutos] = useState([]);
 
-  // Função para obter o estado da sidebar do localStorage
-  const getStoredSidebarState = () => {
-    const storedState = localStorage.getItem("sidebarState");
-    return storedState === "open";
-  };
-
-  // Função para alternar o estado da sidebar
-  const toggleSidebarState = (currentState) => !currentState;
-
-  // Efeito para buscar o estado salvo no localStorage ao carregar a página
   useEffect(() => {
-    setIsSidebarOpen(getStoredSidebarState());
+    const storedState = localStorage.getItem("sidebarState");
+    setIsSidebarOpen(storedState === "open");
   }, []);
 
   const toggleSidebar = () => {
-    const newState = toggleSidebarState(isSidebarOpen);
+    const newState = !isSidebarOpen;
     setIsSidebarOpen(newState);
-    localStorage.setItem("sidebarState", newState ? "open" : "closed"); // Salva no localStorage
+    localStorage.setItem("sidebarState", newState ? "open" : "closed");
   };
 
   const handleCadastrar = () => {
     if (produto.trim() !== "") {
-      setProdutos([...produtos, produto]); // Adiciona o produto à lista
-      setProduto(""); // Limpa o campo de entrada
+      setProdutos([...produtos, produto]);
+      setProduto("");
     }
   };
 
   const handleDeletar = (index) => {
-    const novaLista = produtos.filter((_, i) => i !== index);
-    setProdutos(novaLista);
+    setProdutos(produtos.filter((_, i) => i !== index));
   };
 
   const pageTitles = {
     "/estoque": "Estoque",
-    "/protudo": "Produto",
+    "/produto": "Produto",
     "/saldo": "Estoque",
     "/entradas": "Entradas",
-    "/saidas": "Saidas",
+    "/saidas": "Saídas",
   };
 
   return (
@@ -82,27 +72,34 @@ const Estoque = ({ children }) => {
               </Link>
             </li>
           </ul>
+          
+          {/* Botão "Voltar para o Menu"  */}
+          <div className="sidebar-footer">
+            <Link to="/dashboard" className="btn-voltar">
+              <FaArrowLeft /> <span>Voltar para o Menu</span>
+            </Link>
+          </div>
         </nav>
       </aside>
 
       {/* Main Content */}
-           <div className="main-content">
-             {/* Top Navbar */}
-             <header className="top-navbar">
-               <div>
-                 <img src="/hfab.png" alt="Logo" />
-               </div>
-               <span>GestFarma - {pageTitles[location.pathname] || "Página"}</span>
-               <div className="top-navbar-actions">
-                 <button>
-                   <FaUserCircle /> Perfil
-                 </button>
-                 <button>
-                   <FaSignOutAlt /> Sair
-                 </button>
-               </div>
-             </header>
-     
+      <div className="main-content">
+        {/* Top Navbar */}
+        <header className="top-navbar">
+          <div>
+            <img src="/hfab.png" alt="Logo" />
+          </div>
+          <span>GestFarma - {pageTitles[location.pathname] || "Página"}</span>
+          <div className="top-navbar-actions">
+            <button>
+              <FaUserCircle /> Perfil
+            </button>
+            <button>
+              <FaSignOutAlt /> Sair
+            </button>
+          </div>
+        </header>
+
         <main className="page-content">
           {children}
 
