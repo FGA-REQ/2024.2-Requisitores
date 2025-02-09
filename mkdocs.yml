@@ -4,7 +4,7 @@ nav:
   - Visão do Produto e Projeto: "visao-projeto-produto/visaoprojetoproduto.md"
   - Requisitos: "visao-projeto-produto/regrasdenegocio.md"
   - MER/DER e Dicionário de dados: "visao-projeto-produto/der.md"
-  - DOR/DOD e Dicionário de dados: "visao-projeto-produto/dor-dod.md"
+  - DOR/DOD: "visao-projeto-produto/dor-dod.md"
   - MVP: "visao-projeto-produto/mvp.md"  
 
 theme:
