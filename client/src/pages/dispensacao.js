@@ -58,10 +58,12 @@ const Dispensacao = () => {
     if (!modalData2) return;
 
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch('/api/dispensacoes', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${token}`
         },
         body: JSON.stringify(modalData2),
       });

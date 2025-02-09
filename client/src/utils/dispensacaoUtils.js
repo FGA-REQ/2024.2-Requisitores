@@ -1,43 +1,83 @@
 export const fetchDadosDispensacao = async (setDispensacao, setLoading) => {
     try {
-        const response = await fetch('/api/dispensacoesTabela');
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/dispensacoesTabela', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (response.status === 401) {
+            window.location.href = "/login";
+            return;
+        }
         const data = await response.json();
         setDispensacao(data.dispensacao || []);
         setLoading(false);
     } catch (error) {
         console.error("Erro ao buscar dados da dispensação:", error);
         setLoading(false);
+        window.location.href = "/login";
     }
 };
 
 export const fetchPacientes = async (setPacientes) => {
     try {
-        const response = await fetch('/api/pacientes');
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/pacientes', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (response.status === 401) {
+            window.location.href = "/login";
+            return;
+        }
         const data = await response.json();
         setPacientes(data.pacientes || []);
     } catch (error) {
         console.error("Erro ao buscar dados dos Pacientes:", error);
+        window.location.href = "/login";
     }
 };
 
 export const fetchMedicamentos = async (setMedicamentos) => {
     try {
-        const response = await fetch('/api/medicamentos');
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/medicamentos', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (response.status === 401) {
+            window.location.href = "/login";
+            return;
+        }
         const data = await response.json();
         const medicamentosOrdenados = ordenarMedicamentosPorValidade(data.medicamentos || []);
         setMedicamentos(medicamentosOrdenados);
     } catch (error) {
         console.error("Erro ao buscar medicamentos:", error);
+        window.location.href = "/login";
     }
 };
 
 export const fetchUsuarioLogado = async (setUsuarioLogado) => {
     try {
-        const response = await fetch('/api/usuarioLogado');
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/usuarioLogado', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (response.status === 401) {
+            window.location.href = "/login";
+            return;
+        }
         const data = await response.json();
         setUsuarioLogado(data.usuario);
     } catch (error) {
         console.error("Erro ao buscar usuário logado:", error);
+        window.location.href = "/login";
     }
 };
 
@@ -74,11 +114,13 @@ export const handleDispensarConfirm = async (modalData, usuarioLogado, setDispen
     if (!modalData) return;
 
     try {
+        const token = localStorage.getItem('token');
         // Atualiza a quantidade no estoque
         const responseEstoque = await fetch(`/api/estoque/${modalData.ID_Lote}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({ ID_Lote: modalData.ID_Lote, QuantidadeAtual: modalData.Estoque - modalData.Prescrito, Local: modalData.Local }),
         });
@@ -93,6 +135,7 @@ export const handleDispensarConfirm = async (modalData, usuarioLogado, setDispen
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify({
                 ID_Usuario: usuarioLogado.ID_Usuario,
@@ -112,6 +155,9 @@ export const handleDispensarConfirm = async (modalData, usuarioLogado, setDispen
         // Remove a dispensação realizada
         const responseDispensacao = await fetch(`/api/dispensacoes/${modalData.idMedicamento}`, {
             method: "DELETE",
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
 
         if (responseDispensacao.ok) {
