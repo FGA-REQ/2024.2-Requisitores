@@ -105,7 +105,8 @@ O gerenciamento de riscos é uma prática indispensável em qualquer projeto, es
 
 A abordagem do gerenciamento de riscos no projeto segue as etapas básicas de identificação, análise, resposta e monitoramento. Essas etapas são realizadas de maneira contínua ao longo do ciclo de vida do projeto, permitindo uma resposta ágil a possíveis problemas e mantendo o progresso em direção aos objetivos.  
 
-Para alcançar esse propósito, o processo de gerenciamento de riscos envolve atividades específicas, como:  
+Para alcançar esse propósito, o processo de gerenciamento de riscos envolve atividades específicas, como: 
+
 - Identificação dos riscos potenciais em todas as fases do projeto, desde o planejamento até a entrega final.  
 - Análise dos riscos técnicos, operacionais e regulatórios relacionados ao desenvolvimento do sistema.  
 - Avaliação detalhada da probabilidade de ocorrência e do impacto de cada risco, classificando-os em categorias como técnicos, de cronograma, orçamento e comunicação.  
