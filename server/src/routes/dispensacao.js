@@ -10,5 +10,6 @@ router.put('/:id', dispensacaoController.updateDispensacao);
 router.delete('/:id', dispensacaoController.deleteDispensacao);
 
 router.get('/lotes', dispensacaoController.getLotesByMedicamento);
+router.post('/confirmar', dispensacaoController.handleDispensarConfirm);
 
 module.exports = router;

@@ -11,6 +11,7 @@ const dispensacaoRoutes = require('./src/routes/dispensacao');
 const usuariosRoutes = require('./src/routes/usuarios');
 const estoqueRoutes = require('./src/routes/estoque');
 const ajusteEstoqueRoutes = require('./src/routes/ajusteEstoque');
+const relatoriosRouter = require('./src/routes/relatorios');
 const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
 const { authMiddleware, checkRole } = require('./src/middleware/authMiddleware');
 
@@ -45,6 +46,7 @@ dbStart().then((db) => {
     app.use('/api/estoque', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Auditor']), estoqueRoutes);
     app.use('/api/ajuste_estoque', authMiddleware, checkRole(['Administrador', 'Auditor']), ajusteEstoqueRoutes);
     app.get('/api/dispensacoesTabela', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']), getDispensacaoData);
+    app.use('/api/relatorios', relatoriosRouter);
 
     // Servir arquivos do React
     app.use(express.static(path.join(__dirname, "../client/build")));

@@ -56,6 +56,7 @@ CREATE TABLE IF NOT EXISTS Dispensacao (
     ID_Usuario INTEGER NOT NULL,
     DataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
     Quantidade INTEGER NOT NULL,
+    Status TEXT DEFAULT 'Pendente',
     FOREIGN KEY (ID_Lote) REFERENCES Lote(ID_Lote),
     FOREIGN KEY (ID_Paciente) REFERENCES Paciente(ID_Paciente),
     FOREIGN KEY (ID_Usuario) REFERENCES Usuario(ID_Usuario)

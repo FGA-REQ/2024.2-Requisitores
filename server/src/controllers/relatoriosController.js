@@ -12,19 +12,17 @@ exports.getInventoryReport = async (req, res) => {
                  INNER JOIN Lote l ON m.ID_Medicamento = l.ID_Medicamento
                  INNER JOIN Estoque e ON l.ID_Lote = e.ID_Lote
                  WHERE e.QuantidadeAtual <= m.QuantidadeMinima) AS medicamentosBaixoEstoque,
-                (SELECT SUM(e.QuantidadeAtual * m.ValorUnitario)
-                 FROM Medicamento m
-                 INNER JOIN Lote l ON m.ID_Medicamento = l.ID_Medicamento
-                 INNER JOIN Estoque e ON l.ID_Lote = e.ID_Lote) AS valorTotalEstoque
+                (SELECT SUM(e.QuantidadeAtual)
+                 FROM Estoque e) AS valorTotalEstoque
         `;
 
-        // Consulta para as 5 principais categorias de medicamentos
-        const consultaCategoria = `
+        // Consulta para as 5 principais fabricantes de medicamentos
+        const consultaFabricante = `
             SELECT 
-                Categoria AS name,
+                Fabricante AS name,
                 COUNT(*) AS quantidade
             FROM Medicamento
-            GROUP BY Categoria
+            GROUP BY Fabricante
             ORDER BY quantidade DESC
             LIMIT 5
         `;
@@ -57,31 +55,57 @@ exports.getInventoryReport = async (req, res) => {
                 END
         `;
 
-        // Consulta para movimentação mensal (últimos 6 meses)
+        // Consulta para movimentação diária (últimos 6 meses)
         const consultaMovimentacao = `
             SELECT 
-                strftime('%Y-%m', DataHora) AS name,
-                SUM(CASE WHEN TipoMovimento = 'Entrada' THEN Quantidade ELSE 0 END) AS entradas,
-                SUM(CASE WHEN TipoMovimento = 'Saida' THEN Quantidade ELSE 0 END) AS saidas
-            FROM MovimentacaoEstoque
+                strftime('%d/%m/%Y', DataHora) AS name,
+                SUM(CASE WHEN TipoAjuste = 'Entrada' THEN Quantidade ELSE 0 END) AS entradas,
+                SUM(CASE WHEN TipoAjuste = 'Saída' THEN Quantidade ELSE 0 END) AS saidas
+            FROM Ajuste_Estoque
             WHERE DataHora >= date('now', '-6 months')
-            GROUP BY strftime('%Y-%m', DataHora)
+            GROUP BY strftime('%d/%m/%Y', DataHora)
             ORDER BY name DESC
             LIMIT 6
         `;
 
-        // Consulta para heatmap da movimentação (dias úteis e horário comercial)
-        const consultaHeatMap = `
+        // Consulta para medicamentos mais dispensados (últimos 6 meses)
+        const consultaMedicamentosMaisDispensados = `
             SELECT 
-                strftime('%w', DataHora) AS dia,
-                strftime('%H:00', DataHora) AS hora,
-                COUNT(*) AS quantidade
-            FROM MovimentacaoEstoque
-            WHERE 
-                strftime('%w', DataHora) BETWEEN 1 AND 5
-                AND strftime('%H', DataHora) BETWEEN 8 AND 16
-            GROUP BY dia, hora
-            ORDER BY dia, hora
+                m.Nome AS name,
+                SUM(d.Quantidade) AS quantidade
+            FROM Dispensacao d
+            INNER JOIN Lote l ON d.ID_Lote = l.ID_Lote
+            INNER JOIN Medicamento m ON l.ID_Medicamento = m.ID_Medicamento
+            WHERE d.DataHora >= date('now', '-6 months')
+            GROUP BY m.Nome
+            ORDER BY quantidade DESC
+            LIMIT 5
+        `;
+
+        // Consulta para pacientes com mais dispensações (últimos 6 meses)
+        const consultaPacientesMaisDispensacoes = `
+            SELECT 
+                p.Nome AS name,
+                COUNT(d.ID_Dispensacao) AS quantidade
+            FROM Dispensacao d
+            INNER JOIN Paciente p ON d.ID_Paciente = p.ID_Paciente
+            WHERE d.DataHora >= date('now', '-6 months')
+            GROUP BY p.Nome
+            ORDER BY quantidade DESC
+            LIMIT 5
+        `;
+
+        // Consulta para usuários que mais realizaram dispensações (últimos 6 meses)
+        const consultaUsuariosMaisDispensacoes = `
+            SELECT 
+                u.Nome AS name,
+                COUNT(d.ID_Dispensacao) AS quantidade
+            FROM Dispensacao d
+            INNER JOIN Usuario u ON d.ID_Usuario = u.ID_Usuario
+            WHERE d.DataHora >= date('now', '-6 months')
+            GROUP BY u.Nome
+            ORDER BY quantidade DESC
+            LIMIT 5
         `;
 
         // Execução das consultas
@@ -95,8 +119,8 @@ exports.getInventoryReport = async (req, res) => {
             });
         });
 
-        const dadosCategoria = await new Promise((resolve, reject) => {
-            db.all(consultaCategoria, (err, rows) => {
+        const dadosFabricante = await new Promise((resolve, reject) => {
+            db.all(consultaFabricante, (err, rows) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -126,16 +150,35 @@ exports.getInventoryReport = async (req, res) => {
             });
         });
 
-        // Caso seja necessário utilizar o heatmap, executar a consulta abaixo:
-        // const dadosHeatMap = await new Promise((resolve, reject) => {
-        //     db.all(consultaHeatMap, (err, rows) => {
-        //         if (err) {
-        //             reject(err);
-        //         } else {
-        //             resolve(rows);
-        //         }
-        //     });
-        // });
+        const dadosMedicamentosMaisDispensados = await new Promise((resolve, reject) => {
+            db.all(consultaMedicamentosMaisDispensados, (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+
+        const dadosPacientesMaisDispensacoes = await new Promise((resolve, reject) => {
+            db.all(consultaPacientesMaisDispensacoes, (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
+
+        const dadosUsuariosMaisDispensacoes = await new Promise((resolve, reject) => {
+            db.all(consultaUsuariosMaisDispensacoes, (err, rows) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(rows);
+                }
+            });
+        });
 
         // Formatação da resposta para o frontend
         res.json({
@@ -145,10 +188,12 @@ exports.getInventoryReport = async (req, res) => {
                 medicamentosBaixoEstoque: dadosGeral.medicamentosBaixoEstoque || 0,
                 valorTotalEstoque: dadosGeral.valorTotalEstoque || 0
             },
-            estoqueCategoria: dadosCategoria,
+            estoqueFabricante: dadosFabricante,
             validade: dadosValidade,
-            movimentacaoMensal: dadosMovimentacao
-            // heatMap: dadosHeatMap // descomente caso precise incluir os dados do heatmap
+            movimentacaoMensal: dadosMovimentacao,
+            medicamentosMaisDispensados: dadosMedicamentosMaisDispensados,
+            pacientesMaisDispensacoes: dadosPacientesMaisDispensacoes,
+            usuariosMaisDispensacoes: dadosUsuariosMaisDispensacoes
         });
 
     } catch (error) {

@@ -1,5 +1,5 @@
 /* Estilos específicos do Relatório */
-.dashboard-content {
+.relatorio-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -7,7 +7,7 @@
     background-color: #ffffff;
 }
 
-.dashboard-cards {
+.relatorio-cards {
     display: flex;
     gap: 20px;
     justify-content: space-between;
@@ -15,7 +15,7 @@
     margin-top: 20px;
 }
 
-.dashboard-card {
+.relatorio-card {
     background: #f8f9fa;
     padding: 20px;
     border-radius: 8px;
@@ -25,32 +25,57 @@
     min-width: 200px;
 }
 
-.dashboard-card h3 {
+.relatorio-card h3 {
     margin-bottom: 10px;
     font-size: 18px;
     color: #333;
 }
 
-.dashboard-card p {
+.relatorio-card p {
     font-size: 24px;
     font-weight: bold;
     color: #007bff;
 }
 
-.dashboard-charts {
+.relatorio-buttons {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
 }
 
-/* Novo estilo para os contêineres de gráfico individuais */
-.chart-container {
-    flex: 1 1 300px;  /* Permite que cada gráfico tenha um tamanho mínimo de 300px */
-    max-width: 600px;
-    height: 300px;
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
+.relatorio-buttons button {
+    padding: 10px 20px;
+    border: none;
     border-radius: 8px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.relatorio-buttons button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.relatorio-buttons button.active {
+    background-color: #004080;
+}
+
+.tabela-relatorio {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-relatorio th,
+.tabela-relatorio td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.tabela-relatorio th {
+    background-color: #f8f8f8;
+    font-weight: bold;
 }

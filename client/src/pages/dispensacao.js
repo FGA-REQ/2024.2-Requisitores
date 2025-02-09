@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import TopNavbar from "../components/topNavbar";
-import { pageTitles, getStoredSidebarState } from "../utils/pageUtils";
+import { pageTitles, getStoredSidebarState, toggleSidebarState } from "../utils/pageUtils";
 import * as dispensacaoUtils from "../utils/dispensacaoUtils";
 import { fetchUsuarioLogado } from '../utils/loginUtils';
 import "./layoutBase.css";
@@ -36,13 +36,17 @@ const Dispensacao = () => {
   }, [search, dadosDispensacao]);
 
   const toggleSidebar = () => {
-    const newState = toggleSidebar(isSidebarOpen);
+    const newState = toggleSidebarState(isSidebarOpen);
     setIsSidebarOpen(newState);
   };
 
   const handleNewDispensacaoConfirm = async (modalData2) => {
-    console.log("Dados enviados para criação de dispensação:", modalData2);
     await dispensacaoUtils.handleNewDispensacaoConfirm(modalData2, setDispensacao, dadosDispensacao, setShowModal2, setLoading);
+  };
+
+  const handleDispensarConfirm = async (modalData) => {
+    await dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal);
+    dispensacaoUtils.fetchDadosDispensacao(setDispensacao, setLoading);
   };
 
   return (
@@ -133,7 +137,7 @@ const Dispensacao = () => {
                 <p><strong>Local:</strong> {modalData.Local}</p>
                 <p><strong>Validade:</strong> {modalData.Validade}</p>
                 <div className="modal-buttons">
-                  <button className="modal-button confirm-button" onClick={() => dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal)}>Confirmar</button>
+                  <button className="modal-button confirm-button" onClick={() => handleDispensarConfirm(modalData)}>Confirmar</button>
                   <button className="modal-button cancel-button" onClick={() => dispensacaoUtils.handleDispensarCancel(setShowModal, setModalData)}>Cancelar</button>
                 </div>
               </div>

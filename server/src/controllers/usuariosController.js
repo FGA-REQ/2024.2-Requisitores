@@ -1,3 +1,4 @@
+const bcrypt = require('bcryptjs');
 const { db } = require('../utils/dbUtils');
 
 exports.getUsuarios = async (req, res) => {
@@ -46,8 +47,9 @@ exports.getUsuarioById = async (req, res) => {
 exports.addUsuario = async (req, res) => {
     const { Nome, Login, Senha, Perfil } = req.body;
     try {
+        const hashSenha = await bcrypt.hash(Senha, 10);
         const result = await new Promise((resolve, reject) => {
-            db.run('INSERT INTO Usuario (Nome, Login, Senha, Perfil) VALUES (?, ?, ?, ?)', [Nome, Login, Senha, Perfil], function (err) {
+            db.run('INSERT INTO Usuario (Nome, Login, Senha, Perfil) VALUES (?, ?, ?, ?)', [Nome, Login, hashSenha, Perfil], function (err) {
                 if (err) {
                     reject(err);
                 } else {
@@ -67,8 +69,9 @@ exports.updateUsuario = async (req, res) => {
     const { id } = req.params;
     const { Nome, Login, Senha, Perfil } = req.body;
     try {
+        const hashSenha = await bcrypt.hash(Senha, 10);
         const result = await new Promise((resolve, reject) => {
-            db.run('UPDATE Usuario SET Nome = ?, Login = ?, Senha = ?, Perfil = ? WHERE ID_Usuario = ?', [Nome, Login, Senha, Perfil, id], function (err) {
+            db.run('UPDATE Usuario SET Nome = ?, Login = ?, Senha = ?, Perfil = ? WHERE ID_Usuario = ?', [Nome, Login, hashSenha, Perfil, id], function (err) {
                 if (err) {
                     reject(err);
                 } else {
