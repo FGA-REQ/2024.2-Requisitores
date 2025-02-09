@@ -5,9 +5,9 @@
 
 | **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| 25/11/2024     | 1.1        | Declaração de Problema, Posição do Produto e Objetivos do Produto | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+| 25/11/2024     | 1.0        | Declaração de Problema, Posição do Produto e Objetivos do Produto | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 | 13/01/2025     | 2.0        | Ajustes na Declaração de Problema, Posição do Produto, e Objetivos do Produto; Tecnologias a serem utilizadas; Organização do Projeto; Planejamento das Fazes e/ou Iterações do Projeto; Matriz de comunicação; Gerenciamento de Risco; Critérios de Replanejamento; Lições aprendidas, referências |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
-| 06/02/2025     | 2.0        | Lições aprendidas e alguns ajustes conforme a necessidade do cliente |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
+| 06/02/2025     | 2.1        | Lições aprendidas e alguns ajustes conforme a necessidade do cliente |  Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 
 ## 1. Visão Geral do Produto
 ### 1.1. Problema
