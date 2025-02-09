@@ -8,6 +8,7 @@
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | 11/12/2024     | 1.1        | Declaração de Problema, Posição das regras de negócio do projeto  | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos |
 | 26/01/2025     | 2.0        | Declaração dos requisitos conforme o SAFe baseado nas regras de negócio previamente estabelecidas e revisadas com o cliente.  | Fernanda Noronha  |
+| 06/02/2025     | 2.1        | Ajuste da declaração dos requisitos conforme o SAFe baseado nas regras de negócio previamente estabelecidas e revisadas com o cliente.  | Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos  |
 
 
 ## Introdução 
@@ -43,22 +44,13 @@ Descrição: Permitir o registro completo de itens do estoque com informações 
 ### **Funcionalidade 2: Alerta de Validade Próxima**
 Descrição: Notificar os responsáveis sobre produtos próximos ao vencimento.
 
-### **Funcionalidade 3: Bloqueio de Produtos Vencidos**
-Descrição: Impedir o uso de produtos vencidos, garantindo a segurança.
-
-### **Funcionalidade 4: Planejamento de Compras Baseado em Dados**
-Descrição: Sugerir compras com base em rotatividade e níveis críticos de estoque.
-
-### **Funcionalidade 5: Dispensação por FIFO**
+### **Funcionalidade 3: Dispensação por FIFO**
 Descrição: Garantir que produtos com validade próxima sejam priorizados na saída.
 
-### **Funcionalidade 6: Inventário e Relatórios de Divergência**
-Descrição: Prover ferramentas para realização de inventários e ajustes no estoque.
-
-### **Funcionalidade 7: Controle de Acesso por Perfil**
+### **Funcionalidade 4: Controle de Acesso por Perfil**
 Descrição: Configurar níveis de acesso diferenciados para cada perfil de usuário.
 
-### **Funcionalidade 8: Autenticação Segura**
+### **Funcionalidade 5: Autenticação Segura**
 Descrição: Garantir a segurança no login com senhas fortes e bloqueios automáticos.
 
 ---
@@ -67,8 +59,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 | **Regras de Negócio**                      | **Requisitos Funcionais**                                           | **Requisitos Não Funcionais**                                     |
 |--------------------------------------------|----------------------------------------------------------------------|-------------------------------------------------------------------|
 | Cadastro de itens deve evitar duplicidade. | Cadastro de itens com código único, lote, validade e fabricante.    | Tempo de resposta menor que 3 segundos.                          |
-| Produtos vencidos não podem ser usados.    | Bloqueio automático de produtos vencidos.                          | Sistema escalável para até 10.000 registros simultâneos.         |
-| Alertar sobre produtos próximos ao vencimento. | Geração de alertas automáticos para produtos com validade < 30 dias. | Design responsivo e acessível conforme WCAG 2.1.                 |
+| Alertar sobre produtos próximos ao vencimento. | Geração de alertas automáticos para produtos com validade < 30 dias. | Design responsivo e acessível conforme WCAG 2.1.              |
 | Compras devem ser planejadas.              | Planejamento baseado em rotatividade e níveis críticos de estoque.  | Dados criptografados para segurança.                             |
 | Dispensação deve priorizar o FIFO.         | Organização automática de itens baseando-se na validade.            | Sistema deve operar sem perda de desempenho em alta demanda.     |
 | Controle de acesso deve ser restrito.      | Configuração de perfis de acesso com permissões específicas.        | Logs armazenados por pelo menos 5 anos.                          |
@@ -97,36 +88,22 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 
 **Critérios de Aceite:**
 - O sistema deve gerar alertas automáticos para medicamentos com validade inferior a 30 dias.
-- Os alertas devem ser exibidos em um painel principal e enviados por e-mail.
-- Deve ser possível filtrar os alertas por setor e data de vencimento.
+- Os alertas devem ser exibidos em um painel principal.
 
 ---
 
-### **História 3: Bloqueio de Produtos Vencidos**
-**Como** operador de dispensação,  
-**eu quero** que o sistema bloqueie automaticamente a saída de produtos vencidos,  
-**para que** esses produtos não sejam disponibilizados para uso.  
 
-**Critérios de Aceite:**
-- Produtos vencidos devem ser marcados como "bloqueados" e não podem ser incluídos em processos de dispensação.
-- O bloqueio deve ser automático assim que o produto atingir sua data de vencimento.
-- Uma mensagem de aviso deve ser exibida ao tentar dispensar um produto vencido.
-
----
-
-### **História 4: Planejamento de Compras**
+### **História 3: Planejamento de Compras**
 **Como** gestor de compras,  
 **eu quero** que o sistema sugira o planejamento de compras com base em rotatividade e níveis críticos,  
 **para que** eu possa evitar rupturas no estoque.  
 
 **Critérios de Aceite:**
 - O sistema deve emitir alertas para produtos que atingirem o nível crítico de estoque.
-- Deve ser possível visualizar a previsão de compras com base no histórico de consumo e demanda esperada.
-- Relatórios gerados devem incluir quantidades sugeridas, previsão de custo e prazo para reposição.
-
+- Relatórios gerados devem incluir a disponibilização dos medicamentos.
 ---
 
-### **História 5: Dispensação por FIFO**
+### **História 4: Dispensação por FIFO**
 **Como** técnico de farmácia,  
 **eu quero** que o sistema priorize o princípio "primeiro a vencer, primeiro a sair" na dispensação de medicamentos,  
 **para que** eu reduza o risco de perdas por vencimento.  
@@ -138,19 +115,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 
 ---
 
-### **História 6: Inventário de Estoque**
-**Como** auditor,  
-**eu quero** realizar inventários periódicos e visualizar relatórios de divergência entre o estoque físico e o registrado,  
-**para que** eu possa corrigir possíveis erros no controle do estoque.  
-
-**Critérios de Aceite:**
-- Deve ser possível registrar o estoque físico diretamente no sistema.
-- O relatório de divergência deve destacar itens com quantidades diferentes entre o físico e o registrado.
-- Relatórios devem ser gerados em formatos PDF e Excel.
-
----
-
-### **História 7: Controle de Acesso**
+### **História 5: Controle de Acesso**
 **Como** administrador,  
 **eu quero** configurar níveis de acesso para diferentes tipos de usuários,  
 **para que** cada usuário visualize apenas as informações necessárias para suas atividades.  
@@ -162,7 +127,7 @@ Descrição: Garantir a segurança no login com senhas fortes e bloqueios autom�
 
 ---
 
-### **História 8: Autenticação Segura**
+### **História 6: Autenticação Segura**
 **Como** usuário,  
 **eu quero** realizar login com uma senha forte e bloqueio após múltiplas tentativas inválidas,  
 **para que** minhas informações e acessos sejam mantidos seguros.  
