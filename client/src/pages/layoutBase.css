@@ -10,16 +10,18 @@
     background-color: #2B3F54;
     color: white;
     padding: 20px;
-    transition: width 0.3s ease; /* Adiciona transição suave */
+    transition: width 0.3s ease;
     overflow-y: hidden;
+    min-width: 40px;
 }
 
 .sidebar.open {
-    width: 150px; /* Largura quando aberto */
+    width: 200px;
 }
 
 .sidebar.closed {
-    width: 40px; /* Largura quando fechado */
+    width: 40px;
+    /* Largura quando fechado */
 }
 
 .sidebar-toggle {
@@ -35,7 +37,8 @@
 }
 
 .sidebar-toggle:hover {
-    background-color: #1E2D3D; /* Efeito de hover igual aos outros itens */
+    background-color: #1E2D3D;
+    /* Efeito de hover igual aos outros itens */
 }
 
 .sidebar-toggle svg {
@@ -53,11 +56,13 @@
     font-size: 1.25rem;
     margin-left: 10px;
     font-weight: bold;
-    white-space: nowrap; /* Evita quebra de linha */
+    white-space: nowrap;
+    /* Evita quebra de linha */
 }
 
 .sidebar.closed .sidebar-header span {
-    display: none; /* Esconde o texto quando fechado */
+    display: none;
+    /* Esconde o texto quando fechado */
 }
 
 .sidebar-nav ul {
@@ -81,23 +86,27 @@
     color: inherit;
     width: 100%;
 }
-  
+
 .sidebar-nav li.active {
-    background-color: #1E2D3D; /* Destaca item ativo */
-    font-weight: bold; /* Destacar o texto */
+    background-color: #1E2D3D;
+    /* Destaca item ativo */
+    font-weight: bold;
+    /* Destacar o texto */
 }
-  
+
 .sidebar-nav li:hover {
     background-color: #1E2D3D;
 }
 
 .sidebar-nav li span {
     margin-left: 10px;
-    white-space: nowrap; /* Evita quebra de linha */
+    white-space: nowrap;
+    /* Evita quebra de linha */
 }
 
 .sidebar.closed .sidebar-nav li span {
-    display: none; /* Esconde o texto quando fechado */
+    display: none;
+    /* Esconde o texto quando fechado */
 }
 
 .sidebar-nav li svg,

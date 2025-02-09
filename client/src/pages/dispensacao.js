@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import TopNavbar from "../components/topNavbar";
-import { pageTitles, getStoredSidebarState } from "../utils/pageUtils";
+import { pageTitles, getStoredSidebarState, toggleSidebarState } from "../utils/pageUtils";
 import * as dispensacaoUtils from "../utils/dispensacaoUtils";
 import { fetchUsuarioLogado } from '../utils/loginUtils';
 import "./layoutBase.css";
@@ -36,7 +36,7 @@ const Dispensacao = () => {
   }, [search, dadosDispensacao]);
 
   const toggleSidebar = () => {
-    const newState = toggleSidebar(isSidebarOpen);
+    const newState = toggleSidebarState(isSidebarOpen);
     setIsSidebarOpen(newState);
   };
 
@@ -46,7 +46,7 @@ const Dispensacao = () => {
 
   const handleDispensarConfirm = async (modalData) => {
     await dispensacaoUtils.handleDispensarConfirm(modalData, usuarioLogado, setDispensacao, dadosDispensacao, setShowModal);
-    dispensacaoUtils.fetchDadosDispensacao(setDispensacao, setLoading); // Atualizar a tabela após a dispensação
+    dispensacaoUtils.fetchDadosDispensacao(setDispensacao, setLoading);
   };
 
   return (
