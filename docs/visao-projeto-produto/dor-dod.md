@@ -21,6 +21,7 @@ A história de usuário está pronta para ser refinada quando:
    - **Como** [tipo de usuário]  
    - **Eu quero** [funcionalidade/ação desejada]  
    - **Para que** [benefício/resultado esperado].
+
      
 2. Os critérios de aceitação estão definidos de forma objetiva e verificável.  
 3. O valor de negócio ou impacto da entrega está especificado.  
@@ -38,7 +39,8 @@ A entrega será considerada concluída quando:
 6. Documentações relevantes foram atualizadas:
    
    - Registros de requisitos e mudanças no backlog.  
-  
+
+
 7. A funcionalidade foi aprovada em uma demonstração/review com stakeholders.  
 8. O deploy no ambiente produtivo foi realizado com sucesso (se for o caso).  
 9. Não há bugs críticos ou impedimentos relacionados à funcionalidade entregue.  
