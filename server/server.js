@@ -9,6 +9,7 @@ const medicamentosRoutes = require('./src/routes/medicamentos');
 const lotesRoutes = require('./src/routes/lote');
 const dispensacaoRoutes = require('./src/routes/dispensacao');
 const usuariosRoutes = require('./src/routes/usuarios');
+const estoqueRoutes = require('./src/routes/estoque');
 const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
 
 // Inicializa o app
@@ -38,6 +39,7 @@ dbStart().then((db) => {
     app.use('/api/lotes', lotesRoutes);
     app.use('/api/dispensacoes', dispensacaoRoutes);
     app.use('/api/usuarios', usuariosRoutes);
+    app.use('/api/estoque', estoqueRoutes);
     app.get('/api/dispensacoesTabela', getDispensacaoData);
 
     // Servir arquivos do React
