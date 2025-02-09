@@ -3,7 +3,8 @@ import { useLocation } from "react-router-dom";
 import Sidebar from "../components/sidebar";
 import TopNavbar from "../components/topNavbar";
 import { pageTitles, getStoredSidebarState, toggleSidebarState } from "../utils/pageUtils";
-import { fetchDadosDispensacao, fetchPacientes, fetchMedicamentos, fetchUsuarioLogado, filterDispensacao, handleDispensarConfirm } from "../utils/dispensacaoUtils";
+import { fetchDadosDispensacao, fetchPacientes, fetchMedicamentos, filterDispensacao, handleDispensarConfirm } from "../utils/dispensacaoUtils";
+import { fetchUsuarioLogado } from '../utils/loginUtils';
 import "./layoutBase.css";
 import "./dispensacao.css";
 

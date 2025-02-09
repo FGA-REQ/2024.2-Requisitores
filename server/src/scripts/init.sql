@@ -117,10 +117,13 @@ CREATE TABLE IF NOT EXISTS Item_Solicitado (
 
 -- Tabela Usuário
 INSERT OR IGNORE INTO Usuario (Nome, Login, Senha, Perfil) VALUES
+('Admin', 'admin@gmail.com', 'senhaADMIN@', 'Administrador'),
+('Farmacêutico', 'farm@gmail.com', 'senhaFARM@', 'Farmacêutico'),
+('Técnico de Farmácia', 'tc@gmail.com', 'senhaTF@', 'Técnico de Farmácia'),
+('Auditor', 'audit@gmail.com', 'senhaADMIN@', 'Auditor'),
 ('João Silva', 'joaosilva@gmail.com', 'senha123@', 'Farmacêutico'),
 ('Maria Oliveira', 'mariaoliveira@gmail.com', 'senha456@', 'Técnico de Farmácia'),
 ('Lucas Mendes', 'lucasmendes@gmail.com', 'senha789@', 'Auditor'),
-('Admin Admin', 'admin@gmail.com', 'senhaADMIN@', 'Administrador'),
 ('Paulo Souza', 'paulosouza@gmail.com', 'senha321@', 'Farmacêutico'),
 ('Ana Clara', 'anaclara@gmail.com', 'senha654@', 'Técnico de Farmácia'),
 ('Carlos Lima', 'carloslima@gmail.com', 'senha987@', 'Auditor');

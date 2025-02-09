@@ -26,4 +26,13 @@ const authMiddleware = (req, res, next) => {
     });
 };
 
-module.exports = authMiddleware;
+const checkRole = (roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user.Perfil)) {
+            return res.status(403).json({ mensagem: 'Acesso negado.' });
+        }
+        next();
+    };
+};
+
+module.exports = { authMiddleware, checkRole };

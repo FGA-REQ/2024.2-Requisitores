@@ -12,7 +12,7 @@ const usuariosRoutes = require('./src/routes/usuarios');
 const estoqueRoutes = require('./src/routes/estoque');
 const ajusteEstoqueRoutes = require('./src/routes/ajusteEstoque');
 const { getDispensacaoData } = require('./src/controllers/dispensacaoController');
-const authMiddleware = require('./src/middleware/authMiddleware');
+const { authMiddleware, checkRole } = require('./src/middleware/authMiddleware');
 
 // Inicializa o app
 const app = express();
@@ -36,15 +36,15 @@ dbStart().then((db) => {
     app.post('/api/login', login);
     app.post('/api/registrar', registrar);
     app.get('/api/usuarioLogado', authMiddleware, getUsuarioLogado);
-    app.get('/api/dashboard', authMiddleware, getDashboardData);
-    app.use('/api/pacientes', authMiddleware, pacientesRoutes);
-    app.use('/api/medicamentos', authMiddleware, medicamentosRoutes);
-    app.use('/api/lotes', authMiddleware, lotesRoutes);
-    app.use('/api/dispensacoes', authMiddleware, dispensacaoRoutes);
-    app.use('/api/usuarios', authMiddleware, usuariosRoutes);
-    app.use('/api/estoque', authMiddleware, estoqueRoutes);
-    app.use('/api/ajuste_estoque', authMiddleware, ajusteEstoqueRoutes);
-    app.get('/api/dispensacoesTabela', authMiddleware, getDispensacaoData);
+    app.get('/api/dashboard', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']), getDashboardData);
+    app.use('/api/pacientes', authMiddleware, checkRole(['Administrador', 'Auditor']), pacientesRoutes);
+    app.use('/api/medicamentos', authMiddleware, checkRole(['Administrador', 'Auditor']), medicamentosRoutes);
+    app.use('/api/lotes', authMiddleware, checkRole(['Administrador', 'Auditor']), lotesRoutes);
+    app.use('/api/dispensacoes', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']), dispensacaoRoutes);
+    app.use('/api/usuarios', authMiddleware, checkRole(['Administrador', 'Auditor']), usuariosRoutes);
+    app.use('/api/estoque', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Auditor']), estoqueRoutes);
+    app.use('/api/ajuste_estoque', authMiddleware, checkRole(['Administrador', 'Auditor']), ajusteEstoqueRoutes);
+    app.get('/api/dispensacoesTabela', authMiddleware, checkRole(['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']), getDispensacaoData);
 
     // Servir arquivos do React
     app.use(express.static(path.join(__dirname, "../client/build")));
