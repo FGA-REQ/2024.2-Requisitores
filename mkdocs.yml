@@ -5,8 +5,7 @@ nav:
   - Requisitos: "visao-projeto-produto/regrasdenegocio.md"
   - MER/DER e Dicionário de dados: "visao-projeto-produto/der.md"
   - DOR/DOD e Dicionário de dados: "visao-projeto-produto/dor-dod.md"
-  - MVP: "visao-projeto-produto/mvp.md"
-  - Processo de Desenvolvimento de Software: "processo-de-desenvolvimento-de-software/diagrama.md"    
+  - MVP: "visao-projeto-produto/mvp.md"  
 
 theme:
   name: material
