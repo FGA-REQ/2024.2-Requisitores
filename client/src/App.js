@@ -1,3 +1,4 @@
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
@@ -8,17 +9,20 @@ import Usuarios from "./pages/usuarios";
 import Saldo from "./pages/saldo";
 import Entradas from "./pages/entradas";
 import Saidas from "./pages/saidas";
+import NotAuthorized from "./pages/NotAuthorized";
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dispensacao" element={<Dispensacao />} />
-        <Route path="/estoque" element={<Estoque />} />
-        <Route path="/relatorios" element={<Relatorios />} />
-        <Route path="/usuarios" element={<Usuarios />} />
+        <Route path="/dashboard" element={<ProtectedRoute element={Dashboard} allowedRoles={['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']} />} />
+        <Route path="/dispensacao" element={<ProtectedRoute element={Dispensacao} allowedRoles={['Administrador', 'Farmacêutico', 'Técnico de Farmácia', 'Auditor']} />} />
+        <Route path="/estoque" element={<ProtectedRoute element={Estoque} allowedRoles={['Administrador', 'Farmacêutico', 'Auditor']} />} />
+        <Route path="/relatorios" element={<ProtectedRoute element={Relatorios} allowedRoles={['Administrador', 'Auditor']} />} />
+        <Route path="/usuarios" element={<ProtectedRoute element={Usuarios} allowedRoles={['Administrador', 'Auditor']} />} />
+        <Route path="/not-authorized" element={<NotAuthorized />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/saldo" element={<Saldo />} />
         <Route path="/entradas" element={<Entradas />} />
