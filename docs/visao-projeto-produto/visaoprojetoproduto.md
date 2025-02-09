@@ -14,7 +14,7 @@ O controle e a gestão de medicamentos representam um dos principais desafios na
 
 - **Validade dos Medicamentos:** Ausência de um controle eficaz que identifique e alerte sobre medicamentos próximos ao vencimento, resultando em desperdício de recursos e potenciais riscos à saúde.
 
-- **Restrição de Medicamentos:** Falta de ferramentas que permitam a verificação ágil de restrições, como lotes destinados a usos específicos, limitações regulamentares ou requisitos especiais de armazenamento.
+- **Estoque de Medicamentos:** Realizar o controle da quantidade de medicamento disponível e a necessidade da sua compra.
 
 - **Falta de Centralização das Informações:** Os dados sobre os estoques encontram-se dispersos em diferentes sistemas ou registros manuais, dificultando consultas e decisões rápidas.
 
