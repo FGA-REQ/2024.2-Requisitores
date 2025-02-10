@@ -35,9 +35,7 @@ const Estoque = ({ children }) => {
   const pageTitles = {
     "/estoque": "Estoque",
     "/produto": "Produto",
-    "/saldo": "Estoque",
     "/entradas": "Entradas",
-    "/saidas": "Saídas",
   };
 
   return (

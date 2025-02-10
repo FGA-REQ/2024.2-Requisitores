@@ -31,7 +31,6 @@ const Saldo = ({ children }) => {
     "/estoque": "Estoque",
     "/saldo": "Saldo",
     "/entradas": "Entradas",
-    "/saidas": "Saídas",
   };
 
   return (
@@ -57,11 +56,6 @@ const Saldo = ({ children }) => {
             <li className={location.pathname === "/entradas" ? "active" : ""}>
                 <Link to="/entradas">
                     <FaArrowDown /> <span>Entradas</span>
-                </Link>
-            </li>
-            <li className={location.pathname === "/saidas" ? "active" : ""}>
-                <Link to="/saidas">
-                    <FaArrowUp /> <span>Saídas</span>
                 </Link>
             </li>
           </ul>
