@@ -4,51 +4,79 @@ import {
   FaSignOutAlt, FaUserCircle, FaBars, FaArrowDown, 
   FaChartLine, FaArrowUp, FaBox, FaArrowLeft 
 } from "react-icons/fa";
-import './layoutBase.css'; // Layout base
-import './saidas.css'; // Estilos do estoque
+import './layoutBase.css'; 
+import './saidas.css'; 
 
-const Estoque = ({ children }) => {
+const Entradas = ({ children }) => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  const [produtoSelecionado, setProdutoSelecionado] = useState(""); 
-  const [quantidade, setQuantidade] = useState(""); 
-  const [produtos, setProdutos] = useState([]); 
+  const [produtoSelecionado, setProdutoSelecionado] = useState("");
+  const [quantidade, setQuantidade] = useState("");
+  const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
     const storedSidebarState = localStorage.getItem("sidebarState");
     if (storedSidebarState !== null) {
       setIsSidebarOpen(storedSidebarState === "open");
     }
+    fetchProdutos();
   }, []);
 
-  const toggleSidebar = () => {
-    const newState = !isSidebarOpen;
-    setIsSidebarOpen(newState);
-    localStorage.setItem("sidebarState", newState ? "open" : "closed");
-  };
+  const fetchProdutos = async () => {
+    const token = localStorage.getItem("token");
 
-  const handleSalvar = () => {
-    if (produtoSelecionado && quantidade) {
-      setProdutos([...produtos, { nome: produtoSelecionado, quantidade }]);
-      setProdutoSelecionado("");
-      setQuantidade("");
+    try {
+      const response = await fetch("http://localhost:5001/api/estoque", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao buscar produtos");
+      }
+
+      const data = await response.json();
+      setProdutos(data.estoques);
+    } catch (error) {
+      console.error("Erro ao buscar produtos:", error);
     }
   };
 
-  const pageTitles = {
-    "/estoque": "Estoque",
-    "/produto": "Produto",
-    "/saldo": "Estoque",
-    "/entradas": "Entradas",
-    "/saidas": "Saídas",
+  const handleSalvar = async () => {
+    if (produtoSelecionado && quantidade) {
+      try {
+        const response = await fetch(`http://localhost:5001/api/estoque/${produtoSelecionado}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ quantidade: parseInt(quantidade, 10) }),
+        });
+
+        if (!response.ok) {
+          throw new Error("Erro ao atualizar quantidade do produto");
+        }
+
+        // Atualiza os produtos na tela
+        fetchProdutos();
+        setProdutoSelecionado("");
+        setQuantidade("");
+      } catch (error) {
+        console.error("Erro ao atualizar produto:", error);
+      }
+    } else {
+      alert("Por favor, selecione um produto e insira uma quantidade!");
+    }
   };
 
   return (
     <div className="layout-container">
       {/* Sidebar */}
-      <aside className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+      <aside className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}>
         <div className="sidebar-header">
-          <button onClick={toggleSidebar} className="sidebar-toggle">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="sidebar-toggle">
             <FaBars /> <span>Menu</span>
           </button>
         </div>
@@ -77,7 +105,6 @@ const Estoque = ({ children }) => {
           </ul>
         </nav>
 
-        {/* Botão "Voltar para o Menu" */}
         <div className="sidebar-footer">
           <Link to="/dashboard" className="btn-voltar">
             <FaArrowLeft /> <span>Voltar para o Menu</span>
@@ -87,12 +114,11 @@ const Estoque = ({ children }) => {
 
       {/* Main Content */}
       <div className="main-content">
-        {/* Top Navbar */}
         <header className="top-navbar">
           <div>
             <img src="/hfab.png" alt="Logo" />
           </div>
-          <span>GestFarma - {pageTitles[location.pathname] || "Página"}</span>
+          <span>GestFarma - Entradas</span>
           <div className="top-navbar-actions">
             <button>
               <FaUserCircle /> Perfil
@@ -103,7 +129,6 @@ const Estoque = ({ children }) => {
           </div>
         </header>
 
-        {/* Entrada de Saldo */}
         <div className="saldo-container">
           <div className="saldo-inputs">
             <select 
@@ -112,9 +137,11 @@ const Estoque = ({ children }) => {
               onChange={(e) => setProdutoSelecionado(e.target.value)}
             >
               <option value="">Selecionar um item</option>
-              <option value="Remédio A">Remédio A</option>
-              <option value="Remédio B">Remédio B</option>
-              <option value="Remédio C">Remédio C</option>
+              {produtos.map(produto => (
+                <option key={produto.ID_Estoque} value={produto.ID_Estoque}>
+                  {produto.Nome} - {produto.Local} (Atual: {produto.QuantidadeAtual})
+                </option>
+              ))}
             </select>
             
             <input 
@@ -130,7 +157,6 @@ const Estoque = ({ children }) => {
             </button>
           </div>
 
-          {/* Lista de produtos cadastrados */}
           <table className="tabela-saldo">
             <thead>
               <tr>
@@ -139,10 +165,10 @@ const Estoque = ({ children }) => {
               </tr>
             </thead>
             <tbody>
-              {produtos.map((produto, index) => (
-                <tr key={index}>
-                  <td>{produto.nome}</td>
-                  <td>{produto.quantidade}</td>
+              {produtos.map(produto => (
+                <tr key={produto.ID_Estoque}>
+                  <td>{produto.Nome}</td>
+                  <td>{produto.QuantidadeAtual}</td>
                 </tr>
               ))}
             </tbody>
@@ -153,4 +179,4 @@ const Estoque = ({ children }) => {
   );
 };
 
-export default Estoque;
+export default Entradas;

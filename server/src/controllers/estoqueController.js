@@ -118,3 +118,33 @@ exports.deleteEstoque = async (req, res) => {
         res.status(500).json({ error: "Erro ao deletar estoque" });
     }
 };
+
+exports.updateQuantidadeEstoque = async (req, res) => {
+    const { id } = req.params;
+    const { quantidade } = req.body;
+
+    try {
+        const result = await new Promise((resolve, reject) => {
+            db.run(
+                "UPDATE Estoque SET QuantidadeAtual = QuantidadeAtual + ? WHERE ID_Estoque = ?",
+                [quantidade, id],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ changes: this.changes });
+                    }
+                }
+            );
+        });
+
+        if (result.changes > 0) {
+            res.json({ message: "Quantidade atualizada com sucesso" });
+        } else {
+            res.status(404).json({ error: "Estoque não encontrado" });
+        }
+    } catch (error) {
+        console.error("Erro ao atualizar estoque:", error);
+        res.status(500).json({ error: "Erro ao atualizar estoque" });
+    }
+};
