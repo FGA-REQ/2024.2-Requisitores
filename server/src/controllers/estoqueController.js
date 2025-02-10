@@ -1,20 +1,28 @@
 const { db } = require('../utils/dbUtils');
+const util = require('util');
 
+const dbRun = util.promisify(db.run).bind(db);
+const dbGet = util.promisify(db.get).bind(db);
+const dbAll = util.promisify(db.all).bind(db);
+
+// 🔹 Função para remover os exemplos genéricos
+const limparExemplos = async () => {
+    try {
+        await dbRun("DELETE FROM Estoque WHERE nome IN ('Remédio A', 'Remédio B', 'Remédio C')");
+        console.log("✅ Exemplos genéricos removidos!");
+    } catch (error) {
+        console.error("❌ Erro ao remover exemplos genéricos:", error);
+    }
+};
+
+// 🔹 Listar todos os produtos do estoque
 exports.getEstoques = async (req, res) => {
     try {
-        const estoques = await new Promise((resolve, reject) => {
-            db.all('SELECT * FROM Estoque', [], (err, rows) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(rows);
-                }
-            });
-        });
-
+        await limparExemplos(); // Limpa os exemplos antes de listar
+        const estoques = await dbAll('SELECT * FROM Estoque');
         res.json({ estoques });
     } catch (error) {
-        console.error("Erro ao buscar estoques:", error);
+        console.error("❌ Erro ao buscar estoques:", error);
         res.status(500).json({ error: "Erro ao buscar estoques" });
     }
 };
@@ -22,92 +30,68 @@ exports.getEstoques = async (req, res) => {
 exports.getEstoqueById = async (req, res) => {
     const { id } = req.params;
     try {
-        const estoque = await new Promise((resolve, reject) => {
-            db.get('SELECT * FROM Estoque WHERE ID_Estoque = ?', [id], (err, row) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(row);
-                }
-            });
+        db.get('SELECT * FROM Estoque WHERE ID_Estoque = ?', [id], (err, row) => {
+            if (err) return res.status(500).json({ error: "Erro ao buscar estoque" });
+            if (!row) return res.status(404).json({ error: "Estoque não encontrado" });
+            res.json({ estoque: row });
         });
-
-        if (estoque) {
-            res.json({ estoque });
-        } else {
-            res.status(404).json({ error: "Estoque não encontrado" });
-        }
     } catch (error) {
         console.error("Erro ao buscar estoque:", error);
         res.status(500).json({ error: "Erro ao buscar estoque" });
     }
 };
 
+// 🔹 Adicionar um novo produto ao estoque
 exports.addEstoque = async (req, res) => {
-    const { ID_Lote, QuantidadeAtual, Local } = req.body;
-    try {
-        const result = await new Promise((resolve, reject) => {
-            db.run('INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local) VALUES (?, ?, ?)', [ID_Lote, QuantidadeAtual, Local], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ id: this.lastID });
-                }
-            });
-        });
+    const { nome, quantidade } = req.body;
 
-        res.status(201).json({ id: result.id });
+    if (!nome || !quantidade || isNaN(quantidade)) {
+        return res.status(400).json({ error: "Nome e quantidade válida são obrigatórios." });
+    }
+
+    try {
+        const result = await dbRun('INSERT INTO Estoque (nome, quantidade) VALUES (?, ?)', [nome, quantidade]);
+        res.status(201).json({ message: "Produto cadastrado no estoque com sucesso!", id: result.lastID });
     } catch (error) {
-        console.error("Erro ao adicionar estoque:", error);
-        res.status(500).json({ error: "Erro ao adicionar estoque" });
+        console.error("❌ Erro ao adicionar produto ao estoque:", error);
+        res.status(500).json({ error: "Erro ao adicionar produto ao estoque." });
     }
 };
 
+// 🔹 Atualizar informações do estoque
 exports.updateEstoque = async (req, res) => {
     const { id } = req.params;
-    const { ID_Lote, QuantidadeAtual, Local } = req.body;
-    try {
-        const result = await new Promise((resolve, reject) => {
-            db.run('UPDATE Estoque SET ID_Lote = ?, QuantidadeAtual = ?, Local = ? WHERE ID_Estoque = ?', [ID_Lote, QuantidadeAtual, Local, id], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ changes: this.changes });
-                }
-            });
-        });
+    const { nome, quantidade } = req.body;
 
-        if (result.changes > 0) {
-            res.json({ message: "Estoque atualizado com sucesso" });
-        } else {
-            res.status(404).json({ error: "Estoque não encontrado" });
-        }
+    if (!nome || !quantidade || isNaN(quantidade)) {
+        return res.status(400).json({ error: "Nome e quantidade válida são obrigatórios." });
+    }
+
+    try {
+        const result = await dbRun('UPDATE Estoque SET nome = ?, quantidade = ? WHERE ID_Estoque = ?', [nome, quantidade, id]);
+
+        result.changes > 0
+            ? res.json({ message: "Estoque atualizado com sucesso!" })
+            : res.status(404).json({ error: "Produto não encontrado no estoque." });
+
     } catch (error) {
-        console.error("Erro ao atualizar estoque:", error);
-        res.status(500).json({ error: "Erro ao atualizar estoque" });
+        console.error("❌ Erro ao atualizar estoque:", error);
+        res.status(500).json({ error: "Erro ao atualizar estoque." });
     }
 };
 
+// 🔹 Deletar um produto do estoque
 exports.deleteEstoque = async (req, res) => {
     const { id } = req.params;
     try {
-        const result = await new Promise((resolve, reject) => {
-            db.run('DELETE FROM Estoque WHERE ID_Estoque = ?', [id], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ changes: this.changes });
-                }
-            });
-        });
+        const result = await dbRun('DELETE FROM Estoque WHERE ID_Estoque = ?', [id]);
 
-        if (result.changes > 0) {
-            res.json({ message: "Estoque deletado com sucesso" });
-        } else {
-            res.status(404).json({ error: "Estoque não encontrado" });
-        }
+        result.changes > 0
+            ? res.json({ message: "Produto removido do estoque com sucesso!" })
+            : res.status(404).json({ error: "Produto não encontrado." });
+
     } catch (error) {
-        console.error("Erro ao deletar estoque:", error);
-        res.status(500).json({ error: "Erro ao deletar estoque" });
+        console.error("❌ Erro ao deletar estoque:", error);
+        res.status(500).json({ error: "Erro ao deletar estoque." });
     }
 };
