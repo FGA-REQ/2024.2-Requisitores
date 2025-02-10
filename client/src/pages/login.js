@@ -40,9 +40,6 @@ const Login = () => {
           <h1>Hospital da Força Aérea de Brasília</h1>
           <p>GestFarma</p>
         </div>
-        <button className="register-button" onClick={() => setShowModal(true)}>
-          Cadastrar Usuário
-        </button>
       </div>
 
       {/* Espaço Central */}
@@ -77,6 +74,9 @@ const Login = () => {
             </div>
             <button type="submit" className="login-button">Entrar</button>
           </form>
+          <div className="register-section">
+            <p>Não tem conta? <button className="register-link" onClick={() => setShowModal(true)}>Cadastre-se</button></p>
+          </div>
         </div>
       </div>
 
@@ -84,7 +84,6 @@ const Login = () => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={() => setShowModal(false)}>&times;</span>
             <h2>Cadastrar Novo Usuário</h2>
             <input
               type="text"
@@ -104,7 +103,8 @@ const Login = () => {
               value={newUser.senha}
               onChange={(e) => setNewUser({ ...newUser, senha: e.target.value })}
             />
-            <button onClick={handleRegister}>Registrar</button>
+            <button className="confirm-button" onClick={handleRegister}>Registrar</button>
+            <button className="cancel-button" onClick={() => setShowModal(false)}>Cancelar</button>
           </div>
         </div>
       )}
