@@ -44,22 +44,20 @@ exports.getEstoqueById = async (req, res) => {
 };
 
 exports.addEstoque = async (req, res) => {
-    const { ID_Lote, QuantidadeAtual, Local } = req.body;
-
-    if (!ID_Lote || !QuantidadeAtual || !Local) {
-        return res.status(400).json({ error: "Todos os campos são obrigatórios!" });
-    }
-
+    const { Nome, ID_Lote, Local } = req.body;
     try {
         const result = await new Promise((resolve, reject) => {
-            db.run('INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local) VALUES (?, ?, ?)', 
-            [ID_Lote, QuantidadeAtual, Local], function (err) {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve({ id: this.lastID });
+            db.run(
+                "INSERT INTO Estoque (ID_Lote, QuantidadeAtual, Local, Nome) VALUES (?, 0, ?, ?)",
+                [ID_Lote, Local, Nome],
+                function (err) {
+                    if (err) {
+                        reject(err);
+                    } else {
+                        resolve({ id: this.lastID });
+                    }
                 }
-            });
+            );
         });
 
         res.status(201).json({ id: result.id });
@@ -68,6 +66,7 @@ exports.addEstoque = async (req, res) => {
         res.status(500).json({ error: "Erro ao adicionar estoque" });
     }
 };
+
 
 
 exports.updateEstoque = async (req, res) => {

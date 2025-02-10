@@ -9,6 +9,7 @@ const Estoque = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [produto, setProduto] = useState("");
   const [produtos, setProdutos] = useState([]);
+  const [local, setLocal] = useState(""); // Definir o estado para 'local'
 
   useEffect(() => {
     const storedState = localStorage.getItem("sidebarState");
@@ -38,11 +39,12 @@ const Estoque = ({ children }) => {
   };
 
   const handleCadastrar = async () => {
-    if (produto.trim() !== "") {
+    if (produto.trim() !== "" && local.trim() !== "") {
       const novoProduto = {
+        Nome: produto,
         ID_Lote: Math.floor(Math.random() * 1000), // Gerar ID aleatório temporário
-        QuantidadeAtual: 1,  // Definir quantidade inicial
-        Local: "Prateleira A", // Definir um local padrão (pode ser um input)
+        QuantidadeAtual: 0, // Sempre inicia com 0
+        Local: local,
       };
   
       try {
@@ -50,7 +52,7 @@ const Estoque = ({ children }) => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Adicionar token se necessário
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
           body: JSON.stringify(novoProduto),
         });
@@ -59,14 +61,18 @@ const Estoque = ({ children }) => {
         if (response.ok) {
           setProdutos([...produtos, { ...novoProduto, ID_Estoque: data.id }]);
           setProduto("");
+          setLocal("");
         } else {
           console.error("Erro ao adicionar produto:", data.error);
         }
       } catch (error) {
         console.error("Erro na requisição:", error);
       }
+    } else {
+      alert("Por favor, preencha todos os campos!");
     }
   };
+  
   
 
   const handleDeletar = async (id) => {
@@ -106,19 +112,9 @@ const Estoque = ({ children }) => {
                 <FaBox /> <span>Estoque</span>
               </Link>
             </li>
-            <li className={location.pathname === "/saldo" ? "active" : ""}>
-              <Link to="/saldo">
-                <FaChartLine /> <span>Saldo</span>
-              </Link>
-            </li>
             <li className={location.pathname === "/entradas" ? "active" : ""}>
               <Link to="/entradas">
                 <FaArrowDown /> <span>Entradas</span>
-              </Link>
-            </li>
-            <li className={location.pathname === "/saidas" ? "active" : ""}>
-              <Link to="/saidas">
-                <FaArrowUp /> <span>Saídas</span>
               </Link>
             </li>
           </ul>
@@ -152,17 +148,25 @@ const Estoque = ({ children }) => {
 
           {/* Seção de Cadastro de Produtos */}
           <div className="produto-container">
-            <input
-              type="text"
-              placeholder="Nome do Produto"
-              value={produto}
-              onChange={(e) => setProduto(e.target.value)}
-              className="input-produto"
-            />
-            <button onClick={handleCadastrar} className="btn-cadastrar">
-              CADASTRAR
-            </button>
-          </div>
+  <input
+    type="text"
+    placeholder="Nome do Produto"
+    value={produto}
+    onChange={(e) => setProduto(e.target.value)}
+    className="input-produto"
+  />
+  <input
+    type="text"
+    placeholder="Local"
+    value={local}
+    onChange={(e) => setLocal(e.target.value)}
+    className="input-local"
+  />
+  <button onClick={handleCadastrar} className="btn-cadastrar">
+    CADASTRAR
+  </button>
+</div>
+
 
           {/* Tabela de Produtos */}
           <div className="tabela-container">
