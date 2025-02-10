@@ -83,7 +83,7 @@ const Login = () => {
       {/* Modal de Cadastro */}
       {showModal && (
         <div className="modal">
-          <div className="modal-content" style={{ fontSize: "14px" }}>
+          <div className="modal-content">
             <span className="close" onClick={() => setShowModal(false)}>&times;</span>
             <h2>Cadastrar Novo Usuário</h2>
             <input
@@ -91,21 +91,18 @@ const Login = () => {
               placeholder="Nome"
               value={newUser.nome}
               onChange={(e) => setNewUser({ ...newUser, nome: e.target.value })}
-              style={{ marginBottom: "10px" }}
             />
             <input
               type="text"
               placeholder="Login"
               value={newUser.login}
               onChange={(e) => setNewUser({ ...newUser, login: e.target.value })}
-              style={{ marginBottom: "10px" }}
             />
             <input
               type="password"
               placeholder="Senha"
               value={newUser.senha}
               onChange={(e) => setNewUser({ ...newUser, senha: e.target.value })}
-              style={{ marginBottom: "10px" }}
             />
             <button onClick={handleRegister}>Registrar</button>
           </div>
