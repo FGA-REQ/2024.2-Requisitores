@@ -12,9 +12,7 @@
     padding: 20px;
     overflow-y: auto;
     width: 200px;
-    /* Define largura fixa da sidebar */
     flex-shrink: 0;
-    /* Evita que a sidebar seja reduzida */
     transition: width 0.3s ease;
     position: fixed;
     height: 100%;
@@ -27,7 +25,6 @@
 
 .sidebar.closed {
     width: 40px;
-    /* Largura quando fechado */
 }
 
 .sidebar-toggle {
@@ -44,7 +41,6 @@
 
 .sidebar-toggle:hover {
     background-color: #1E2D3D;
-    /* Efeito de hover igual aos outros itens */
 }
 
 .sidebar-toggle svg {
@@ -63,12 +59,10 @@
     margin-left: 10px;
     font-weight: bold;
     white-space: nowrap;
-    /* Evita quebra de linha */
 }
 
 .sidebar.closed .sidebar-header span {
     display: none;
-    /* Esconde o texto quando fechado */
 }
 
 .sidebar-nav ul {
@@ -95,9 +89,7 @@
 
 .sidebar-nav li.active {
     background-color: #1E2D3D;
-    /* Destaca item ativo */
     font-weight: bold;
-    /* Destacar o texto */
 }
 
 .sidebar-nav li:hover {
@@ -107,12 +99,10 @@
 .sidebar-nav li span {
     margin-left: 10px;
     white-space: nowrap;
-    /* Evita quebra de linha */
 }
 
 .sidebar.closed .sidebar-nav li span {
     display: none;
-    /* Esconde o texto quando fechado */
 }
 
 .sidebar-nav li svg,
@@ -134,7 +124,9 @@
     position: fixed;
     top: 0;
     z-index: 100;
-    width: 100rem;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: margin-left 0.3s ease;
 }
 
 .top-navbar img {
@@ -152,6 +144,8 @@
 .top-navbar-actions {
     display: flex;
     align-items: center;
+    gap: 15px;
+    margin-right: 20px;
 }
 
 .top-navbar-actions button {
@@ -174,16 +168,18 @@
     flex-direction: column;
     background-color: #F7F7F7;
     padding: 80px 20px 20px;
-    /* Topo ajustado para navbar fixa */
     overflow: auto;
-    margin-left: 220px;
-    /* Adiciona espaçamento entre a sidebar e o conteúdo principal */
+    margin-left: 240px;
     transition: margin-left 0.3s ease;
 }
 
 .sidebar.closed+.main-content {
-    margin-left: 60px;
-    /* Ajusta o espaço quando a sidebar está fechada */
+    margin-left: 80px;
+}
+
+.sidebar.closed+.main-content .top-navbar {
+    width: calc(100% - 80px);
+    left: 80px;
 }
 
 .main-content-area {
