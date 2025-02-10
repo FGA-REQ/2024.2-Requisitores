@@ -2,10 +2,12 @@
 .dashboard-container {
     background-color: white;
     display: flex;
-    height: 100vh;
+    flex: 1
 }
 
-.dashboard-content { /* Estilos para o container principal */
+.dashboard-content {
+    /* Estilos para o container principal */
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -39,7 +41,8 @@
     color: #007bff;
 }
 
-.dashboard-charts { /* Estilos para o container de gráficos */
+.dashboard-charts {
+    /* Estilos para o container de gráficos */
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -48,7 +51,8 @@
     max-height: auto;
 }
 
-.dashboard-charts > * { /* Estilos para os gráficos individualmente */
+.dashboard-charts>* {
+    /* Estilos para os gráficos individualmente */
     flex: 1 0 20%;
 }
 
@@ -59,7 +63,7 @@
     display: block;
     margin: 0 auto;
     border-radius: 12px;
-    font-weight : bold;
+    font-weight: bold;
 }
 
 .export-button:hover {
@@ -68,9 +72,21 @@
 }
 
 .pie-chart-container {
-    width: 600px; /* Largura fixa */
+    width: 600px;
+    /* Largura fixa */
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente (se necessário) */
-    margin: 20px auto; /* Espaçamento acima e abaixo, e centraliza horizontalmente */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente (se necessário) */
+    margin: 20px auto;
+    /* Espaçamento acima e abaixo, e centraliza horizontalmente */
+}
+
+.page-content.full-height {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
 }

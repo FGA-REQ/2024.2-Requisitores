@@ -87,52 +87,50 @@ const Dashboard = ({ children }) => {
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="main-content">
         <TopNavbar pageTitle={pageTitles[location.pathname] || "Dashboard"} />
-        <div className="scrollable-content">
-          <main className="page-content">
-            {loading ? (
-              <p>Carregando dados...</p>
-            ) : (
-              <div className="dashboard-content">
-                <h2>Bem-vindo, {usuarioLogado?.Nome}</h2>
-                <button onClick={exportarCSV} className="export-button">
-                  Gerar relatório
-                </button>
-                <div className="dashboard-cards">
-                  <div className="dashboard-card">
-                    <h3>Total de Medicamentos</h3>
-                    <p>{dadosMedicamentos?.geral?.totalMedicamentos}</p>
-                  </div>
-                  <div className="dashboard-card">
-                    <h3>Quantidade Dispensada</h3>
-                    <p>{dadosMedicamentos?.geral?.totalSaidas}</p>
-                  </div>
-                  <div className="dashboard-card">
-                    <h3>Estoque Baixo</h3>
-                    <p>{dadosMedicamentos?.geral?.acabando}</p>
-                  </div>
-                  <div className="dashboard-card">
-                    <h3>Medicamentos Perto do Vencimento</h3>
-                    <p>{dadosMedicamentos?.geral?.vencendo}</p>
-                  </div>
+        <main className="page-content">
+          {loading ? (
+            <p>Carregando dados...</p>
+          ) : (
+            <div className="dashboard-content">
+              <h2>Bem-vindo, {usuarioLogado?.Nome}</h2>
+              <button onClick={exportarCSV} className="export-button">
+                Gerar relatório
+              </button>
+              <div className="dashboard-cards">
+                <div className="dashboard-card">
+                  <h3>Total de Medicamentos</h3>
+                  <p>{dadosMedicamentos?.geral?.totalMedicamentos}</p>
                 </div>
-                <div className="dashboard-charts">
-                  {medicamentosFabricante?.datasets?.length > 0 && (
-                    <Bar data={medicamentosFabricante} />
-                  )}
-                  {medicamentosControle?.datasets?.length > 0 && (
-                    <div className="pie-chart-container">
-                      <Pie data={medicamentosControle} />
-                    </div>
-                  )}
-                  {dispensacaoDia?.datasets?.length > 0 && (
-                    <Line data={dispensacaoDia} />
-                  )}
+                <div className="dashboard-card">
+                  <h3>Quantidade Dispensada</h3>
+                  <p>{dadosMedicamentos?.geral?.totalSaidas}</p>
+                </div>
+                <div className="dashboard-card">
+                  <h3>Estoque Baixo</h3>
+                  <p>{dadosMedicamentos?.geral?.acabando}</p>
+                </div>
+                <div className="dashboard-card">
+                  <h3>Medicamentos Perto do Vencimento</h3>
+                  <p>{dadosMedicamentos?.geral?.vencendo}</p>
                 </div>
               </div>
-            )}
-            {children}
-          </main>
-        </div>
+              <div className="dashboard-charts">
+                {medicamentosFabricante?.datasets?.length > 0 && (
+                  <Bar data={medicamentosFabricante} />
+                )}
+                {medicamentosControle?.datasets?.length > 0 && (
+                  <div className="pie-chart-container">
+                    <Pie data={medicamentosControle} />
+                  </div>
+                )}
+                {dispensacaoDia?.datasets?.length > 0 && (
+                  <Line data={dispensacaoDia} />
+                )}
+              </div>
+            </div>
+          )}
+          {children}
+        </main>
       </div>
     </div>
   );
