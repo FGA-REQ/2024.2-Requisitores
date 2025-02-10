@@ -70,7 +70,7 @@ const Dispensacao = () => {
               Nova Dispensação
             </button>
           </div>
-          <div>
+          <div className="table-container">
             <table className="tabela-dispensacao">
               <thead>
                 <tr>
@@ -83,11 +83,7 @@ const Dispensacao = () => {
                   <th>Ação</th>
                 </tr>
               </thead>
-            </table>
-          </div>
-          <div className="table-container">
-            <table className="tabela-dispensacao">
-              <tbody className="scrollable-content">
+              <tbody>
                 {loading ? (
                   <tr><td colSpan="7">Carregando dados...</td></tr>
                 ) : filteredDispensacao.length === 0 ? (
