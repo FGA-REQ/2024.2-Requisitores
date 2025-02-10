@@ -108,6 +108,11 @@ const Login = () => {
           </div>
         </div>
       )}
+      {/* Rodapé */}
+      <div className="login-footer">
+        <h1>FORÇA AÉREA BRASILEIRA</h1>
+        <h2>Asas que protegem o País</h2>
+      </div>
     </div>
   );
 };
