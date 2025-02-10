@@ -42,7 +42,13 @@ Esta seção lista as limitações atuais do MVP, destacando funcionalidades que
 
 ---
 
-## 5. Conclusão
+## 5. Acessos ao MVP
+
+[Figma](https://www.figma.com/proto/RBAQHRsuxnxeZzGXXKtfiX/Requisitores?node-id=617-347&p=f&t=kk1mFfLwaZ0dad84-1&scaling=min-zoom&content-scaling=fixed&page-id=1669%3A162202 )
+
+---
+
+## 6. Conclusão
 O MVP do **GestFarma** é um passo inicial para resolver os desafios da gestão farmacêutica no HFAB. Ele oferece funcionalidades centrais que podem ser incrementadas com base no feedback e nas demandas futuras. A abordagem incremental garantirá que o sistema seja eficiente, fácil de usar e atenda às necessidades do hospital.
 
 ---
