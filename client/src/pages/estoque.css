@@ -106,3 +106,40 @@
 .sidebar-footer .btn-voltar:hover {
   background-color: #0056b3;
 }
+
+.tabela-container {
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.tabela-estoque {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-estoque th, .tabela-estoque td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.tabela-estoque th {
+  background: #007bff;
+  color: white;
+}
+
+.btn-deletar {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-deletar:hover {
+  background: darkred;
+}
