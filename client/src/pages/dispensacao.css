@@ -55,6 +55,9 @@
   text-align: center;
   background-color: #f8f8f8;
   border-bottom: 2px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 /* Linhas da tabela */
