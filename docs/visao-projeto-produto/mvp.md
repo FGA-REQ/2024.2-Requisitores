@@ -3,6 +3,8 @@
 ## 1. Resumo do Projeto
 **GestFarma** é uma solução de gestão de estoques de medicamentos projetada para atender ao Hospital de Força Aérea de Brasília (HFAB). O objetivo principal é centralizar informações, reduzir desperdícios, minimizar erros humanos e garantir a eficiência no controle de medicamentos.
 
+O software está rodando no seguinte link: https://gestfarma-1bba0ecf6316.herokuapp.com/
+
 ---
 
 ## 2. Funcionalidades Essenciais do MVP
@@ -53,4 +55,5 @@ O MVP do **GestFarma** é um passo inicial para resolver os desafios da gestão 
 | **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | 14/01/2025     | 1.0        | Documentação do MVP | Joyce Dionizio |
+| 09/02/2025     | 1.1        | Adição do link do produto | Davi Casseb |
 
