@@ -7,7 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [newUser, setNewUser] = useState({ nome: "", login: "", senha: "" });
+  const [newUser, setNewUser] = useState({ nome: "", login: "", senha: "", perfil: "Técnico de Farmácia" });
 
   const handleSubmit = (e) => {
     e.preventDefault();

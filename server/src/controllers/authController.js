@@ -37,27 +37,22 @@ const login = (req, res) => {
 };
 
 // Função para registrar usuário
-const registrar = (req, res) => {
-    const { nome, login, senha } = req.body;
-
-    if (!nome || !login || !senha) {
-        return res.status(400).json({ mensagem: "Todos os campos são obrigatórios." });
-    }
-
-    bcrypt.hash(senha, 10, (err, hash) => {
-        if (err) {
-            return res.status(500).json({ mensagem: "Erro ao criptografar a senha." });
-        }
-
-        const query = "INSERT INTO Usuario (nome, login, senha) VALUES (?, ?, ?)";
-
-        db.run(query, [nome, login, hash], function (err) {
-            if (err) {
-                return res.status(500).json({ mensagem: "Erro ao registrar usuário." });
-            }
-            res.status(201).json({ mensagem: "Usuário registrado com sucesso!" });
+const registrar = async (req, res) => {
+    const { nome, login, senha, perfil } = req.body;
+    const perfilUsuario = 'Técnico de Farmácia'; // Valor padrão para o campo Perfil
+    try {
+        const hashSenha = await bcrypt.hash(senha, 10);
+        await new Promise((resolve, reject) => {
+            db.run('INSERT INTO Usuario (Nome, Login, Senha, Perfil) VALUES (?, ?, ?, ?)', [nome, login, hashSenha, perfilUsuario], (err) => {
+                if (err) reject(err);
+                else resolve();
+            });
         });
-    });
+        res.status(201).json({ mensagem: 'Usuário registrado com sucesso.' });
+    } catch (error) {
+        console.error('Erro ao registrar usuário:', error);
+        res.status(500).json({ mensagem: 'Erro ao registrar usuário.' });
+    }
 };
 
 // Função para obter o usuário logado
