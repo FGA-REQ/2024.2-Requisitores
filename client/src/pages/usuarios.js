@@ -94,20 +94,29 @@ const Usuarios = () => {
       <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <div className="main-content">
         <TopNavbar pageTitle={pageTitles[location.pathname] || "Usuários"} />
-        <main className="page-content">
-          <div className="usuarios-container">
-            <h2>Gerenciamento de Usuários</h2>
+        <main className="usuarios-container">
+          <form onSubmit={salvarUsuario} className="usuarios-form">
+            <div className="form-group">
+              <label>Nome</label>
+              <input type="text" placeholder="Insira o nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <label>Login</label>
+              <input type="text" placeholder="Insira o login" value={login} onChange={(e) => setLogin(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <label>Senha</label>
+              <input type="password" placeholder="Insira a senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
+            </div>
+            <div className="form-group">
+              <label>Perfil</label>
+              <input type="text" placeholder="Insira o perfil" value={perfil} onChange={(e) => setPerfil(e.target.value)} required />
+            </div>
+            <button type="submit" className="action-button">{editando ? "Atualizar" : "Adicionar"} Usuário</button>
+          </form>
 
-            <form onSubmit={salvarUsuario} className="usuarios-form">
-              <input type="text" placeholder="Nome" value={nome} onChange={(e) => setNome(e.target.value)} required />
-              <input type="text" placeholder="Login" value={login} onChange={(e) => setLogin(e.target.value)} required />
-              <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
-              <input type="text" placeholder="Perfil" value={perfil} onChange={(e) => setPerfil(e.target.value)} required />
-
-              <button type="submit">{editando ? "Atualizar" : "Adicionar"} Usuário</button>
-            </form>
-
-            <table className="usuarios-table">
+          <div className="table-container">
+            <table className="tabela-usuarios">
               <thead>
                 <tr>
                   <th>Nome</th>
