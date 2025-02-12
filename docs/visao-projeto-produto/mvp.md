@@ -50,7 +50,7 @@ Esta seção lista as limitações atuais do MVP, destacando funcionalidades que
 
 **Links para os vídeos de apresentação e validação do MVP**:
 - [Apresentação](https://youtu.be/EzzUxN7gFM4)
-- [Validação]()
+- [Validação](https://youtu.be/hQPfbvPfkq4)
 ---
 
 ## 6. Conclusão
