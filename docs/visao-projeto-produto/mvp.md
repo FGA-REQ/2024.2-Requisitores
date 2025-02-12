@@ -48,6 +48,9 @@ Esta seção lista as limitações atuais do MVP, destacando funcionalidades que
 
 [Deploy - Gestfarma](https://gestfarma-1bba0ecf6316.herokuapp.com/login)
 
+## Links para os vídeos de apresentação e validação do MVP
+[Apresentação](https://youtu.be/EzzUxN7gFM4)
+[Validação]()
 ---
 
 ## 6. Conclusão
@@ -61,4 +64,4 @@ O MVP do **GestFarma** é um passo inicial para resolver os desafios da gestão 
 | **Data**       | **Versão** | **Descrição**                                                     | **Autor**                                                                                      |
 |----------------|------------|-------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | 14/01/2025     | 1.0        | Documentação do MVP | Joyce Dionizio |
-
+| 11/02/2025     | 1.1        | Adição dos links para os vídeos | Davi Casseb |
