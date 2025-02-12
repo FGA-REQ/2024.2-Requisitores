@@ -48,9 +48,9 @@ Esta seção lista as limitações atuais do MVP, destacando funcionalidades que
 
 [Deploy - Gestfarma](https://gestfarma-1bba0ecf6316.herokuapp.com/login)
 
-## Links para os vídeos de apresentação e validação do MVP
-[Apresentação](https://youtu.be/EzzUxN7gFM4)
-[Validação]()
+**Links para os vídeos de apresentação e validação do MVP**:
+- [Apresentação](https://youtu.be/EzzUxN7gFM4)
+- [Validação]()
 ---
 
 ## 6. Conclusão
