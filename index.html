@@ -1,0 +1,900 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>GestFarma</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gest-farma" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="GestFarma" class="md-header__button md-logo" aria-label="GestFarma" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GestFarma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Gest Farma
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="GestFarma" class="md-nav__button md-logo" aria-label="GestFarma" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GestFarma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visao-projeto-produto/visaoprojetoproduto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto e Projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visao-projeto-produto/regrasdenegocio/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visao-projeto-produto/der/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MER/DER e Dicionário de dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visao-projeto-produto/dor-dod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DOR/DOD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="visao-projeto-produto/mvp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MVP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-do-produto-e-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão do Produto e Projeto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Visão Geral do Produto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Visão Geral do Produto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1. Problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2. Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-objetivo-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3. Objetivo do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-tecnologias-a-serem-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4. Tecnologias a Serem Utilizadas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Visão Geral do Projeto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Visão Geral do Projeto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1. Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2. Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4. Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5. Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Processo de Desenvolvimento de Software
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-licoes-aprendidas" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Lições Aprendidas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Lições Aprendidas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-unidade-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. Unidade 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-unidade-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. Unidade 2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Referências
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gest-farma">Gest Farma</h1>
+<h2 id="visao-do-produto-e-projeto">Visão do Produto e Projeto</h2>
+<h2 id="historico-de-revisao">Histórico de Revisão</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Data</strong></th>
+<th><strong>Versão</strong></th>
+<th><strong>Descrição</strong></th>
+<th><strong>Autor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>25/11/2024</td>
+<td>1.1</td>
+<td>Declaração de Problema, Posição do Produto e Objetivos do Produto</td>
+<td>Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos</td>
+</tr>
+<tr>
+<td>13/01/2025</td>
+<td>2.0</td>
+<td>Ajustes na Declaração de Problema, Posição do Produto, e Objetivos do Produto; Tecnologias a serem utilizadas; Organização do Projeto; Planejamento das Fazes e/ou Iterações do Projeto; Matriz de comunicação; Gerenciamento de Risco; Critérios de Replanejamento; Lições aprendidas, referências</td>
+<td>Fernanda Noronha</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-visao-geral-do-produto">1. Visão Geral do Produto</h2>
+<h3 id="11-problema">1.1. Problema</h3>
+<p>O controle e a gestão de medicamentos representam um dos principais desafios na área farmacêutica, dado que cada tipo de fármaco exige condições específicas de armazenamento, administração dentro do prazo de validade e alinhamento com as necessidades individuais de cada paciente. No contexto da Força Aérea Brasileira (FAB), esses desafios são acentuados, podendo impactar diretamente a eficiência operacional e a segurança no uso dos medicamentos. Os principais problemas identificados incluem:</p>
+<ul>
+<li>
+<p><strong>Validade dos Medicamentos:</strong> Ausência de um controle eficaz que identifique e alerte sobre medicamentos próximos ao vencimento, resultando em desperdício de recursos e potenciais riscos à saúde.</p>
+</li>
+<li>
+<p><strong>Restrição de Medicamentos:</strong> Falta de ferramentas que permitam a verificação ágil de restrições, como lotes destinados a usos específicos, limitações regulamentares ou requisitos especiais de armazenamento.</p>
+</li>
+<li>
+<p><strong>Falta de Centralização das Informações:</strong> Os dados sobre os estoques encontram-se dispersos em diferentes sistemas ou registros manuais, dificultando consultas e decisões rápidas.</p>
+</li>
+<li>
+<p><strong>Erro Humano:</strong> Dependência de processos manuais, suscetíveis a erros de registro, perda de dados ou interpretações equivocadas das informações.</p>
+</li>
+</ul>
+<p><a href="/workspaces/2024.2-Requisitores/docs/img/espinhadepeixe.png">docs/espinhadepeixe.png</a></p>
+<h3 id="12-declaracao-de-posicao-do-produto">1.2. Declaração de Posição do Produto</h3>
+<p>O produto a ser desenvolvido é uma ferramenta de gestão de estoque de medicamentos, projetada para atender às especificidades exigidas pela FAB.</p>
+<p>A solução é direcionada aos profissionais que atuam na farmácia da FAB, permitindo não apenas otimizar o trabalho com organização mais eficiente dos estoques, mas também prevenir o desperdício de medicamentos, promovendo uma gestão mais sustentável e segura.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Para</strong></th>
+<th>Hospital de Força de Aérea de Brasília</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Quem</strong></td>
+<td>Grupo Requisitores</td>
+</tr>
+<tr>
+<td><strong>O (nome do produto)</strong></td>
+<td>GestFarma</td>
+</tr>
+<tr>
+<td><strong>Que</strong></td>
+<td>Auxilia na gestão de fármacos do Hospital de Força Aérea de Brasília</td>
+</tr>
+<tr>
+<td><strong>Ao contrário</strong></td>
+<td>MGITECH</td>
+</tr>
+<tr>
+<td><strong>Nosso produto</strong></td>
+<td>Software desenvolvido sob medida para atender às necessidades específicas do HFAB, oferecendo uma usabilidade aprimorada e facilitada. A solução será acessível via internet, eliminando a necessidade de hardwares dedicados.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="13-objetivo-do-produto">1.3. Objetivo do Produto</h3>
+<p>O produto tem como objetivo oferecer um sistema eficiente e confiável para a gestão de estoques de produtos farmacêuticos, atendendo às demandas do HFAB. A solução buscará:</p>
+<ul>
+<li>Otimizar o controle de entrada e saída de medicamentos;</li>
+<li>Minimizar desperdícios e custos operacionais;</li>
+<li>Garantir a rastreabilidade de lotes e prazos de validade;</li>
+<li>Fornecer funcionalidades que auxiliem no planejamento estratégico e na tomada de decisões gerenciais.</li>
+</ul>
+<h3 id="14-tecnologias-a-serem-utilizadas">1.4. Tecnologias a Serem Utilizadas</h3>
+<p>Para o desenvolvimento do referido produto, será implementada uma solução web, considerando sua elevada acessibilidade para o usuário final. Nesse contexto, a tecnologia escolhida para o front-end é o React, uma vez que a equipe já possui familiaridade com essa ferramenta, o que permitirá um desenvolvimento mais ágil e eficiente. Para o back-end, optou-se pelo uso do Node.js, decisão fundamentada na possibilidade de manter a uniformidade da linguagem de programação em todo o sistema. Por fim, o banco de dados selecionado será o SQLite, pois apresenta uma estrutura que atende aos requisitos da solução proposta.</p>
+<h2 id="2-visao-geral-do-projeto">2. Visão Geral do Projeto</h2>
+<h3 id="21-organizacao-do-projeto">2.1. Organização do Projeto</h3>
+<p>A equipe responsável pelo desenvolvimento do projeto foi estruturada com base em papéis e responsabilidades claras, assegurando a organização e eficiência durante todas as etapas do trabalho. A tabela a seguir apresenta a descrição de cada papel, suas atribuições específicas, o responsável principal e os participantes envolvidos:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Papel</strong></th>
+<th><strong>Atribuições</strong></th>
+<th><strong>Responsável</strong></th>
+<th><strong>Participantes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Desenvolvedores</strong></td>
+<td>Responsáveis pelo desenvolvimento do projeto, incluindo codificação, refatoração de código e testes.</td>
+<td>Davi Casseb</td>
+<td>Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos</td>
+</tr>
+<tr>
+<td><strong>Product Owner</strong></td>
+<td>Responsável pela priorização do backlog, definição de requisitos e alinhamento com as expectativas do cliente.</td>
+<td>Davi Casseb</td>
+<td>Davi Casseb</td>
+</tr>
+<tr>
+<td><strong>Cliente</strong></td>
+<td>Farmacêutica responsável por validar o produto final, garantindo que atenda às necessidades definidas.</td>
+<td>Ana Cristina</td>
+<td>Ana Cristina</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-planejamento-das-fases-eou-iteracoes-do-projeto">2.2. Planejamento das Fases e/ou Iterações do Projeto</h3>
+<p>O planejamento do projeto foi dividido em sprints, com entregas específicas para cada etapa, garantindo uma abordagem iterativa e incremental. Cada sprint possui objetivos claros e prazos definidos, permitindo a gestão eficaz das atividades e o acompanhamento do progresso. A tabela a seguir detalha as entregas, datas de início e fim de cada sprint:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Sprint</strong></th>
+<th><strong>Produto (Entrega)</strong></th>
+<th><strong>Data de Início</strong></th>
+<th><strong>Data de Término</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Sprint 1</strong></td>
+<td>Proposta do Projeto</td>
+<td>18/11/2024</td>
+<td>24/11/2024</td>
+</tr>
+<tr>
+<td><strong>Sprint 2</strong></td>
+<td>Definição do Problema, Visão do Produto e Projeto</td>
+<td>25/11/2024</td>
+<td>01/12/2024</td>
+</tr>
+<tr>
+<td><strong>Sprint 3</strong></td>
+<td>Planejamento do Projeto</td>
+<td>02/12/2024</td>
+<td>08/12/2024</td>
+</tr>
+<tr>
+<td><strong>Sprint 4</strong></td>
+<td>Definição das Regras de Negócio</td>
+<td>09/12/2024</td>
+<td>15/12/2024</td>
+</tr>
+<tr>
+<td><strong>Sprint 5</strong></td>
+<td>Definição dos Requisitos Funcionais e Não Funcionais</td>
+<td>16/12/2024</td>
+<td>22/12/2024</td>
+</tr>
+<tr>
+<td><strong>Sprint 6</strong></td>
+<td>Construção do GitPages, início do MVP, Visão do Produto e Projeto</td>
+<td>06/01/2025</td>
+<td>12/01/2025</td>
+</tr>
+<tr>
+<td><strong>Sprint 7</strong></td>
+<td>Backlog do Produto, MVP e processos de desenvolvimento de software</td>
+<td>13/01/2025</td>
+<td>19/01/2025</td>
+</tr>
+<tr>
+<td><strong>Sprint 8</strong></td>
+<td>MVP, DoR, DoD</td>
+<td>20/01/2025</td>
+<td>26/01/2025</td>
+</tr>
+<tr>
+<td><strong>Sprint 9</strong></td>
+<td>MVP, vídeo de validação com o cliente, vídeo de apresentação de resultados</td>
+<td>27/01/2025</td>
+<td>02/02/2025</td>
+</tr>
+<tr>
+<td><strong>Sprint 10</strong></td>
+<td>Ajustes finais e entrega do MVP</td>
+<td>03/02/2025</td>
+<td>09/02/2025</td>
+</tr>
+<tr>
+<td><strong>Sprint 11</strong></td>
+<td>Preparação e realização da apresentação</td>
+<td>10/02/2025</td>
+<td>12/02/2025</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2.3. Matriz de Comunicação</strong></p>
+<p>Uma matriz de comunicação é fundamental para assegurar a troca eficiente de informações entre os envolvidos no projeto. Foram definidos canais, periodicidade e responsáveis para cada tipo de interação, levando em consideração a agilidade necessária para tomadas de decisão e alinhamentos estratégicos.</p>
+<table>
+<thead>
+<tr>
+<th><strong>Descrição</strong></th>
+<th><strong>Área/Envolvidos</strong></th>
+<th><strong>Periodicidade</strong></th>
+<th><strong>Produtos Gerados</strong></th>
+<th><strong>Canal de Comunicação</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Acompanhamento das atividades</td>
+<td>Equipe de desenvolvimento</td>
+<td>Semanal</td>
+<td>Ata de reunião</td>
+<td>Horário da aula ou Discord</td>
+</tr>
+<tr>
+<td>Relatório de progresso do projeto</td>
+<td>Equipe de desenvolvimento, professora</td>
+<td>Semanal</td>
+<td>Relatório de status</td>
+<td>Horário da aula ou Discord</td>
+</tr>
+<tr>
+<td>Alinhamento de expectativas com o cliente</td>
+<td>Product Owner</td>
+<td>Quinzenal</td>
+<td>Product Backlog atualizado</td>
+<td>Discord</td>
+</tr>
+<tr>
+<td>Comunicação emergencial</td>
+<td>Toda a equipe</td>
+<td>Conforme necessidade</td>
+<td>Resolução de questões urgentes</td>
+<td>WhatsApp</td>
+</tr>
+<tr>
+<td>Validação de entregas</td>
+<td>Cliente, Product Owner</td>
+<td>Mensal</td>
+<td>Feedback sobre MVP ou protótipos</td>
+<td>Discord</td>
+</tr>
+</tbody>
+</table>
+<p>É importante destacar que o WhatsApp será utilizado exclusivamente como meio de comunicação emergencial, reservado para tratar questões de caráter crítico ou urgente. Isso garante celeridade na resolução de problemas e alinhamentos imediatos entre os membros da equipe.  </p>
+<p>As reuniões de alinhamento, realizadas semanalmente e quinzenalmente, ocorrerão preferencialmente durante o horário regular de aula ou, alternativamente, por meio da plataforma Discord, conforme a disponibilidade previamente acordada pelos integrantes do projeto.</p>
+<p>A plataforma Discord será adotada como o principal canal de comunicação para atividades estratégicas, como planejamento, validação de entregas, alinhamento de expectativas e condução de reuniões de retrospectiva, promovendo maior organização e interação entre os participantes.</p>
+<h3 id="24-gerenciamento-de-riscos">2.4. Gerenciamento de Riscos</h3>
+<p>O gerenciamento de riscos é uma prática indispensável em qualquer projeto, especialmente em um contexto acadêmico que visa preparar os estudantes para identificar, analisar e mitigar riscos de forma eficiente. No caso do GestFarma, um sistema de gestão de medicamentos desenvolvido para atender às necessidades da Força Aérea Brasileira (FAB), a equipe tem como objetivo principal minimizar os impactos negativos dos riscos e garantir que os entregáveis estejam alinhados com os prazos, custos e padrões de qualidade estabelecidos.  </p>
+<p>A abordagem do gerenciamento de riscos no projeto segue as etapas básicas de identificação, análise, resposta e monitoramento. Essas etapas são realizadas de maneira contínua ao longo do ciclo de vida do projeto, permitindo uma resposta ágil a possíveis problemas e mantendo o progresso em direção aos objetivos.  </p>
+<p>Para alcançar esse propósito, o processo de gerenciamento de riscos envolve atividades específicas, como:<br />
+- Identificação dos riscos potenciais em todas as fases do projeto, desde o planejamento até a entrega final.<br />
+- Análise dos riscos técnicos, operacionais e regulatórios relacionados ao desenvolvimento do sistema.<br />
+- Avaliação detalhada da probabilidade de ocorrência e do impacto de cada risco, classificando-os em categorias como técnicos, de cronograma, orçamento e comunicação.<br />
+- Desenvolvimento de planos de resposta, incluindo estratégias de mitigação e contingência para riscos com alto grau de exposição.<br />
+- Revisão periódica da lista de riscos identificados para incluir novos fatores e monitorar a evolução dos existentes.<br />
+- Registro detalhado de todas as análises e respostas implementadas, garantindo a rastreabilidade das decisões tomadas.   </p>
+<p>A tabela a seguir detalha os principais riscos identificados no projeto GestFarma, suas probabilidades e impactos, além das ações de resposta planejadas para minimizar seus efeitos:</p>
+<table>
+<thead>
+<tr>
+<th><strong>Risco</strong></th>
+<th><strong>Probabilidade</strong></th>
+<th><strong>Impacto</strong></th>
+<th><strong>Ações de Resposta</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Atrasos na entrega de requisitos do cliente</strong></td>
+<td>Alta</td>
+<td>Significativo</td>
+<td>- Definir prazos claros para a entrega de requisitos. <br> - Realizar reuniões quinzenais para alinhamento de expectativas. <br> - Manter comunicação constante com o cliente.</td>
+</tr>
+<tr>
+<td><strong>Falhas no controle de validade e restrições dos medicamentos</strong></td>
+<td>Alta</td>
+<td>Significativo</td>
+<td>- Implementar sistemas automáticos de alerta para validade e restrições. <br> - Realizar testes rigorosos para garantir a precisão dos dados processados.</td>
+</tr>
+<tr>
+<td><strong>Erros no registro de entrada/saída de medicamentos</strong></td>
+<td>Média</td>
+<td>Moderado</td>
+<td>- Automatizar os processos relacionados à entrada e saída de medicamentos. <br> - Implementar validações e auditorias regulares de dados.</td>
+</tr>
+<tr>
+<td><strong>Falta de recursos humanos qualificados para o desenvolvimento do sistema</strong></td>
+<td>Média</td>
+<td>Significativo</td>
+<td>- Promover treinamentos e capacitações para a equipe interna.</td>
+</tr>
+<tr>
+<td><strong>Atraso nas entregas devido a falta de comunicação interna</strong></td>
+<td>Média</td>
+<td>Moderado</td>
+<td>- Adotar ferramentas de comunicação eficientes, como Discord ou Slack. <br> - Estabelecer reuniões semanais de alinhamento entre as equipes.</td>
+</tr>
+<tr>
+<td><strong>Mudança nos requisitos do cliente durante o desenvolvimento</strong></td>
+<td>Alta</td>
+<td>Moderado</td>
+<td>- Avaliar o impacto das mudanças no escopo, cronograma e orçamento. <br> - Negociar ajustes realistas com o cliente para garantir o alinhamento estratégico.</td>
+</tr>
+<tr>
+<td><strong>Falhas no monitoramento do estoque de medicamentos</strong></td>
+<td>Alta</td>
+<td>Significativo</td>
+<td>- Estabelecer alertas automáticos para níveis críticos de estoque e datas de validade próximas.</td>
+</tr>
+</tbody>
+</table>
+<p>Esse processo sistemático de identificação e controle de riscos não apenas prepara a equipe para lidar com imprevistos, mas também promove um ambiente de aprendizado contínuo e alinhamento entre todos os envolvidos. O acompanhamento e a atualização constantes garantem que o projeto se mantenha adaptável e resiliente frente aos desafios encontrados.  </p>
+<h3 id="25-criterios-de-replanejamento">2.5. Critérios de Replanejamento</h3>
+<p>O replanejamento é uma ferramenta essencial para assegurar que o projeto permaneça alinhado aos seus objetivos iniciais, mesmo diante de imprevistos ou mudanças significativas no cenário de desenvolvimento. No caso do GestFarma, os critérios estabelecidos para replanejamento têm como objetivo orientar a equipe na tomada de decisões estratégicas, garantindo a continuidade do projeto com o menor impacto possível em termos de cronograma, custos e qualidade do produto.  </p>
+<p>Entre os principais critérios identificados estão os atrasos críticos nas entregas, que podem comprometer o andamento das atividades subsequentes. Nessas situações, a equipe realiza uma reavaliação do cronograma para redistribuir tarefas de forma equilibrada, buscando mitigar os impactos no prazo final. Além disso, mudanças nos requisitos do cliente são tratadas com especial atenção, já que alterações significativas nas funcionalidades ou nas regras de negócio exigem revisão do escopo e análise das tarefas realizadas até o momento.  </p>
+<p>Outro ponto crítico refere-se à identificação de riscos que se concretizem durante o projeto. Quando isso ocorre, o plano de contingência previamente estabelecido é acionado, enquanto a lista de riscos é atualizada para incluir possíveis novos impactos. Da mesma forma, problemas técnicos que surgirem durante o desenvolvimento podem demandar uma revisão das ferramentas ou tecnologias utilizadas, garantindo que as soluções adotadas continuem viáveis e eficazes.  </p>
+<p>A falta de alinhamento entre a equipe e o cliente também pode motivar o replanejamento. Divergências na comunicação ou na definição de metas são tratadas com reuniões de alinhamento, promovendo um entendimento comum sobre os objetivos e as entregas do projeto. </p>
+<p>Além disso, as avaliações regulares do progresso do projeto, realizadas nas revisões de sprint, permitem a identificação de gargalos ou falhas que possam comprometer o desenvolvimento. Essas avaliações resultam em ajustes no backlog e no planejamento das sprints seguintes, mantendo a adaptabilidade do projeto.  </p>
+<p>Mudanças em legislações ou regulamentações também desempenham um papel importante no replanejamento, pois podem impactar diretamente as funcionalidades do sistema. Nesse contexto, o escopo é revisado e adequado para garantir a conformidade regulatória. Por fim, o feedback do cliente é constantemente monitorado; críticas ou insatisfações motivam revisões no produto, garantindo que as entregas estejam alinhadas às expectativas.  </p>
+<p>O acompanhamento dos critérios de replanejamento ocorre de forma contínua, sendo reavaliado a cada ciclo de desenvolvimento. Todas as alterações realizadas são devidamente registradas no Plano do Projeto e comunicadas às partes interessadas, assegurando transparência e alinhamento entre todos os envolvidos.  </p>
+<h2 id="3-processo-de-desenvolvimento-de-software">3. Processo de Desenvolvimento de Software</h2>
+<h2 id="4-licoes-aprendidas">4. Lições Aprendidas</h2>
+<h3 id="41-unidade-1">4.1. Unidade 1</h3>
+<p>A primeira unidade foi marcada por um aprendizado profundo sobre os fundamentos da Engenharia de Software e a importância estratégica da Engenharia de Requisitos (ER). Essa etapa trouxe uma visão ampliada sobre como abordagens e ciclos de vida podem impactar diretamente o sucesso do projeto. A equipe compreendeu que a escolha de metodologias adequadas, como os frameworks ágeis, não é apenas uma decisão técnica, mas um elemento essencial para lidar com a complexidade e a mutabilidade dos requisitos.</p>
+<p>Outro ponto de destaque foi a descoberta da relevância de uma documentação bem estruturada e contínua. Essa prática demonstrou ser um alicerce para a comunicação eficaz entre a equipe e os stakeholders, mitigando riscos relacionados a falhas de entendimento. No contexto da ER, o levantamento inicial dos requisitos revelou a importância de técnicas que garantam clareza e rastreabilidade, fatores que foram fundamentais para alinhar as expectativas entre as partes envolvidas.</p>
+<p>Entender as necessidades do cliente e mapear os requisitos funcionais e não funcionais não só fortaleceu a construção de um escopo robusto, mas também possibilitou a categorização e priorização das funcionalidades mais críticas para o projeto. No entanto, a equipe enfrentou desafios significativos, especialmente relacionados à escolha do ciclo de vida mais adequado e à aplicação prática das técnicas de ER. A inexperiência em traduzir as necessidades do cliente em requisitos objetivos tornou algumas decisões mais lentas e complexas.</p>
+<p>Como resposta, a equipe decidiu intensificar o contato com os stakeholders, promovendo reuniões mais frequentes para esclarecer dúvidas e alinhar os objetivos. Além disso, a realização de capacitações sobre ferramentas e técnicas de ER, como entrevistas e prototipagem, foi reconhecida como uma estratégia essencial para superar as limitações iniciais e construir um ambiente de desenvolvimento mais eficiente.</p>
+<h3 id="42-unidade-2">4.2. Unidade 2</h3>
+<p>A segunda unidade consolidou o aprendizado anterior e trouxe uma aplicação prática das técnicas de ER no planejamento do backlog e no desenvolvimento do projeto. A introdução de ferramentas como User Stories, critérios de aceitação (DoD) e preparação (DoR) não apenas aumentou a organização interna, mas também deu maior transparência ao processo de desenvolvimento, fortalecendo a confiança entre a equipe e o cliente.</p>
+<p>Durante as atividades de levantamento de requisitos, foi possível observar um avanço na aplicação de técnicas como brainstorming e entrevistas direcionadas. Essas metodologias permitiram refinar as histórias de usuário e identificar as prioridades do produto com maior precisão. A construção do backlog, por sua vez, proporcionou uma visão integrada do projeto, facilitando a organização das entregas por valor agregado.</p>
+<p>O conceito de MVP foi outro aprendizado importante, ajudando a equipe a manter o foco nas funcionalidades essenciais e a evitar a dispersão em tarefas de menor impacto. Essa abordagem também trouxe maior agilidade no processo de desenvolvimento, permitindo que o cliente obtivesse resultados tangíveis em prazos mais curtos.</p>
+<p>No entanto, a equipe enfrentou dificuldades ao estimar o esforço necessário para as tarefas e ao priorizá-las de maneira objetiva. A falta de critérios bem definidos inicialmente gerou divergências sobre o que seria considerado uma entrega concluída, causando alguns atrasos no cronograma.</p>
+<p>Para enfrentar esses desafios, foram adotadas ações corretivas, como a criação de critérios claros e documentados para DoR e DoD, além de reuniões de alinhamento focadas na priorização das tarefas com base em critérios objetivos. Sessões internas de capacitação sobre frameworks ágeis, também foram propostas para aprofundar o entendimento sobre metodologias que possam otimizar o fluxo de trabalho e a colaboração entre os membros da equipe. Além disso, foi perceptível a necessidade de estruturar documentos DOR e DOD em um formato mais adequado que permita o entendimento do que deve ser de fato entregue.</p>
+<h2 id="5-referencias">5. Referências</h2>
+<p>AGILE ALLIANCE. Agile Alliance – Advocating for Agile Development. Disponível em: https://www.agilealliance.org/. Acesso em: 13 jan. 2025.</p>
+<p>AGILE MANIFESTO. Manifesto Ágil. 2001. Disponível em: http://www.manifestoagil.com.br/. Acesso em: 13 jan. 2025.</p>
+<p>PROJECT MANAGEMENT INSTITUTE. PMBOK® Guide: Project Management Body of Knowledge. Disponível em: https://www.pmi.org/pmbok-guide-standards. Acesso em: 13 jan. 2025.</p>
+<p>SCRUM.org. Home – Scrum.org. Disponível em: https://www.scrum.org/. Acesso em: 13 jan. 2025.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

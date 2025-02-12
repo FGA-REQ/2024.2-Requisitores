@@ -1,0 +1,674 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../visaoprojetoproduto/">
+      
+      
+        <link rel="next" href="../der/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Requisitos - GestFarma</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gestfarma" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GestFarma" class="md-header__button md-logo" aria-label="GestFarma" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GestFarma
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requisitos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GestFarma" class="md-nav__button md-logo" aria-label="GestFarma" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GestFarma
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visaoprojetoproduto/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto e Projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Requisitos
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../der/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MER/DER e Dicionário de dados
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dor-dod/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DOR/DOD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mvp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MVP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-revisao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Historico de Revisão
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objetivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="gestfarma">GestFarma</h1>
+<h2 id="requisitos">Requisitos</h2>
+<h2 id="historico-de-revisao">Historico de Revisão</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Data</strong></th>
+<th><strong>Versão</strong></th>
+<th><strong>Descrição</strong></th>
+<th><strong>Autor</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>11/12/2024</td>
+<td>1.1</td>
+<td>Declaração de Problema, Posição das regras de negócio do projeto</td>
+<td>Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos</td>
+</tr>
+<tr>
+<td>26/01/2025</td>
+<td>2.0</td>
+<td>Declaração dos requisitos conforme o SAFe baseado nas regras de negócio previamente estabelecidas e revisadas com o cliente.</td>
+<td>Fernanda Noronha</td>
+</tr>
+<tr>
+<td>06/02/2025</td>
+<td>2.1</td>
+<td>Ajuste da declaração dos requisitos conforme o SAFe baseado nas regras de negócio previamente estabelecidas e revisadas com o cliente.</td>
+<td>Davi Casseb, Fernanda Noronha, Joyce Dionizio, Karolina Barbosa, Vitor Carvalho Pereira, Yago Amin Santos</td>
+</tr>
+</tbody>
+</table>
+<h2 id="introducao">Introdução</h2>
+<p>Esta documentação segue os princípios do SAFe (Scaled Agile Framework) para garantir a organização e priorização das demandas do sistema de gerenciamento de estoques. O objetivo é descrever claramente os épicos, funcionalidades, requisitos e histórias de usuário, alinhando as entregas às necessidades do negócio e garantindo que o desenvolvimento ocorra de forma ágil e eficiente.
+O framework SAFe foi escolhido por sua abordagem escalável e estruturada, permitindo que equipes multidisciplinares colaborem de maneira coordenada, atendendo às demandas técnicas e de negócio de forma incremental e iterativa.</p>
+<h2 id="objetivos">Objetivos</h2>
+<p>Alinhar as entregas às necessidades estratégicas: Garantir que as implementações do sistema estejam diretamente ligadas aos objetivos do negócio.
+Melhorar a eficiência operacional: Reduzir perdas, aumentar a segurança e otimizar processos de controle e planejamento de estoques.
+Prover uma base clara para o desenvolvimento ágil: Facilitar o entendimento e a comunicação entre stakeholders, desenvolvedores e usuários finais.
+Aumentar a qualidade e segurança: Estabelecer critérios de aceite e requisitos claros para garantir robustez, usabilidade e acessibilidade no sistema.</p>
+<h1 id="estrutura-safe">Estrutura SAFe</h1>
+<h2 id="1-epicos"><strong>1. Épicos</strong></h2>
+<p>Os épicos representam grandes iniciativas de negócio ou de tecnologia, sendo desdobrados em funcionalidades e histórias de usuário. Seguem os épicos identificados:</p>
+<h3 id="epico-1-gerenciamento-de-estoque"><strong>Épico 1: Gerenciamento de Estoque</strong></h3>
+<p>Objetivo: Melhorar o controle de estoque para reduzir perdas por vencimento e aumentar a eficiência operacional.</p>
+<h3 id="epico-2-planejamento-e-automacao"><strong>Épico 2: Planejamento e Automação</strong></h3>
+<p>Objetivo: Automatizar alertas e planejar compras com base em dados históricos, garantindo a continuidade operacional.</p>
+<hr />
+<h2 id="2-funcionalidades"><strong>2. Funcionalidades</strong></h2>
+<p>As funcionalidades representam partes significativas do épico e orientam a implementação de histórias de usuário.</p>
+<h3 id="funcionalidade-1-cadastro-de-itens-do-estoque"><strong>Funcionalidade 1: Cadastro de Itens do Estoque</strong></h3>
+<p>Descrição: Permitir o registro completo de itens do estoque com informações relevantes.</p>
+<h3 id="funcionalidade-2-alerta-de-validade-proxima"><strong>Funcionalidade 2: Alerta de Validade Próxima</strong></h3>
+<p>Descrição: Notificar os responsáveis sobre produtos próximos ao vencimento.</p>
+<h3 id="funcionalidade-3-dispensacao-por-fifo"><strong>Funcionalidade 3: Dispensação por FIFO</strong></h3>
+<p>Descrição: Garantir que produtos com validade próxima sejam priorizados na saída.</p>
+<h3 id="funcionalidade-4-controle-de-acesso-por-perfil"><strong>Funcionalidade 4: Controle de Acesso por Perfil</strong></h3>
+<p>Descrição: Configurar níveis de acesso diferenciados para cada perfil de usuário.</p>
+<h3 id="funcionalidade-5-autenticacao-segura"><strong>Funcionalidade 5: Autenticação Segura</strong></h3>
+<p>Descrição: Garantir a segurança no login com senhas fortes e bloqueios automáticos.</p>
+<hr />
+<h2 id="3-requisitos-e-relacionamento-de-para"><strong>3. Requisitos e Relacionamento "De-Para"</strong></h2>
+<table>
+<thead>
+<tr>
+<th><strong>Regras de Negócio</strong></th>
+<th><strong>Requisitos Funcionais</strong></th>
+<th><strong>Requisitos Não Funcionais</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cadastro de itens deve evitar duplicidade.</td>
+<td>Cadastro de itens com código único, lote, validade e fabricante.</td>
+<td>Tempo de resposta menor que 3 segundos.</td>
+</tr>
+<tr>
+<td>Alertar sobre produtos próximos ao vencimento.</td>
+<td>Geração de alertas automáticos para produtos com validade &lt; 30 dias.</td>
+<td>Design responsivo e acessível conforme WCAG 2.1.</td>
+</tr>
+<tr>
+<td>Compras devem ser planejadas.</td>
+<td>Planejamento baseado em rotatividade e níveis críticos de estoque.</td>
+<td>Dados criptografados para segurança.</td>
+</tr>
+<tr>
+<td>Dispensação deve priorizar o FIFO.</td>
+<td>Organização automática de itens baseando-se na validade.</td>
+<td>Sistema deve operar sem perda de desempenho em alta demanda.</td>
+</tr>
+<tr>
+<td>Controle de acesso deve ser restrito.</td>
+<td>Configuração de perfis de acesso com permissões específicas.</td>
+<td>Logs armazenados por pelo menos 5 anos.</td>
+</tr>
+<tr>
+<td>Segurança de acesso ao sistema.</td>
+<td>Autenticação com senhas fortes e bloqueio após múltiplas tentativas.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-historias-de-usuario-e-criterios-de-aceite"><strong>4. Histórias de Usuário e Critérios de Aceite</strong></h2>
+<h3 id="historia-1-cadastro-de-itens-do-estoque"><strong>História 1: Cadastro de Itens do Estoque</strong></h3>
+<p><strong>Como</strong> administrador do sistema,<br />
+<strong>eu quero</strong> cadastrar itens no estoque com informações detalhadas (código único, lote, validade e fabricante),<br />
+<strong>para que</strong> eu possa gerenciar os itens de forma precisa e evitar duplicidade.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>Deve ser possível cadastrar um item com as informações: código único, descrição e validade.</li>
+<li>Exibir mensagem de erro clara caso algum campo obrigatório não seja preenchido ou o código já exista.</li>
+</ul>
+<hr />
+<h3 id="historia-2-alerta-de-validade-proxima"><strong>História 2: Alerta de Validade Próxima</strong></h3>
+<p><strong>Como</strong> farmacêutico responsável,<br />
+<strong>eu quero</strong> receber alertas automáticos sobre medicamentos que estão próximos a vencer,<br />
+<strong>para que</strong> eu possa tomar as devidas ações antes que eles expirem.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>O sistema deve gerar alertas automáticos para medicamentos com validade inferior a 30 dias.</li>
+<li>Os alertas devem ser exibidos em um painel principal.</li>
+</ul>
+<hr />
+<h3 id="historia-3-planejamento-de-compras"><strong>História 3: Planejamento de Compras</strong></h3>
+<p><strong>Como</strong> gestor de compras,<br />
+<strong>eu quero</strong> que o sistema sugira o planejamento de compras com base em rotatividade e níveis críticos,<br />
+<strong>para que</strong> eu possa evitar rupturas no estoque.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>O sistema deve emitir alertas para produtos que atingirem o nível crítico de estoque.</li>
+<li>Relatórios gerados devem incluir a disponibilização dos medicamentos.</li>
+</ul>
+<hr />
+<h3 id="historia-4-dispensacao-por-fifo"><strong>História 4: Dispensação por FIFO</strong></h3>
+<p><strong>Como</strong> técnico de farmácia,<br />
+<strong>eu quero</strong> que o sistema priorize o princípio "primeiro a vencer, primeiro a sair" na dispensação de medicamentos,<br />
+<strong>para que</strong> eu reduza o risco de perdas por vencimento.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>O sistema deve organizar automaticamente os itens disponíveis com base na validade.</li>
+<li>A regra FIFO deve ser aplicada a todos os processos de dispensação.</li>
+</ul>
+<hr />
+<h3 id="historia-5-controle-de-acesso"><strong>História 5: Controle de Acesso</strong></h3>
+<p><strong>Como</strong> administrador,<br />
+<strong>eu quero</strong> configurar níveis de acesso para diferentes tipos de usuários,<br />
+<strong>para que</strong> cada usuário visualize apenas as informações necessárias para suas atividades.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>O sistema deve permitir criar perfis de acesso (administrador, farmacêutico, técnico e auditor).</li>
+<li>Usuários com permissão limitada devem ter acesso apenas às funcionalidades pertinentes ao seu perfil.</li>
+</ul>
+<hr />
+<h3 id="historia-6-autenticacao-segura"><strong>História 6: Autenticação Segura</strong></h3>
+<p><strong>Como</strong> usuário,<br />
+<strong>eu quero</strong> realizar login com uma senha forte e bloqueio após múltiplas tentativas inválidas,<br />
+<strong>para que</strong> minhas informações e acessos sejam mantidos seguros.  </p>
+<p><strong>Critérios de Aceite:</strong></p>
+<ul>
+<li>O sistema deve exigir senhas com no mínimo 8 caracteres, incluindo letras maiúsculas, números e símbolos.</li>
+<li>Após 5 tentativas de login inválidas, a conta deve ser bloqueada automaticamente.</li>
+<li>Deve ser possível desbloquear contas somente por administradores.</li>
+</ul>
+<hr />
+<h2 id="5-requisitos-nao-funcionais"><strong>5. Requisitos Não Funcionais</strong></h2>
+<ul>
+<li><strong>Segurança:</strong> O sistema deve garantir criptografia de dados sensíveis, como senhas e informações de usuários.</li>
+<li><strong>Desempenho:</strong> O tempo de resposta para qualquer operação não deve ultrapassar 3 segundos.</li>
+<li><strong>Escalabilidade:</strong> O sistema deve suportar até 10.000 registros simultâneos de itens sem perda de desempenho.</li>
+<li><strong>Usabilidade:</strong> O sistema deve seguir as diretrizes de design responsivo e acessibilidade (WCAG 2.1).</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
